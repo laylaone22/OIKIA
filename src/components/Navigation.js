@@ -2,11 +2,12 @@ import { NavLink } from 'react-router-dom';
 
 const Navigation = () => {
     return (
-        <nav className="navbar navbar-expand-sm navbar-light bg-transparent fixed-top">
+        <nav className="navbar navbar-expand-md navbar-light bg-light">
             <div className="container-fluid">
-                <a className="navbar-brand" href="http://localhost:3000/">
+                <NavLink to="/" className="navbar-brand">
                     OIKIA
-                </a>
+                </NavLink>
+
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -18,14 +19,25 @@ const Navigation = () => {
                 >
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="http://localhost:3000/">
-                                Home
-                            </a>
-                        </li>
-                    </ul>
+
+                <div className="collapse navbar-collapse " id="navbarSupportedContent">
+                    <div className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <NavLink to="/plantcyclopedia" className="nav-link" aria-current="page">
+                            Plantcyclopedia
+                        </NavLink>
+                        <NavLink to="/userdashboard" className="nav-link" aria-current="page">
+                            My Profile
+                        </NavLink>
+                        <NavLink to="/gardeneditor" className="nav-link" aria-current="page">
+                            Garden Editor
+                        </NavLink>
+                        <NavLink to="/signup" className="nav-link" aria-current="page">
+                            Sign up
+                        </NavLink>
+                        <NavLink to="/login" className="nav-link" aria-current="page">
+                            Log in
+                        </NavLink>
+                    </div>
                 </div>
             </div>
         </nav>
