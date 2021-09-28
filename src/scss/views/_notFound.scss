@@ -1,0 +1,29 @@
+@use '../abstracts/' as *;
+
+.NotFound {
+    width: auto;
+    min-height: 100%;
+    text-align: center;
+
+    background: linear-gradient(180deg, rgba(208, 235, 182, 0.34) 16.69%, rgba(61, 65, 58, 0.5) 95.13%),
+        url('https://images.unsplash.com/photo-1552089123-2d26226fc2b7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1528&q=80')
+            no-repeat left center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    overflow: hidden;
+
+    .NotFound__body {
+        min-height: calc(100vh - 3.5rem);
+
+        &__header {
+            padding: 2rem 0;
+
+            h1 {
+                color: $font-color-primary;
+            }
+        }
+    }
+}
