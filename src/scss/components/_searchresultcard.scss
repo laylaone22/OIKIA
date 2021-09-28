@@ -1,0 +1,8 @@
+@use '../abstracts/' as *;
+
+.search-results__card {
+    width: 80%;
+    height: 7rem;
+    margin: 1rem;
+    border-radius: 1rem;
+}

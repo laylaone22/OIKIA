@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import SearchResultCard from '../components/SearchResultCard';
 
 const Plantcyclopedia = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -49,6 +50,13 @@ const Plantcyclopedia = () => {
 
                 <section className="Plantcyclopedia__body--results">
                     <h2>Results</h2>
+                    <div className="Plantcyclopedia__body--resultCards">
+                        <SearchResultCard
+                            plantName="brocolli"
+                            img="https://www.beingdad.in/wp-content/uploads/2020/07/broccoli-1200x628-facebook-1200x628.jpg"
+                        />
+                        <SearchResultCard />
+                    </div>
                 </section>
             </main>
         </div>
