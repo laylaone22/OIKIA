@@ -1,9 +1,11 @@
-import './App.scss';
+import Plantcyclopedia from './views/Plantcyclopedia.js';
+import Navigation from './components/Navigation.js';
 
 function App() {
     return (
         <div className="App">
-            <h1 className="title">OIKIA</h1>
+            <Navigation />
+            <Plantcyclopedia />
         </div>
     );
 }
