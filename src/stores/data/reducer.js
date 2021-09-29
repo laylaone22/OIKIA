@@ -40,7 +40,7 @@ const dataReducer = (dataState, action) => {
             console.log('reducer renders ADD_GARDEN');
             return dataState;
 
-        // logic for editing gardens to users
+        // logic for editing gardens to users !!EXTRA!!
         case EDIT_GARDEN:
             console.log('reducer renders EDIT_GARDEN');
             return dataState;

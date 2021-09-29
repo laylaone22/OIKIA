@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 // views
@@ -20,19 +20,6 @@ import { dataContext } from './stores/data/store';
 const App = () => {
     // auth context data
     const { isLoggedIn, setIsLoggedIn, setUserData, setAuthToken } = useContext(authContext);
-
-    // on mount store auth data in localStorage
-    // use isLoggedIn for conditional rendering
-    useEffect(() => {
-        const isLoggedIn = localStorage.getItem('isLoggedIn');
-        const userData = localStorage.getItem('userData');
-        const authToken = localStorage.getItem('authToken');
-        if (isLoggedIn && userData && authToken) {
-            setIsLoggedIn(JSON.parse(isLoggedIn));
-            setUserData(JSON.parse(userData));
-            setAuthToken(JSON.parse(authToken));
-        }
-    }, []);
 
     return (
         <BrowserRouter>
