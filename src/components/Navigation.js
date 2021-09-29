@@ -1,6 +1,28 @@
-import { NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
+
+// contexts
+import { authContext } from '../stores/auth/auth';
+import { dataContext } from '../stores/data/store';
 
 const Navigation = () => {
+    // auth context data
+    const { isLoggedIn, setIsLoggedIn, setUserData, setAuthToken } = useContext(authContext);
+
+    // useHistory to redirect when needed
+    const history = useHistory();
+
+    // logout logic
+    const handleLogout = () => {
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('userData');
+        localStorage.removeItem('authToken');
+        setIsLoggedIn(false);
+        setUserData({ userName: '' });
+        setAuthToken('');
+        history.push('/');
+    };
+
     return (
         <nav className="navbar navbar-expand-md navbar-light bg-light">
             <div className="container-fluid">
@@ -31,12 +53,31 @@ const Navigation = () => {
                         <NavLink to="/gardeneditor" className="nav-link" aria-current="page">
                             Garden Editor
                         </NavLink>
-                        <NavLink to="/signup" className="nav-link" aria-current="page">
-                            Sign up
-                        </NavLink>
-                        <NavLink to="/login" className="nav-link" aria-current="page">
-                            Log in
-                        </NavLink>
+                        {/* 
+                        
+                        ONCE THE AUTHENTICATION IS IMPLEMENTED render only myProfile if logged in
+                        the garden editor should be accessible only from the myProfile commands
+
+                        isLoggedIn && 
+                            <NavLink to="/userdashboard" className="nav-link" aria-current="page">
+                                My Profile
+                            </NavLink>
+                        
+                        */}
+                        {isLoggedIn ? (
+                            <NavLink to="" className="nav-link" aria-current="page" onClick={handleLogout}>
+                                Log out
+                            </NavLink>
+                        ) : (
+                            <>
+                                <NavLink to="/signup" className="nav-link" aria-current="page">
+                                    Sign up
+                                </NavLink>
+                                <NavLink to="/login" className="nav-link" aria-current="page">
+                                    Log in
+                                </NavLink>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
