@@ -1,4 +1,5 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { useContext } from 'react';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 // views
 import Home from './views/Home.js';
@@ -12,7 +13,14 @@ import NotFound from './views/NotFound.js';
 // components
 import Navigation from './components/Navigation.js';
 
+// contexts
+import { authContext } from './stores/auth/auth';
+import { dataContext } from './stores/data/store';
+
 const App = () => {
+    // auth context data
+    const { isLoggedIn, setIsLoggedIn, setUserData, setAuthToken } = useContext(authContext);
+
     return (
         <BrowserRouter>
             <div className="App">
@@ -25,16 +33,16 @@ const App = () => {
                         <Plantcyclopedia />
                     </Route>
                     <Route exact path="/userdashboard">
-                        <UserDashboard />
+                        {isLoggedIn ? <UserDashboard /> : <Redirect to="/signup" />}
                     </Route>
                     <Route exact path="/gardeneditor">
-                        <GardenEditor />
+                        {isLoggedIn ? <GardenEditor /> : <Redirect to="/signup" />}
                     </Route>
                     <Route exact path="/signup">
-                        <Signup />
+                        {!isLoggedIn ? <Signup /> : <Redirect to="/" />}
                     </Route>
                     <Route exact path="/login">
-                        <Login />
+                        {!isLoggedIn ? <Login /> : <Redirect to="/" />}
                     </Route>
                     <Route>
                         <NotFound />
