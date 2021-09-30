@@ -81,7 +81,7 @@ const Plantcyclopedia = () => {
 
                         <div className="Plantcyclopedia__body--searchByType__cards">
                             <PlantcyclopediaCard plantType={'Fruits'} getPlantsByType={getPlantsByType} />
-                            <PlantcyclopediaCard plantType={'Vegetables'} getPlantsByType={getPlantsByType} />
+                            <PlantcyclopediaCard plantType={'vegetable'} getPlantsByType={getPlantsByType} />
                             <PlantcyclopediaCard plantType={'Roots'} getPlantsByType={getPlantsByType} />
                             <PlantcyclopediaCard plantType={'Herbs'} getPlantsByType={getPlantsByType} />
                         </div>
