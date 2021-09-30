@@ -3,31 +3,34 @@
 .PlantcyclopediaCard {
     margin: 0 1rem 2rem 1rem;
     flex-basis: 300px;
-    height: 136px;
+    min-height: 136px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 18px;
     flex-shrink: 0;
 }
 
-.Fruits {
+.fruits {
     background-image: url('https://images.unsplash.com/photo-1609889132698-1625aefc7f6b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3567&q=80');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
-.Herbs {
+
+.herbs {
     background-image: url('https://images.unsplash.com/photo-1551772413-6c1b7dc18548?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3570&q=80');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
-.vegetable {
+
+.vegetables {
     background-image: url('https://images.unsplash.com/photo-1519162808019-7de1683fa2ad?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3475&q=80');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
-.Roots {
+
+.roots {
     background-image: url('https://images.unsplash.com/photo-1571771286893-c8611879a683?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3570&q=80');
     background-size: cover;
     background-position: center;
