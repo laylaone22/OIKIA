@@ -1,7 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore from 'swiper';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import 'swiper/swiper-bundle.css';
+
 import PlantcyclopediaCard from '../components/PlantcyclopediaCard';
 
+SwiperCore.use([Navigation, Pagination]);
+
 const Plantcyclopedia = () => {
+    <Swiper>
+        <SwiperSlide></SwiperSlide>
+    </Swiper>;
     const [searchTerm, setSearchTerm] = useState('');
 
     const [searchResults, setSearchResults] = useState([]);
@@ -60,7 +71,7 @@ const Plantcyclopedia = () => {
                 </header>
                 <section className="Plantcyclopedia__body--search">
                     <form className="Plantcyclopedia__body--search__form" onSubmit={handleSubmit}>
-                        <h2>Search by Name</h2>
+                        <h2 className="Plantcyclopedia__body--search__title">Search by Name</h2>
                         <label htmlFor="searchWord" className="Plantcyclopedia__body--search__form__label">
                             <input
                                 className="Plantcyclopedia__body--search__form__input"
@@ -79,12 +90,29 @@ const Plantcyclopedia = () => {
                     <section className="Plantcyclopedia__body--searchByType">
                         <h2 className="Plantcyclopedia__body--searchByType__title">Search by Type</h2>
 
-                        <div className="Plantcyclopedia__body--searchByType__cards">
-                            <PlantcyclopediaCard plantType={'Fruits'} getPlantsByType={getPlantsByType} />
-                            <PlantcyclopediaCard plantType={'vegetable'} getPlantsByType={getPlantsByType} />
-                            <PlantcyclopediaCard plantType={'Roots'} getPlantsByType={getPlantsByType} />
-                            <PlantcyclopediaCard plantType={'Herbs'} getPlantsByType={getPlantsByType} />
-                        </div>
+                        <Swiper
+                            tag="div"
+                            className="Plantcyclopedia__body--searchByType__cards"
+                            spaceBetween={0}
+                            slidesPerView={1.5}
+                            //navigation
+                            pagination={{ clickable: true }}
+                            onSlideChange={() => console.log('slide change')}
+                            onSwiper={(swiper) => console.log(swiper)}
+                        >
+                            <SwiperSlide key={'Fruits'}>
+                                <PlantcyclopediaCard plantType={'Fruits'} getPlantsByType={getPlantsByType} />
+                            </SwiperSlide>
+                            <SwiperSlide key={'vegetable'}>
+                                <PlantcyclopediaCard plantType={'vegetable'} getPlantsByType={getPlantsByType} />
+                            </SwiperSlide>
+                            <SwiperSlide key={'Roots'}>
+                                <PlantcyclopediaCard plantType={'Roots'} getPlantsByType={getPlantsByType} />
+                            </SwiperSlide>
+                            <SwiperSlide key={'Herbs'}>
+                                <PlantcyclopediaCard plantType={'Herbs'} getPlantsByType={getPlantsByType} />
+                            </SwiperSlide>
+                        </Swiper>
                     </section>
                 </section>
 
