@@ -1,6 +1,7 @@
 @use '../abstracts/' as *;
 
 .Plantcyclopedia {
+    padding-top: 4rem;
     width: auto;
     // padding: 0 1rem;
     min-height: 100%;
@@ -17,7 +18,7 @@
     overflow: hidden;
 
     .Plantcyclopedia__body {
-        min-height: calc(100vh - 3.5rem);
+        min-height: 100vh;
 
         &__header {
             padding: 2rem 0;
@@ -123,4 +124,22 @@
     .swiper-pagination-bullet {
         background-color: white;
     }
+}
+
+
+.Plantcyclopedia__body--results {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: auto;
+    width: 80%;
+
+    .Plantcyclopedia__body--resultCards {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 80%;
+  }
 }

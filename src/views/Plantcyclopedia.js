@@ -1,18 +1,18 @@
 import { useState } from 'react';
 
+// swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import 'swiper/swiper-bundle.css';
 
+// components
 import PlantcyclopediaCard from '../components/PlantcyclopediaCard';
+import SearchResultCard from '../components/SearchResultCard';
 
 SwiperCore.use([Navigation, Pagination]);
 
 const Plantcyclopedia = () => {
-    <Swiper>
-        <SwiperSlide></SwiperSlide>
-    </Swiper>;
     const [searchTerm, setSearchTerm] = useState('');
 
     const [searchResults, setSearchResults] = useState([]);
@@ -90,6 +90,9 @@ const Plantcyclopedia = () => {
                     <section className="Plantcyclopedia__body--searchByType">
                         <h2 className="Plantcyclopedia__body--searchByType__title">Search by Type</h2>
 
+
+                        
+
                         <Swiper
                             tag="div"
                             className="Plantcyclopedia__body--searchByType__cards"
@@ -113,16 +116,34 @@ const Plantcyclopedia = () => {
                                 <PlantcyclopediaCard plantType={'Herbs'} getPlantsByType={getPlantsByType} />
                             </SwiperSlide>
                         </Swiper>
+
                     </section>
                 </section>
 
                 <section className="Plantcyclopedia__body--results">
                     <h2>Results</h2>
+
+                    <div className="Plantcyclopedia__body--resultCards">
+                        <SearchResultCard
+                            plantName="Brocolli"
+                            img="https://www.beingdad.in/wp-content/uploads/2020/07/broccoli-1200x628-facebook-1200x628.jpg"
+                        />
+                        <SearchResultCard
+                            plantName="Bean"
+                            img="https://www.southernexposure.com/media/products/originals/mccaslan-snap-pole-bean-f2c1daf8f9d1600b92990b8f5b2a3ea0.jpg"
+                        />
+                        <SearchResultCard
+                            plantName="Caulifower"
+                            img="https://d2fft7k2ovfi2e.cloudfront.net/images/plants/9/85741e8d87badbf541130f56a4bb95ed/facebook/cauliflower_high_2-85741e8d87badbf541130f56a4bb95ed.jpg"
+                        />
+                    </div>
+
                     {noResultFound ? (
                         <h3>No results found</h3>
                     ) : (
                         searchResults.map((plant) => <h1 key={plant._id}>{plant.plantName}</h1>)
                     )}
+
                 </section>
             </main>
         </div>

@@ -1,0 +1,21 @@
+@use '../abstracts/' as *;
+
+.search-results__card {
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 0.5rem;
+    padding-bottom: 0%;
+    .icon__add {
+        margin-left: 50%;
+    }
+}
+
+.search-results__icons {
+    height: 2rem;
+    width: 2rem;
+}
+.search-results__icons-group {
+    margin-left: 0;
+}
