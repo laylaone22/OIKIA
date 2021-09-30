@@ -1,8 +1,7 @@
-function PlantcyclopediaCard(props) {
-    console.log(props);
+function PlantcyclopediaCard({ plantType, getPlantsByType }) {
     return (
-        <div className={`PlantcyclopediaCard ${props.style}`}>
-            <h2>{props.plantType}</h2>
+        <div className={`PlantcyclopediaCard ${plantType}`} onClick={() => getPlantsByType(`${plantType}`)}>
+            <h2>{plantType}</h2>
         </div>
     );
 }
