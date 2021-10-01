@@ -1,31 +1,35 @@
 @use '../abstracts/' as *;
 
 .search-results__card {
-    border-radius: 1rem;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-    min-height: 136px;
+    min-height: 10rem;
+
+    border-radius: $b-radius-normal;
+    padding: $p-medium;
+    margin-bottom: $m-small;
+
+    box-shadow: $b-shadow-normal;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
 
-.search-results__card--header {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
+    .search-results__card--header {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
 
-    .search-results__card--header__plantName {
-        //padding-left: 0.5rem;
+        .search-results__card--header__plantName {
+            //padding-left: 0.5rem;
+        }
     }
-}
 
-.search-results__icons {
-    height: 1.5rem;
-    width: 1.5rem;
-}
+    .search-results__icons {
+        height: 1.5rem;
+        width: 1.5rem;
+    }
 
-.search-results__icons-group {
-    display: flex;
-    flex-flow: row nowrap;
+    .search-results__icons-group {
+        display: flex;
+        flex-flow: row nowrap;
+    }
 }

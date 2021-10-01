@@ -89,51 +89,35 @@ const Plantcyclopedia = () => {
                     </form>
                     <section className="Plantcyclopedia__body--searchByType">
                         <h2 className="Plantcyclopedia__body--searchByType__title">Search by Type</h2>
-
-                        <Swiper
-                            tag="div"
-                            className="Plantcyclopedia__body--searchByType__cards"
-                            spaceBetween={0}
-                            slidesPerView={1.5}
-                            //navigation
-                            pagination={{ clickable: true }}
-                            onSlideChange={() => console.log('slide change')}
-                            onSwiper={(swiper) => console.log(swiper)}
-                        >
-                            <SwiperSlide key={'fruits'}>
-                                <PlantcyclopediaCard plantType={'fruits'} getPlantsByType={getPlantsByType} />
-                            </SwiperSlide>
-                            <SwiperSlide key={'vegetables'}>
-                                <PlantcyclopediaCard plantType={'vegetables'} getPlantsByType={getPlantsByType} />
-                            </SwiperSlide>
-                            <SwiperSlide key={'roots'}>
-                                <PlantcyclopediaCard plantType={'roots'} getPlantsByType={getPlantsByType} />
-                            </SwiperSlide>
-                            <SwiperSlide key={'herbs'}>
-                                <PlantcyclopediaCard plantType={'herbs'} getPlantsByType={getPlantsByType} />
-                            </SwiperSlide>
-                        </Swiper>
+                        <div className="Plantcyclopedia__body--searchByType__cards">
+                            <Swiper
+                                tag="div"
+                                spaceBetween={16}
+                                slidesPerView={2.5}
+                                //navigation
+                                pagination={{ clickable: true }}
+                                onSlideChange={() => console.log('slide change')}
+                                onSwiper={(swiper) => console.log(swiper)}
+                            >
+                                <SwiperSlide key={'fruits'}>
+                                    <PlantcyclopediaCard plantType={'fruits'} getPlantsByType={getPlantsByType} />
+                                </SwiperSlide>
+                                <SwiperSlide key={'vegetables'}>
+                                    <PlantcyclopediaCard plantType={'vegetables'} getPlantsByType={getPlantsByType} />
+                                </SwiperSlide>
+                                <SwiperSlide key={'roots'}>
+                                    <PlantcyclopediaCard plantType={'roots'} getPlantsByType={getPlantsByType} />
+                                </SwiperSlide>
+                                <SwiperSlide key={'herbs'}>
+                                    <PlantcyclopediaCard plantType={'herbs'} getPlantsByType={getPlantsByType} />
+                                </SwiperSlide>
+                            </Swiper>
+                        </div>
                     </section>
                 </section>
 
                 <section className="Plantcyclopedia__body--results">
-                    <h2>Results</h2>
-
-                    {/* <div className="Plantcyclopedia__body--resultCards">
-                        <SearchResultCard
-                            plantName="Brocolli"
-                            img="https://www.beingdad.in/wp-content/uploads/2020/07/broccoli-1200x628-facebook-1200x628.jpg"
-                        />
-                        <SearchResultCard
-                            plantName="Bean"
-                            img="https://www.southernexposure.com/media/products/originals/mccaslan-snap-pole-bean-f2c1daf8f9d1600b92990b8f5b2a3ea0.jpg"
-                        />
-                        <SearchResultCard
-                            plantName="Caulifower"
-                            img="https://d2fft7k2ovfi2e.cloudfront.net/images/plants/9/85741e8d87badbf541130f56a4bb95ed/facebook/cauliflower_high_2-85741e8d87badbf541130f56a4bb95ed.jpg"
-                        />
-                    </div> */}
-
+                    <h2 className="Plantcyclopedia__body--results__title">Results</h2>
                     {noResultFound ? (
                         <h3>No results found</h3>
                     ) : (
