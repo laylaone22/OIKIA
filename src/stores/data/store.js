@@ -11,7 +11,7 @@ export const dataContext = createContext();
 // create Provider and useReducer to be exported for init the provider in index.js
 export const DataProvider = ({ children }) => {
     // useReducer to handle status and setters
-    const [dataState, dispatch] = useReducer(dataReducer, {});
+    const [dataState, dispatch] = useReducer(dataReducer, { userID: '', myFavorites: [], myPlants: [], myGardens: [] });
 
     // on mount store auth data in localStorage
     useEffect(() => {

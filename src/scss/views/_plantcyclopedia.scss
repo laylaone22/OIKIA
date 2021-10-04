@@ -107,18 +107,18 @@
 
 @include mQuery($bp-mobile-md) {
     .Plantcyclopedia {
-        // background: red;
+        //background: red;
     }
 }
 
 @include mQuery($bp-tablet-sm) {
     .Plantcyclopedia {
-        // background: green;
+        //background: green;
     }
 }
 
 @include mQuery($bp-laptop-sm) {
     .Plantcyclopedia {
-        // background: yellow;
+        //background: yellow;
     }
 }

@@ -1,13 +1,17 @@
 @use '../abstracts/' as *;
 
 .Home {
-    @include viewsBody;
+    @include viewsMain;
 
+    // background & linear gradient
     background: linear-gradient(180deg, rgba(208, 235, 182, 0.1407) 62.12%, rgba(61, 65, 58, 0.21) 95.13%),
-        url('https://images.unsplash.com/photo-1604481986614-e48521951d81?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1587&q=80')
-            no-repeat top left;
+        url('https://images.unsplash.com/photo-1604481986614-e48521951d81?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1587&q=80');
+    background-repeat: no-repeat;
+    background-position: left center;
     background-size: cover;
+    background-attachment: fixed;
 
+    // view Body
     .Home__body {
         @include viewsBody;
     }
