@@ -4,14 +4,10 @@
     margin-bottom: $m-large;
     min-height: 7rem;
     box-shadow: $b-shadow-normal;
+    border-radius: $b-radius-normal;
 
-    border-radius: 97px;
-    background: linear-gradient(145deg, #c8d8e2, #a8b6be);
-    box-shadow: 7px 7px 2px #b4c2cb, -7px -7px 2px #c2d2db;
-
-    //$b-radius-normal
     h3 {
-        font-size: $f-medium;
+        font-size: $f-small;
         font-weight: 500;
         color: $font-color-secondary;
         margin-bottom: $m-small;
