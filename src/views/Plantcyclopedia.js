@@ -90,28 +90,10 @@ const Plantcyclopedia = () => {
                     <section className="Plantcyclopedia__body--searchByType">
                         <h2 className="Plantcyclopedia__body--searchByType__title">Search by Type</h2>
                         <div className="Plantcyclopedia__body--searchByType__cards">
-                            <Swiper
-                                tag="div"
-                                spaceBetween={16}
-                                slidesPerView={2.5}
-                                //navigation
-                                pagination={{ clickable: true }}
-                                onSlideChange={() => console.log('slide change')}
-                                onSwiper={(swiper) => console.log(swiper)}
-                            >
-                                <SwiperSlide key={'fruits'}>
-                                    <PlantcyclopediaCard plantType={'fruits'} getPlantsByType={getPlantsByType} />
-                                </SwiperSlide>
-                                <SwiperSlide key={'vegetables'}>
-                                    <PlantcyclopediaCard plantType={'vegetables'} getPlantsByType={getPlantsByType} />
-                                </SwiperSlide>
-                                <SwiperSlide key={'roots'}>
-                                    <PlantcyclopediaCard plantType={'roots'} getPlantsByType={getPlantsByType} />
-                                </SwiperSlide>
-                                <SwiperSlide key={'herbs'}>
-                                    <PlantcyclopediaCard plantType={'herbs'} getPlantsByType={getPlantsByType} />
-                                </SwiperSlide>
-                            </Swiper>
+                            <PlantcyclopediaCard plantType={'fruits'} getPlantsByType={getPlantsByType} />
+                            <PlantcyclopediaCard plantType={'vegetables'} getPlantsByType={getPlantsByType} />
+                            <PlantcyclopediaCard plantType={'roots'} getPlantsByType={getPlantsByType} />
+                            <PlantcyclopediaCard plantType={'herbs'} getPlantsByType={getPlantsByType} />
                         </div>
                     </section>
                 </section>

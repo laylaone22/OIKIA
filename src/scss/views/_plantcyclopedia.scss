@@ -19,6 +19,10 @@
 
 // view sections
 .Plantcyclopedia__body--search {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .Plantcyclopedia__body--search__form {
@@ -70,16 +74,22 @@
 
 .Plantcyclopedia__body--searchByType {
     width: 100%;
+    //background-color: white;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 
     &__cards {
-        .swiper-wrapper {
-            margin: 0 1rem;
-        }
-        .swiper-pagination {
-            .swiper-pagination-bullet {
-                background-color: $bg-color--secondary;
-            }
-        }
+        //background-color: red;
+
+        width: 80%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        align-items: center;
+        gap: 1rem;
     }
 }
 
