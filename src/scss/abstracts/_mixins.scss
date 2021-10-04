@@ -1,0 +1,40 @@
+@use './variables' as *;
+
+// mix media queries
+// call it with @include mQuery() and pass one of the breakpoints
+
+@mixin mQuery($bp) {
+    @media screen and (min-width: $bp) {
+        @content;
+    }
+}
+
+// mix main containers layouts mobile
+@mixin viewsMain {
+    width: auto;
+    min-height: 100%;
+    overflow: hidden;
+
+    // typography
+    h1 {
+        font-size: $f-x-large;
+        color: $font-color-primary;
+    }
+
+    h2 {
+        font-size: $f-small;
+        font-weight: 500;
+        color: $font-color-secondary;
+        margin-bottom: $m-small;
+    }
+}
+
+// mix main containers layouts mobile
+@mixin viewsBody {
+    min-height: calc(100vh - 3.5rem);
+    text-align: center;
+
+    &__header {
+        padding: $p-x-large 0;
+    }
+}

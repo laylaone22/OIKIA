@@ -3,10 +3,7 @@ import { useState } from 'react';
 export default function SearchResultCard({ plantName, img }) {
     const [favorite, setFavorite] = useState(false);
 
-    function changeFavorite(e) {
-        // e.target.setAttribute('src', 'https://img.icons8.com/plasticine/100/000000/like--v1.png');
-        // e.target.setAttribute('alt', 'heart filled symbol');
-
+    function changeFavorite() {
         setFavorite(!favorite);
     }
 
@@ -45,12 +42,7 @@ export default function SearchResultCard({ plantName, img }) {
                         src="https://img.icons8.com/plasticine/100/000000/like--v1.png"
                     />
                 )}
-                {/* <img
-                    onClick={changeFavorite}
-                    className="search-results__icons"
-                    alt="Heart outline symbol"
-                    src="https://img.icons8.com/plasticine/100/000000/like--v2.png"
-                /> */}
+
                 <img
                     className="search-results__icons"
                     alt="Add symbol"
