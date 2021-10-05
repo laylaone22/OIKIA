@@ -1,49 +1,76 @@
 @use '../abstracts/' as *;
 
+.selected {
+    border: 1px solid black;
+}
+
 .PlantcyclopediaCard {
-    margin-bottom: $m-large;
-    min-height: 7rem;
+    flex: 1 0 4rem;
+    min-height: 4rem;
+
     box-shadow: $b-shadow-normal;
+    border-radius: $b-radius-normal;
 
-    border-radius: 97px;
-    background: linear-gradient(145deg, #c8d8e2, #a8b6be);
-    box-shadow: 7px 7px 2px #b4c2cb, -7px -7px 2px #c2d2db;
+    transition: all 0.2s ease-in-out;
 
-    //$b-radius-normal
     h3 {
-        font-size: $f-medium;
+        font-size: $f-small/1.2;
         font-weight: 500;
         color: $font-color-secondary;
         margin-bottom: $m-small;
-        text-align: right;
-        padding-right: $p-medium;
+        text-align: center;
+        text-transform: capitalize;
         padding-top: $p-small;
+    }
+
+    img {
+        width: 2rem;
+        height: auto;
+        margin: $m-small;
+    }
+
+    &:hover {
+        transform: translateY(0.2rem);
+        box-shadow: $b-shadow-special;
+
+        h3 {
+            font-weight: 700;
+        }
+    }
+
+    &:active {
+        transform: translateY(0.1rem);
+        box-shadow: $b-shadow-active;
     }
 }
 
 .fruits {
-    background-image: url('https://images.unsplash.com/photo-1609889132698-1625aefc7f6b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3567&q=80');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-}
-
-.herbs {
-    background-image: url('https://images.unsplash.com/photo-1551772413-6c1b7dc18548?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3570&q=80');
+    background: linear-gradient(180deg, rgba(197, 232, 172, 0.8) 16%, rgba(197, 232, 172, 0.8) 90%),
+        url('../../assets/patterns/palm-leaf.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .vegetables {
-    background-image: url('https://images.unsplash.com/photo-1519162808019-7de1683fa2ad?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3475&q=80');
+    background: linear-gradient(180deg, rgba(168, 218, 203, 0.64) 16%, rgba(168, 218, 203, 0.64) 90%),
+        url('../../assets/patterns/palm-leaf.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .roots {
-    background-image: url('https://images.unsplash.com/photo-1571771286893-c8611879a683?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3570&q=80');
+    background: linear-gradient(180deg, rgba(255, 226, 125, 0.64) 16%, rgba(255, 226, 125, 0.64) 90%),
+        url('../../assets/patterns/palm-leaf.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.herbs {
+    background: linear-gradient(180deg, rgba(216, 142, 161, 0.64) 16%, rgba(216, 142, 161, 0.64) 90%),
+        url('../../assets/patterns/palm-leaf.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
