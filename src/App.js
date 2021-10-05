@@ -8,6 +8,7 @@ import UserDashboard from './views/UserDashboard.js';
 import GardenEditor from './views/GardenEditor.js';
 import Signup from './views/Signup.js';
 import Login from './views/Login.js';
+import CreateGarden from './views/CreateGarden.js';
 import NotFound from './views/NotFound.js';
 
 // components
@@ -43,6 +44,9 @@ const App = () => {
                     </Route>
                     <Route exact path="/login">
                         {!isLoggedIn ? <Login /> : <Redirect to="/" />}
+                    </Route>
+                    <Route exact path="/creategarden">
+                        <CreateGarden />
                     </Route>
                     <Route>
                         <NotFound />
