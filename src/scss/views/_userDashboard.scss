@@ -21,7 +21,6 @@
 //flex-col-center
 .UserDashboard__body__dashboard {
     @include flex-col-center;
-    //background-color: pink;
 
     width: 80%;
     padding-bottom: $p-large;
@@ -63,13 +62,12 @@
     }
 
     h3 {
-        color: $font-color-special;
         font-size: $f-small;
+        color: $font-color-special;
     }
     h4 {
         font-size: $f-medium;
         color: $font-color-special;
-        //padding-bottom: $p-small;
     }
 
     img {

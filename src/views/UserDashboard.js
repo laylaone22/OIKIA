@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useHistory } from 'react-router';
 
 // contexts
 import { authContext } from '../stores/auth/auth.js';
@@ -8,6 +9,9 @@ import { dataContext } from '../stores/data/store';
 import enter from '../assets/icons/ui/enter-dark.png';
 
 const UserDashboard = () => {
+    // history
+    const history = useHistory();
+
     // context auth data
     const { userData } = useContext(authContext);
 
@@ -18,7 +22,10 @@ const UserDashboard = () => {
                     <h1 className="UserDashboard__body__header__title">{`Hi ${userData.name}`}</h1>
                 </header>
                 <section className="UserDashboard__body__dashboard">
-                    <section className="UserDashboard__body__dashboard__gardens">
+                    <section
+                        className="UserDashboard__body__dashboard__gardens"
+                        onClick={() => history.push('/mygardens')}
+                    >
                         <h2>Your Gardens</h2>
 
                         <div className="UserDashboard__body__dashboard__display">
@@ -27,7 +34,10 @@ const UserDashboard = () => {
                             <img src={enter} alt="enter icon" />;
                         </div>
                     </section>
-                    <section className="UserDashboard__body__dashboard__plants">
+                    <section
+                        className="UserDashboard__body__dashboard__plants"
+                        onClick={() => history.push('/myplants')}
+                    >
                         <h2>Your Plants</h2>
 
                         <div className="UserDashboard__body__dashboard__display">
@@ -36,7 +46,10 @@ const UserDashboard = () => {
                             <img src={enter} alt="enter icon" />;
                         </div>
                     </section>
-                    <section className="UserDashboard__body__dashboard__favorites">
+                    <section
+                        className="UserDashboard__body__dashboard__favorites"
+                        onClick={() => history.push('/myfavorites')}
+                    >
                         <h2>Your Favorites</h2>
 
                         <div className="UserDashboard__body__dashboard__display">
