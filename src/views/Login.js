@@ -57,7 +57,6 @@ const Login = () => {
                 <header className="Login__body__header">
                     <h1 className="Login__body--header__title">Login</h1>
                 </header>
-
                 <section className="Login__body--search__form">
                     <form onSubmit={handleSubmit}>
                         {hasLoginError && <p className="error">Error: E-mail or password incorrect</p>}
