@@ -2,7 +2,7 @@
 
 .search-results--card {
     min-width: 20rem;
-    max-width: 25rem;
+
     min-height: 10rem;
 
     border-radius: $b-radius-normal;
@@ -41,7 +41,7 @@
             bottom: -10%;
             right: 0;
             width: 100%;
-            // overflow: hidden;
+
             svg {
                 display: block;
             }
@@ -71,6 +71,7 @@
         h3 {
             padding: $p-small 0 $p-small $p-small;
             margin: 0;
+            font-size: $f-medium;
             font-weight: 400;
             color: $font-color-secondary;
         }

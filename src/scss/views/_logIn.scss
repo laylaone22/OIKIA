@@ -1,4 +1,5 @@
 @use '../abstracts/' as *;
+@use '../base/' as *;
 
 .Login {
     width: auto;
@@ -68,7 +69,7 @@
         width: 55%;
         margin: 1rem;
         height: 2rem;
-        font-family: $primary-font-family;
+        font-family: $font-family-secondary;
         position: relative;
         border: 0.1rem solid $bg-color--secondary;
         border-radius: $b-radius-normal;

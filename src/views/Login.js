@@ -88,7 +88,7 @@ const Login = () => {
                                 />
                             </label>
                         </div>
-                        <div className="Signup__body--search__form__field">
+                        <div className="Login__body--search__form__field">
                             <button type="submit" className="Login__body--search__form__button">
                                 Log In
                             </button>

@@ -52,44 +52,54 @@ const Signup = () => {
                     <h1 className="Signup__body--header__title">Signup</h1>
                 </header>
                 <section>
-                    <form onSubmit={handleSubmit}>
-                        <div>
-                            <label htmlFor="name">name</label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                placeholder="name"
-                                required
-                                value={formData.name}
-                                onChange={handleChange}
-                            />
+                    <form onSubmit={handleSubmit} className="Signup__body__form">
+                        <div className="Signup__body__form">
+                            <label htmlFor="name" className="Signup__body__form__label">
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Name"
+                                    required
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    className="Signup__body__form__input"
+                                />
+                            </label>
                         </div>
-                        <div>
-                            <label htmlFor="email">email</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="email"
-                                required
-                                value={formData.email}
-                                onChange={handleChange}
-                            />
+                        <div className="Signup__body__form">
+                            <label htmlFor="email" className="Signup__body__form__label">
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="Email"
+                                    required
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    className="Signup__body__form__input"
+                                />
+                            </label>
                         </div>
-                        <div>
-                            <label htmlFor="password">password</label>
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                placeholder="password"
-                                required
-                                value={formData.password}
-                                onChange={handleChange}
-                            />
+                        <div className="Signup__body__form">
+                            <label htmlFor="password" className="Signup__body__form__label">
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    placeholder="Password"
+                                    required
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    className="Signup__body__form__input"
+                                />
+                            </label>
                         </div>
-                        <button type="submit">Submit</button>
+                        <div className="Signup__body__form">
+                            <button type="submit" className="Signup__body__form__button">
+                                Sign Up
+                            </button>
+                        </div>
                     </form>
                 </section>
             </main>
