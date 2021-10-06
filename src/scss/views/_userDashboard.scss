@@ -1,29 +1,111 @@
 @use '../abstracts/' as *;
+@use '../base/' as *;
 
 .UserDashboard {
-    width: auto;
-    min-height: 100%;
-    text-align: center;
+    @include viewsMain;
 
-    background: linear-gradient(180deg, rgba(208, 235, 182, 0.34) 16.69%, rgba(61, 65, 58, 0.5) 95.13%),
-        url('https://images.unsplash.com/photo-1590990771866-c172665b47ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80')
-            no-repeat left center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
+    // background & linear gradient
+    background: linear-gradient(180deg, rgba(203, 233, 179, 0.7) 16%, rgba(137, 165, 116, 0.6) 90%),
+        url('../../assets/patterns/geometric-leaves.png');
+    background-repeat: repeat;
+    background-position: left center;
     background-size: cover;
+    background-attachment: fixed;
 
-    overflow: hidden;
-
+    // view Body
     .UserDashboard__body {
-        min-height: calc(100vh - 3.5rem);
+        @include viewsBody;
+    }
+}
 
-        &__header {
-            padding: 2rem 0;
+//flex-col-center
+.UserDashboard__body__dashboard {
+    @include flex-col-center;
+    //background-color: pink;
 
-            h1 {
-                color: $font-color-primary;
-            }
-        }
+    width: 80%;
+    padding-bottom: $p-large;
+    margin: auto;
+
+    &__gardens,
+    &__plants,
+    &__favorites {
+        width: 100%;
+        margin-bottom: $m-small;
+    }
+}
+
+.UserDashboard__body__dashboard__display {
+    width: 100%;
+    min-height: 15rem;
+
+    border-radius: $b-radius-normal;
+    margin-bottom: $m-small;
+    box-shadow: $b-shadow-normal;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+
+    position: relative;
+
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        transform: translateY(0.2rem);
+        box-shadow: $b-shadow-special;
+    }
+
+    &:active {
+        transform: translateY(0.1rem);
+        box-shadow: $b-shadow-active;
+        border: 0.1rem solid white;
+    }
+
+    h3 {
+        color: $font-color-special;
+        font-size: $f-small;
+    }
+    h4 {
+        font-size: $f-medium;
+        color: $font-color-special;
+        //padding-bottom: $p-small;
+    }
+
+    img {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin: $m-small;
+
+        position: absolute;
+        bottom: 0%;
+        right: 0%;
+    }
+}
+
+.UserDashboard__body__dashboard__gardens {
+    .UserDashboard__body__dashboard__display {
+        background: url('https://images.unsplash.com/photo-1523349312806-f5dde0a01c32?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80');
+        background-repeat: no-repeat;
+        //background-position: top center;
+        background-size: cover;
+    }
+}
+
+.UserDashboard__body__dashboard__plants {
+    .UserDashboard__body__dashboard__display {
+        background: url('https://images.unsplash.com/photo-1493673272479-a20888bcee10?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80');
+        background-repeat: no-repeat;
+        //background-position: top center;
+        background-size: cover;
+    }
+}
+
+.UserDashboard__body__dashboard__favorites {
+    .UserDashboard__body__dashboard__display {
+        background: url('https://images.unsplash.com/photo-1503796964332-e25e282e390f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1365&q=80');
+        background-repeat: no-repeat;
+        //background-position: top center;
+        background-size: cover;
     }
 }
