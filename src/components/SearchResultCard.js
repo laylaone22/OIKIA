@@ -35,13 +35,13 @@ const SearchResultCard = ({ plant, delay }) => {
     const { userData } = useContext(authContext);
     const { dataState, dispatch } = useContext(dataContext);
 
-    const [favorite, setFavorite] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(false);
 
     const changeFavorite = () => {
-        setFavorite(!favorite);
-        console.log(favorite);
+        setIsFavorite(!isFavorite);
+        console.log(isFavorite);
         console.log(plant);
-        !favorite
+        !isFavorite
             ? dispatch({ type: ADD_FAVORITE, payload: plant })
             : dispatch({ type: REMOVE_FAVORITE, payload: plant._id });
     };
@@ -77,7 +77,7 @@ const SearchResultCard = ({ plant, delay }) => {
             <div className="search-results--card__infoControls">
                 <div className="search-results--card__infoControls__nameFavorite">
                     <h3 className="search-results--card__infoControls__name">{plant.plantName}</h3>
-                    {!favorite ? (
+                    {!isFavorite ? (
                         <img
                             onClick={changeFavorite}
                             className="search-results--card__header__favorite"

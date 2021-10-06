@@ -15,7 +15,7 @@ export const DataProvider = ({ children }) => {
 
     // useReducer to handle status and setters
     const [dataState, dispatch] = useReducer(dataReducer, initialState);
-    /*
+
     // on mount store auth data in localStorage
     useEffect(() => {
         const storedData = localStorage.getItem('dataState');
@@ -23,7 +23,7 @@ export const DataProvider = ({ children }) => {
     }, []);
 
     useEffect(() => localStorage.setItem('dataState', JSON.stringify(dataState)), [dataState]);
-*/
+
     // return the Provider based on dataContext and values you need
     return <dataContext.Provider value={{ dataState, dispatch }}>{children}</dataContext.Provider>;
 };

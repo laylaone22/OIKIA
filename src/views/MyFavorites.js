@@ -10,6 +10,7 @@ import FavoriteCard from '../components/FavoriteCard.js';
 const MyFavorites = () => {
     // context auth data
     const { userData } = useContext(authContext);
+    const { dataState, dispatch } = useContext(dataContext);
 
     return (
         <div className="MyFavorites">
@@ -19,11 +20,9 @@ const MyFavorites = () => {
                 </header>
                 <section className="MyFavorites__body__favorites">
                     <h2>Your Favorite Plants</h2>
-                    <FavoriteCard />
-                    <FavoriteCard />
-                    <FavoriteCard />
-                    <FavoriteCard />
-                    <FavoriteCard />
+                    {dataState.myFavorites?.map((fav, i) => (
+                        <FavoriteCard key={fav._id} favorite={fav} delay={i} />
+                    ))}
                 </section>
             </main>
         </div>
