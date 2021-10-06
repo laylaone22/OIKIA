@@ -49,12 +49,12 @@ const Signup = () => {
         <div className="Signup">
             <main className="Signup__body">
                 <header className="Signup__body__header">
-                    <h1 className="Signup__body--header__title">Signup</h1>
+                    <h1 className="Signup__body__header__title">Signup</h1>
                 </header>
                 <section>
-                    <form onSubmit={handleSubmit} className="Signup__body__form">
+                    <form onSubmit={handleSubmit} className="Signup__body--form">
                         <div className="Signup__body__form">
-                            <label htmlFor="name" className="Signup__body__form__label">
+                            <label htmlFor="name" className="Signup__body--form__label">
                                 <input
                                     type="text"
                                     id="name"
@@ -63,12 +63,12 @@ const Signup = () => {
                                     required
                                     value={formData.name}
                                     onChange={handleChange}
-                                    className="Signup__body__form__input"
+                                    className="Signup__body--form__input"
                                 />
                             </label>
                         </div>
-                        <div className="Signup__body__form">
-                            <label htmlFor="email" className="Signup__body__form__label">
+                        <div className="Signup__body--form">
+                            <label htmlFor="email" className="Signup__body--form__label">
                                 <input
                                     type="email"
                                     id="email"
@@ -77,12 +77,12 @@ const Signup = () => {
                                     required
                                     value={formData.email}
                                     onChange={handleChange}
-                                    className="Signup__body__form__input"
+                                    className="Signup__body--form__input"
                                 />
                             </label>
                         </div>
-                        <div className="Signup__body__form">
-                            <label htmlFor="password" className="Signup__body__form__label">
+                        <div className="Signup__body--form">
+                            <label htmlFor="password" className="Signup__body--form__label">
                                 <input
                                     type="password"
                                     id="password"
@@ -91,12 +91,12 @@ const Signup = () => {
                                     required
                                     value={formData.password}
                                     onChange={handleChange}
-                                    className="Signup__body__form__input"
+                                    className="Signup__body--form__input"
                                 />
                             </label>
                         </div>
-                        <div className="Signup__body__form">
-                            <button type="submit" className="Signup__body__form__button">
+                        <div className="Signup__body--form">
+                            <button type="submit" className="Signup__body--form__button">
                                 Sign Up
                             </button>
                         </div>

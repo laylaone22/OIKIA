@@ -57,11 +57,11 @@ const Login = () => {
                 <header className="Login__body__header">
                     <h1 className="Login__body--header__title">Login</h1>
                 </header>
-                <section className="Login__body--search__form">
+                <section className="Login__body--form">
                     <form onSubmit={handleSubmit}>
                         {hasLoginError && <p className="error">Error: E-mail or password incorrect</p>}
                         <div>
-                            <label htmlFor="email" className="Login__body--search__form__label">
+                            <label htmlFor="email" className="Login__body--form__label">
                                 <input
                                     type="email"
                                     id="email"
@@ -70,12 +70,12 @@ const Login = () => {
                                     required
                                     value={formData.email}
                                     onChange={handleChange}
-                                    className="Login__body--search__form__input"
+                                    className="Login__body--form__input"
                                 />
                             </label>
                         </div>
                         <div>
-                            <label htmlFor="password" className="Login__body--search__form__label">
+                            <label htmlFor="password" className="Login__body--form__label">
                                 <input
                                     type="password"
                                     id="password"
@@ -84,12 +84,12 @@ const Login = () => {
                                     required
                                     value={formData.password}
                                     onChange={handleChange}
-                                    className="Login__body--search__form__input"
+                                    className="Login__body--form__input"
                                 />
                             </label>
                         </div>
-                        <div className="Login__body--search__form__field">
-                            <button type="submit" className="Login__body--search__form__button">
+                        <div className="Login__body--form__field">
+                            <button type="submit" className="Login__body--form__button">
                                 Log In
                             </button>
                         </div>
