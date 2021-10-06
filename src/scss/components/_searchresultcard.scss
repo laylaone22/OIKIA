@@ -79,12 +79,14 @@
             align-self: flex-start;
             width: 1rem;
             height: 1rem;
+            cursor: pointer;
         }
     }
 
     .search-results--card__infoControls__icons-group {
         img {
             margin-left: $m-small;
+            cursor: pointer;
         }
     }
 }

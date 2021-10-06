@@ -14,6 +14,7 @@ const UserDashboard = () => {
 
     // context auth data
     const { userData } = useContext(authContext);
+    const { dataState } = useContext(dataContext);
 
     return (
         <div className="UserDashboard">
@@ -30,7 +31,7 @@ const UserDashboard = () => {
 
                         <div className="UserDashboard__body__dashboard__display">
                             <h3>You created:</h3>
-                            <h4>0 gardens</h4>
+                            <h4>{`${dataState.myGardens.length} gardens`}</h4>
                             <img src={enter} alt="enter icon" />;
                         </div>
                     </section>
@@ -42,7 +43,7 @@ const UserDashboard = () => {
 
                         <div className="UserDashboard__body__dashboard__display">
                             <h3>You added:</h3>
-                            <h4>0 plants</h4>
+                            <h4>{`${dataState.myPlants.length} plants`}</h4>
                             <img src={enter} alt="enter icon" />;
                         </div>
                     </section>
@@ -54,7 +55,7 @@ const UserDashboard = () => {
 
                         <div className="UserDashboard__body__dashboard__display">
                             <h3>You liked:</h3>
-                            <h4>0 plants</h4>
+                            <h4>{`${dataState.myFavorites.length} plants`}</h4>
                             <img src={enter} alt="enter icon" />;
                         </div>
                     </section>

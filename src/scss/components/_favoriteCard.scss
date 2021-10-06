@@ -64,11 +64,13 @@
             position: absolute;
             top: 0%;
             right: 0%;
+            cursor: pointer;
         }
         .FavoriteCard__info__caret {
             position: absolute;
             bottom: 0%;
             right: 0%;
+            cursor: grab;
         }
     }
 }
