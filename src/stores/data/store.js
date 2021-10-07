@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect } from 'react';
+import { createContext, useReducer, useEffect, useState } from 'react';
 // actions
 import { RESTORE_STATE } from './actions';
 
@@ -10,8 +10,11 @@ export const dataContext = createContext();
 
 // create Provider and useReducer to be exported for init the provider in index.js
 export const DataProvider = ({ children }) => {
+    // data state should handle the data for the user
+    const initialState = { myFavorites: [], myPlants: [], myGardens: [] };
+
     // useReducer to handle status and setters
-    const [dataState, dispatch] = useReducer(dataReducer, { userID: '', myFavorites: [], myPlants: [], myGardens: [] });
+    const [dataState, dispatch] = useReducer(dataReducer, initialState);
 
     // on mount store auth data in localStorage
     useEffect(() => {

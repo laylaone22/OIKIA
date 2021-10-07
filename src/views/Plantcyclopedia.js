@@ -1,27 +1,32 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
-// swiper
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore from 'swiper';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import 'swiper/swiper-bundle.css';
+// contexts
+import { authContext } from '../stores/auth/auth';
+import { dataContext } from '../stores/data/store';
+
+// actions to dispatch
+import { ADD_FAVORITE, REMOVE_FAVORITE } from '../stores/data/actions';
 
 // components
 import PlantcyclopediaCard from '../components/PlantcyclopediaCard';
 import SearchResultCard from '../components/SearchResultCard';
 
-SwiperCore.use([Navigation, Pagination]);
-
 const Plantcyclopedia = () => {
-    const [searchTerm, setSearchTerm] = useState('');
+    // contexts
+    const { userData } = useContext(authContext);
+    const { dataState, dispatch } = useContext(dataContext);
 
+    // state
+    const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [noResultFound, setNoResultFound] = useState(false);
+    const [selected, setSelected] = useState('');
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();
         setSearchResults([]);
         setNoResultFound(false);
+        setSelected('');
 
         const URL = `http://localhost:3000/plants?plantName=${searchTerm}`;
         console.log(URL);
@@ -46,13 +51,13 @@ const Plantcyclopedia = () => {
     const getPlantsByType = async (type) => {
         setSearchResults([]);
         setNoResultFound(false);
+        setSelected(type);
 
         const URL = `http://localhost:3000/plants/plantcyclopedia/type/${type}`;
-        console.log(URL);
+
         try {
             const response = await fetch(URL);
             const data = await response.json();
-            console.log(data);
 
             setSearchResults(data);
             console.log(searchResults);
@@ -90,40 +95,36 @@ const Plantcyclopedia = () => {
                     <section className="Plantcyclopedia__body--searchByType">
                         <h2 className="Plantcyclopedia__body--searchByType__title">Search by Type</h2>
                         <div className="Plantcyclopedia__body--searchByType__cards">
-                            <Swiper
-                                tag="div"
-                                spaceBetween={16}
-                                slidesPerView={2.5}
-                                //navigation
-                                pagination={{ clickable: true }}
-                                onSlideChange={() => console.log('slide change')}
-                                onSwiper={(swiper) => console.log(swiper)}
-                            >
-                                <SwiperSlide key={'fruits'}>
-                                    <PlantcyclopediaCard plantType={'fruits'} getPlantsByType={getPlantsByType} />
-                                </SwiperSlide>
-                                <SwiperSlide key={'vegetables'}>
-                                    <PlantcyclopediaCard plantType={'vegetables'} getPlantsByType={getPlantsByType} />
-                                </SwiperSlide>
-                                <SwiperSlide key={'roots'}>
-                                    <PlantcyclopediaCard plantType={'roots'} getPlantsByType={getPlantsByType} />
-                                </SwiperSlide>
-                                <SwiperSlide key={'herbs'}>
-                                    <PlantcyclopediaCard plantType={'herbs'} getPlantsByType={getPlantsByType} />
-                                </SwiperSlide>
-                            </Swiper>
+                            <PlantcyclopediaCard
+                                plantType={'fruits'}
+                                getPlantsByType={getPlantsByType}
+                                selected={selected === 'fruits'}
+                            />
+                            <PlantcyclopediaCard
+                                plantType={'vegetables'}
+                                getPlantsByType={getPlantsByType}
+                                selected={selected === 'vegetables'}
+                            />
+                            <PlantcyclopediaCard
+                                plantType={'roots'}
+                                getPlantsByType={getPlantsByType}
+                                selected={selected === 'roots'}
+                            />
+                            <PlantcyclopediaCard
+                                plantType={'herbs'}
+                                getPlantsByType={getPlantsByType}
+                                selected={selected === 'herbs'}
+                            />
                         </div>
                     </section>
                 </section>
 
                 <section className="Plantcyclopedia__body--results">
-                    <h2 className="Plantcyclopedia__body--results__title">Results</h2>
                     {noResultFound ? (
-                        <h3>No results found</h3>
+                        <h3 className="noResults">No results found</h3>
                     ) : (
-                        searchResults.map((plant) => {
-                            console.log(plant);
-                            return <SearchResultCard key={plant._id} plantName={plant.plantName} img={plant.img} />;
+                        searchResults.map((plant, i) => {
+                            return <SearchResultCard key={plant._id} plant={plant} delay={i} />;
                         })
                     )}
                 </section>

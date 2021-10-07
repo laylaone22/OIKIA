@@ -1,0 +1,27 @@
+@use '../abstracts/' as *;
+@use '../base/' as *;
+
+.MyPlants {
+    @include viewsMain;
+
+    // background & linear gradient
+    background: linear-gradient(180deg, rgba(203, 233, 179, 0.7) 16%, rgba(137, 165, 116, 0.6) 90%),
+        url('../../assets/patterns/geometric-leaves.png');
+    background-repeat: repeat;
+    background-position: left center;
+    background-size: cover;
+    background-attachment: fixed;
+
+    // view Body
+    .MyPlants__body {
+        @include viewsBody;
+    }
+}
+
+.MyPlants__body__gardens {
+    @include flex-col-center;
+
+    width: 80%;
+    padding-bottom: $p-large;
+    margin: auto;
+}
