@@ -1,7 +1,12 @@
-@forward '../views/gardenEditor';
 @forward '../views/home';
 @forward '../views/logIn';
-@forward '../views/notFound';
 @forward '../views/signUp';
-@forward '../views/userDashboard';
+@forward '../views/notFound';
+
 @forward '../views/plantcyclopedia';
+
+@forward '../views/userDashboard';
+@forward '../views/myGardens';
+@forward '../views/myFavorites';
+@forward '../views/myPlants';
+@forward '../views/gardenEditor';

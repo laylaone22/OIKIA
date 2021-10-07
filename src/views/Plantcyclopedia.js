@@ -1,12 +1,23 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+
+// contexts
+import { authContext } from '../stores/auth/auth';
+import { dataContext } from '../stores/data/store';
+
+// actions to dispatch
+import { ADD_FAVORITE, REMOVE_FAVORITE } from '../stores/data/actions';
 
 // components
 import PlantcyclopediaCard from '../components/PlantcyclopediaCard';
 import SearchResultCard from '../components/SearchResultCard';
 
 const Plantcyclopedia = () => {
-    const [searchTerm, setSearchTerm] = useState('');
+    // contexts
+    const { userData } = useContext(authContext);
+    const { dataState, dispatch } = useContext(dataContext);
 
+    // state
+    const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [noResultFound, setNoResultFound] = useState(false);
     const [selected, setSelected] = useState('');
@@ -43,11 +54,10 @@ const Plantcyclopedia = () => {
         setSelected(type);
 
         const URL = `http://localhost:3000/plants/plantcyclopedia/type/${type}`;
-        console.log(URL);
+
         try {
             const response = await fetch(URL);
             const data = await response.json();
-            console.log(data);
 
             setSearchResults(data);
             console.log(searchResults);
@@ -114,7 +124,7 @@ const Plantcyclopedia = () => {
                         <h3 className="noResults">No results found</h3>
                     ) : (
                         searchResults.map((plant, i) => {
-                            return <SearchResultCard key={plant._id} {...plant} delay={i} />;
+                            return <SearchResultCard key={plant._id} plant={plant} delay={i} />;
                         })
                     )}
                 </section>

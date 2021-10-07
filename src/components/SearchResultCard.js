@@ -1,4 +1,11 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+
+// contexts
+import { authContext } from '../stores/auth/auth';
+import { dataContext } from '../stores/data/store';
+
+// actions to dispatch
+import { ADD_FAVORITE, REMOVE_FAVORITE } from '../stores/data/actions';
 
 // type icons
 import roots from '../assets/icons/type/roots.png';
@@ -15,19 +22,28 @@ import favoriteFull from '../assets/icons/ui/favoriteFull.png';
 import favoriteEmpty from '../assets/icons/ui/favoriteEmpty.png';
 import caret from '../assets/icons/ui/caret.png';
 
-const SearchResultCard = ({ plantName, img, type, delay }) => {
+const SearchResultCard = ({ plant, delay }) => {
     // set icons
     let icon = null;
-    if (type === 'fruits') icon = fruits;
-    else if (type === 'vegetables') icon = vegetables;
-    else if (type === 'roots') icon = roots;
-    else if (type === 'herbs') icon = herbs;
+    if (plant.type === 'fruits') icon = fruits;
+    else if (plant.type === 'vegetables') icon = vegetables;
+    else if (plant.type === 'roots') icon = roots;
+    else if (plant.type === 'herbs') icon = herbs;
     else icon = killer;
 
-    const [favorite, setFavorite] = useState(false);
+    // contexts
+    const { userData } = useContext(authContext);
+    const { dataState, dispatch } = useContext(dataContext);
+
+    const [isFavorite, setIsFavorite] = useState(false);
 
     const changeFavorite = () => {
-        setFavorite(!favorite);
+        setIsFavorite(!isFavorite);
+        console.log(isFavorite);
+        console.log(plant);
+        !isFavorite
+            ? dispatch({ type: ADD_FAVORITE, payload: plant })
+            : dispatch({ type: REMOVE_FAVORITE, payload: plant._id });
     };
 
     return (
@@ -41,7 +57,7 @@ const SearchResultCard = ({ plantName, img, type, delay }) => {
             <div
                 className="search-results--card__header"
                 style={{
-                    backgroundImage: `url(${img})`,
+                    backgroundImage: `url(${plant.img})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
                     backgroundSize: 'cover'
@@ -51,7 +67,7 @@ const SearchResultCard = ({ plantName, img, type, delay }) => {
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                         <path
                             fill="#fff"
-                            fill-opacity="1"
+                            fillOpacity="1"
                             d="M0,224L60,224C120,224,240,224,360,234.7C480,245,600,267,720,234.7C840,203,960,117,1080,101.3C1200,85,1320,139,1380,165.3L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
                         ></path>
                     </svg>
@@ -60,8 +76,8 @@ const SearchResultCard = ({ plantName, img, type, delay }) => {
 
             <div className="search-results--card__infoControls">
                 <div className="search-results--card__infoControls__nameFavorite">
-                    <h3 className="search-results--card__infoControls__name">{plantName}</h3>
-                    {!favorite ? (
+                    <h3 className="search-results--card__infoControls__name">{plant.plantName}</h3>
+                    {!isFavorite ? (
                         <img
                             onClick={changeFavorite}
                             className="search-results--card__header__favorite"

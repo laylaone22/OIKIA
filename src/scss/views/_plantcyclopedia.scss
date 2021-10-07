@@ -20,10 +20,7 @@
 
 // view sections
 .Plantcyclopedia__body--search {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
+    @include flex-col-center;
 }
 
 .Plantcyclopedia__body--search__form {
@@ -77,10 +74,7 @@
     width: 100%;
     padding-bottom: $p-large;
 
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
+    @include flex-col-center;
 
     &__cards {
         width: 80%;

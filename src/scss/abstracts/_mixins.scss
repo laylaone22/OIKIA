@@ -38,3 +38,10 @@
         padding: $p-x-large 0;
     }
 }
+
+@mixin flex-col-center {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
