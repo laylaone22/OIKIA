@@ -29,11 +29,6 @@
         box-shadow: $b-shadow-active;
     }
 
-    img {
-        width: 1.5rem;
-        height: 1.5rem;
-    }
-
     .search-results--card__header {
         height: 7rem;
         border-top-left-radius: $b-radius-normal;
@@ -66,6 +61,17 @@
     align-items: flex-end;
 
     z-index: 10;
+
+    position: relative;
+
+    .plant_icon {
+        width: 2.5rem;
+        height: 2.5rem;
+
+        position: absolute;
+        top: -43%;
+        right: 15%;
+    }
 }
 
 .search-results--card__infoControls__nameFavorite {
@@ -75,24 +81,41 @@
     align-items: flex-end;
     text-transform: capitalize;
 
-    h3 {
-        padding: $p-small 0 $p-small $p-small;
-        margin: 0;
-        font-size: $f-medium;
-        font-weight: 400;
-        color: $font-color-secondary;
-    }
+    .search-results--card__infoControls__name {
+        text-align: left;
 
-    img {
-        align-self: flex-start;
-        width: 1rem;
-        height: 1rem;
-        cursor: pointer;
+        h6 {
+            padding: 0 0 $p-small $p-small;
+            font-size: 0.5rem;
+            font-weight: 300;
+            font-style: italic;
+            color: $font-color-secondary;
+            text-transform: capitalize;
+        }
+        .search-results--card__header__favorite {
+            display: flex;
+            flex-flow: row nowrap;
+            h3 {
+                padding: $p-small 0 0 $p-small;
+                margin: 0;
+                font-size: $f-medium;
+                font-weight: 400;
+                color: $font-color-primary;
+            }
+            img {
+                width: 1rem;
+                height: 1rem;
+
+                cursor: pointer;
+            }
+        }
     }
 }
 
 .search-results--card__infoControls__icons-group {
     img {
+        width: 1.8rem;
+        height: 1.8rem;
         margin-left: $m-small;
         cursor: pointer;
     }
@@ -103,6 +126,8 @@
 .hide {
     display: none;
 }
+
+// hidden detailed info
 
 .search-results--card__detailedInfo {
     padding: $p-small 0;
@@ -142,7 +167,7 @@
     }
 
     .search-results--card__detailedInfo__texts {
-        padding: 0 $p-medium $p-medium $p-medium;
+        padding: 0 $p-medium;
         text-align: left;
 
         h4 {
@@ -151,11 +176,13 @@
             margin: 0;
             text-transform: capitalize;
         }
+
         h5 {
             font-size: $f-small;
             font-weight: 500;
             text-transform: capitalize;
         }
+
         h6 {
             font-size: 0.5rem;
             font-weight: 300;
@@ -163,11 +190,81 @@
             color: $font-color-secondary;
             text-transform: capitalize;
         }
+
         p {
+            max-width: 60ch;
             font-size: 0.5rem;
             font-weight: 400;
             color: $font-color-secondary;
-            text-transform: capitalize;
+        }
+
+        .lifeSpan__Harvest {
+            margin-bottom: $m-medium;
+            h5 {
+                font-size: 0.5rem;
+            }
+            span {
+                font-size: 0.5rem;
+                font-weight: 400;
+                color: $font-color-secondary;
+                text-transform: capitalize;
+            }
+        }
+
+        ul {
+            max-width: 18rem;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-flow: row wrap;
+
+            list-style: none;
+            margin-bottom: $m-medium;
+
+            .good {
+                padding: 0.3rem 0.5rem;
+                margin: 0 0.3rem 0.3rem 0;
+
+                background-color: $bg-color-card-dark;
+                border-radius: 0.5rem;
+
+                font-size: 0.5rem;
+                color: $bg-color-card-light;
+                text-transform: capitalize;
+            }
+
+            .bad {
+                padding: 0.3rem 0.5rem;
+                margin: 0 0.3rem 0.3rem 0;
+
+                background-color: $bg-color--primary;
+                border-radius: 0.5rem;
+
+                font-size: 0.5rem;
+                color: $font-color-primary;
+                text-transform: capitalize;
+            }
+        }
+
+        .wikipedia {
+            text-align: right;
+
+            a {
+                text-decoration: none;
+                font-size: 0.8rem;
+                color: $font-color-primary;
+
+                &:hover {
+                    text-decoration: underline;
+                    text-decoration-color: $font-color-special;
+                }
+
+                img {
+                    margin-bottom: $m-small;
+                    height: 1rem;
+                    width: 1rem;
+                }
+            }
         }
     }
 }

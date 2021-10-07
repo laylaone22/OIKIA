@@ -21,6 +21,7 @@ import addChecked from '../assets/icons/ui/add-checked.svg';
 import favoriteFull from '../assets/icons/ui/favoriteFull.png';
 import favoriteEmpty from '../assets/icons/ui/favoriteEmpty.png';
 import caret from '../assets/icons/ui/caret.png';
+import link from '../assets/icons/ui/link.svg';
 
 // info icons
 import frost from '../assets/icons/infoCard/frost.svg';
@@ -30,6 +31,9 @@ import noSun from '../assets/icons/infoCard/noSun.svg';
 import seasonCool from '../assets/icons/infoCard/seasonCool.svg';
 import seasonWarm from '../assets/icons/infoCard/seasonWarm.svg';
 import watering from '../assets/icons/infoCard/watering.svg';
+
+// plant icons default
+import cookie from '../assets/icons/plants/cookie.svg';
 
 const SearchResultCard = ({ plant, delay }) => {
     // contexts
@@ -102,28 +106,29 @@ const SearchResultCard = ({ plant, delay }) => {
             </div>
 
             <div className="search-results--card__infoControls glued">
+                {plant.icon ? (
+                    <img className="plant_icon" src={plant.icon} alt="plant icon" />
+                ) : (
+                    <img className="plant_icon" src={killer} alt="plant icon" />
+                )}
                 <div className="search-results--card__infoControls__nameFavorite">
-                    <h3 className="search-results--card__infoControls__name">{plant.plantName}</h3>
+                    <div className="search-results--card__infoControls__name">
+                        <div className="search-results--card__header__favorite">
+                            <h3>{plant.plantName}</h3>
+                            {!isFavorite ? (
+                                <img onClick={changeFavorite} src={favoriteEmpty} alt="Heart outline symbol" />
+                            ) : (
+                                <img onClick={changeFavorite} src={favoriteFull} alt="Heart outline symbol" />
+                            )}
+                        </div>
 
-                    {!isFavorite ? (
-                        <img
-                            onClick={changeFavorite}
-                            className="search-results--card__header__favorite"
-                            alt="Heart outline symbol"
-                            src={favoriteEmpty}
-                        />
-                    ) : (
-                        <img
-                            onClick={changeFavorite}
-                            className="search-results--card__header__favorite"
-                            alt="Heart outline symbol"
-                            src={favoriteFull}
-                        />
-                    )}
+                        <h6>{`"${plant.scientificName}"`}</h6>
+                    </div>
                 </div>
 
                 <div className="search-results--card__infoControls__icons-group">
                     <img className="icon__info" alt="svgImg" src={caret} onClick={handleExpanded} />
+
                     <img className="search-results__icons" alt="Add symbol" src={add2} />
                 </div>
             </div>
@@ -147,8 +152,6 @@ const SearchResultCard = ({ plant, delay }) => {
                     </div>
                 </section>
                 <section className="search-results--card__detailedInfo__texts">
-                    <h4>{plant.plantName}</h4>
-                    <h6>{`"${plant.scientificName}"`}</h6>
                     <div className="description">
                         <h5>Description:</h5>
                         <p>
@@ -163,15 +166,45 @@ const SearchResultCard = ({ plant, delay }) => {
                             {plant.briefDescription}
                         </p>
                     </div>
+                    <div className="lifeSpan__Harvest">
+                        <h5>
+                            Life Span: <span>{plant.lifeSpan}</span>
+                        </h5>
+
+                        <h5>
+                            First Harvest Expected: <span>{`after ${plant.firstHarvestExpected} weeks`}</span>
+                        </h5>
+
+                        <h5>
+                            Last Harvest Expected: <span>{`after ${plant.lastHarvestExpected} weeks`}</span>
+                        </h5>
+                    </div>
                     <div className="companions">
                         <div className="companions_good">
                             <h5>Good Companions</h5>
-                            <p>{plant.goodCompanions.join(', ')}</p>
+                            <ul>
+                                {plant.goodCompanions.map((good, i) => (
+                                    <li key={i} className="good">
+                                        {good}
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                         <div className="companions_bad">
                             <h5>Bad Companions</h5>
-                            <p>{plant.badCompanions.join(', ')}</p>
+                            <ul>
+                                {plant.badCompanions.map((bad, i) => (
+                                    <li key={i} className="bad">
+                                        {bad}
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
+                    </div>
+                    <div className="wikipedia">
+                        <a href={plant.wiki} target="_blank" rel="noreferrer">
+                            <img src={link} alt="link to wikipedia" />
+                        </a>
                     </div>
                 </section>
             </div>
@@ -184,21 +217,21 @@ export default SearchResultCard;
 /*
 
 {
-        "plantName": "",
-        "scientificName": "",
-        "briefDescription": "",
+        "plantName": "",//
+        "scientificName": "",//
+        "briefDescription": "",//
         "type": "",
-        "goodCompanions": [""],
-        "badCompanions": [],
-        "wateringInterval": 0,
-        "lightConditions": "",
-        "season": "",
-        "frostTolerance": true,
+        "goodCompanions": [""],//
+        "badCompanions": [],//
+        "wateringInterval": 0,//
+        "lightConditions": "",//
+        "season": "",//
+        "frostTolerance": true,//
         "lifeSpan": "",
-        "firstHarvestExpected": 0,
-        "lastHarvestExpected": 0,
-        "icon":"",
-        "wiki": "",
-        "img": ""
+        "firstHarvestExpected": 0,//
+        "lastHarvestExpected": 0,//
+        "icon":"",//
+        "wiki": "",//
+        "img": ""//
     }
      */
