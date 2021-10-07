@@ -27,7 +27,6 @@ import frost from '../assets/icons/infoCard/frost.svg';
 import fullSun from '../assets/icons/infoCard/fullSun.svg';
 import lowSun from '../assets/icons/infoCard/lowSun.svg';
 import noSun from '../assets/icons/infoCard/noSun.svg';
-import seasonCold from '../assets/icons/infoCard/seasonCold.svg';
 import seasonCool from '../assets/icons/infoCard/seasonCool.svg';
 import seasonWarm from '../assets/icons/infoCard/seasonWarm.svg';
 import watering from '../assets/icons/infoCard/watering.svg';
@@ -65,7 +64,6 @@ const SearchResultCard = ({ plant, delay }) => {
     let iconSeason = null;
     if (plant.season === 'warm') iconSeason = seasonWarm;
     else if (plant.season === 'cool') iconSeason = seasonCool;
-    else if (plant.season === 'cold') iconSeason = seasonCold;
     else iconSeason = killer;
 
     // set season icons
@@ -77,7 +75,7 @@ const SearchResultCard = ({ plant, delay }) => {
 
     return (
         <section
-            className={`search-results--card ${isExpanded && 'expanded'}`}
+            className="search-results--card"
             style={{
                 animation: `1s moveInLeft ${delay / 1.5}s ease-in-out`,
                 animationFillMode: 'backwards'
@@ -103,9 +101,10 @@ const SearchResultCard = ({ plant, delay }) => {
                 </div>
             </div>
 
-            <div className="search-results--card__infoControls">
+            <div className="search-results--card__infoControls glued">
                 <div className="search-results--card__infoControls__nameFavorite">
                     <h3 className="search-results--card__infoControls__name">{plant.plantName}</h3>
+
                     {!isFavorite ? (
                         <img
                             onClick={changeFavorite}
@@ -144,7 +143,35 @@ const SearchResultCard = ({ plant, delay }) => {
                     </div>
                     <div className="suggestions frostTolerance">
                         <img src={frost} alt="icon frostTolerance" />
-                        <h6>{plant.frostTolerance ? 'frost tolerant' : 'not frost tolerant'}</h6>
+                        <h6>{plant.frostTolerance ? 'tolerant' : '!tolerant'}</h6>
+                    </div>
+                </section>
+                <section className="search-results--card__detailedInfo__texts">
+                    <h4>{plant.plantName}</h4>
+                    <h6>{`"${plant.scientificName}"`}</h6>
+                    <div className="description">
+                        <h5>Description:</h5>
+                        <p>
+                            The tomato is the edible berry of the plant Solanum lycopersicum, commonly known as a tomato
+                            plant. The species originated in western South America and Central America. The Nahuatl word
+                            tomatl gave rise to the Spanish word tomate, from which the English word tomato derived. Its
+                            domestication and use as a cultivated food may have originated with the indigenous peoples
+                            of Mexico. The Aztecs used tomatoes in their cooking at the time of the Spanish conquest of
+                            the Aztec Empire, and after the Spanish encountered the tomato for the first time after
+                            their contact with the Aztecs, they brought the plant to Europe. From there, the tomato was
+                            introduced to other parts of the European-colonized world during the 16th century.{' '}
+                            {plant.briefDescription}
+                        </p>
+                    </div>
+                    <div className="companions">
+                        <div className="companions_good">
+                            <h5>Good Companions</h5>
+                            <p>{plant.goodCompanions.join(', ')}</p>
+                        </div>
+                        <div className="companions_bad">
+                            <h5>Bad Companions</h5>
+                            <p>{plant.badCompanions.join(', ')}</p>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -155,14 +182,7 @@ const SearchResultCard = ({ plant, delay }) => {
 export default SearchResultCard;
 
 /*
-import frost from '../assets/icons/infoCard/frost.svg';
-import fullSun from '../assets/icons/infoCard/fullSun.svg';
-import lowSun from '../assets/icons/infoCard/lowSun.svg';
-import noSun from '../assets/icons/infoCard/noSun.svg';
-import seasonCold from '../assets/icons/infoCard/seasonCold.svg';
-import seasonCool from '../assets/icons/infoCard/seasonCool.svg';
-import seasonWarm from '../assets/icons/infoCard/seasonWarm.svg';
-import watering from '../assets/icons/infoCard/watering.svg';
+
 {
         "plantName": "",
         "scientificName": "",

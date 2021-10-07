@@ -2,9 +2,13 @@
 
 .search-results--card {
     min-width: 20rem;
-    height: 10rem;
+    min-height: 10rem;
 
-    border-radius: $b-radius-normal;
+    border-top-left-radius: $b-radius-normal;
+    border-top-right-radius: $b-radius-normal;
+    border-bottom-left-radius: $b-radius-normal;
+    border-bottom-right-radius: $b-radius-normal;
+
     margin-bottom: $m-small;
     box-shadow: $b-shadow-normal;
 
@@ -48,67 +52,65 @@
             }
         }
     }
-    .search-results--card__infoControls {
-        padding: $p-small;
-        border-bottom-left-radius: $b-radius-normal;
-        border-bottom-right-radius: $b-radius-normal;
-        background-color: $bg-color-card-light;
+}
 
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-        align-items: flex-end;
+.search-results--card__infoControls {
+    padding: $p-small;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: $bg-color-card-light;
 
-        z-index: 10;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    z-index: 10;
+}
+
+.search-results--card__infoControls__nameFavorite {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    text-transform: capitalize;
+
+    h3 {
+        padding: $p-small 0 $p-small $p-small;
+        margin: 0;
+        font-size: $f-medium;
+        font-weight: 400;
+        color: $font-color-secondary;
     }
 
-    .search-results--card__infoControls__nameFavorite {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-        align-items: flex-end;
-        text-transform: capitalize;
-
-        h3 {
-            padding: $p-small 0 $p-small $p-small;
-            margin: 0;
-            font-size: $f-medium;
-            font-weight: 400;
-            color: $font-color-secondary;
-        }
-
-        img {
-            align-self: flex-start;
-            width: 1rem;
-            height: 1rem;
-            cursor: pointer;
-        }
-    }
-
-    .search-results--card__infoControls__icons-group {
-        img {
-            margin-left: $m-small;
-            cursor: pointer;
-        }
+    img {
+        align-self: flex-start;
+        width: 1rem;
+        height: 1rem;
+        cursor: pointer;
     }
 }
 
-.expanded {
-    min-height: 30rem;
+.search-results--card__infoControls__icons-group {
+    img {
+        margin-left: $m-small;
+        cursor: pointer;
+    }
 }
+// classes for expanding the plantInfoCard
 
+// hide for the detailed info
 .hide {
     display: none;
 }
 
 .search-results--card__detailedInfo {
     padding: $p-small 0;
-    flex-grow: 1;
     background-color: $bg-color--secondary;
 
     &__suggestions {
         width: 90%;
-        margin: auto;
+        margin: 0 auto $m-medium auto;
 
         display: flex;
         flex-flow: row;
@@ -118,22 +120,54 @@
 
         .suggestions {
             background-color: $bg-color-suggest-box;
-            min-width: 4rem;
-            padding: $p-small;
+            //min-width: 4rem;
+            flex-basis: 4rem;
+
             border-radius: $b-radius-special;
 
             img {
-                width: 2rem;
-                height: 2rem;
-                margin-bottom: $m-small;
+                width: 1.5rem;
+                height: 1.5rem;
+
+                margin: $m-small 0;
+            }
+
+            h6 {
+                font-size: 0.5rem;
+                font-weight: 300;
+                font-style: italic;
+                text-transform: capitalize;
             }
         }
     }
 
-    h6 {
-        font-size: 0.5rem;
-        font-weight: 300;
-        font-style: italic;
-        text-transform: capitalize;
+    .search-results--card__detailedInfo__texts {
+        padding: 0 $p-medium $p-medium $p-medium;
+        text-align: left;
+
+        h4 {
+            font-size: $f-medium;
+            font-weight: 400;
+            margin: 0;
+            text-transform: capitalize;
+        }
+        h5 {
+            font-size: $f-small;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+        h6 {
+            font-size: 0.5rem;
+            font-weight: 300;
+            font-style: italic;
+            color: $font-color-secondary;
+            text-transform: capitalize;
+        }
+        p {
+            font-size: 0.5rem;
+            font-weight: 400;
+            color: $font-color-secondary;
+            text-transform: capitalize;
+        }
     }
 }
