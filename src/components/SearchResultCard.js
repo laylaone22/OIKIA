@@ -22,20 +22,23 @@ import favoriteFull from '../assets/icons/ui/favoriteFull.png';
 import favoriteEmpty from '../assets/icons/ui/favoriteEmpty.png';
 import caret from '../assets/icons/ui/caret.png';
 
-const SearchResultCard = ({ plant, delay }) => {
-    // set icons
-    let icon = null;
-    if (plant.type === 'fruits') icon = fruits;
-    else if (plant.type === 'vegetables') icon = vegetables;
-    else if (plant.type === 'roots') icon = roots;
-    else if (plant.type === 'herbs') icon = herbs;
-    else icon = killer;
+// info icons
+import frost from '../assets/icons/infoCard/frost.svg';
+import fullSun from '../assets/icons/infoCard/fullSun.svg';
+import lowSun from '../assets/icons/infoCard/lowSun.svg';
+import noSun from '../assets/icons/infoCard/noSun.svg';
+import seasonCold from '../assets/icons/infoCard/seasonCold.svg';
+import seasonCool from '../assets/icons/infoCard/seasonCool.svg';
+import seasonWarm from '../assets/icons/infoCard/seasonWarm.svg';
+import watering from '../assets/icons/infoCard/watering.svg';
 
+const SearchResultCard = ({ plant, delay }) => {
     // contexts
     const { userData } = useContext(authContext);
     const { dataState, dispatch } = useContext(dataContext);
 
     const [isFavorite, setIsFavorite] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(false);
 
     const changeFavorite = () => {
         setIsFavorite(!isFavorite);
@@ -46,9 +49,35 @@ const SearchResultCard = ({ plant, delay }) => {
             : dispatch({ type: REMOVE_FAVORITE, payload: plant._id });
     };
 
+    const handleExpanded = () => {
+        setIsExpanded(!isExpanded);
+    };
+
+    // set type icons
+    let iconType = null;
+    if (plant.type === 'fruits') iconType = fruits;
+    else if (plant.type === 'vegetables') iconType = vegetables;
+    else if (plant.type === 'roots') iconType = roots;
+    else if (plant.type === 'herbs') iconType = herbs;
+    else iconType = killer;
+
+    // set season icons
+    let iconSeason = null;
+    if (plant.season === 'warm') iconSeason = seasonWarm;
+    else if (plant.season === 'cool') iconSeason = seasonCool;
+    else if (plant.season === 'cold') iconSeason = seasonCold;
+    else iconSeason = killer;
+
+    // set season icons
+    let iconLightConditions = null;
+    if (plant.lightConditions === 'full sun') iconLightConditions = fullSun;
+    else if (plant.lightConditions === 'part sun') iconLightConditions = lowSun;
+    else if (plant.lightConditions === 'shade') iconLightConditions = noSun;
+    else iconLightConditions = killer;
+
     return (
         <section
-            className="search-results--card"
+            className={`search-results--card ${isExpanded && 'expanded'}`}
             style={{
                 animation: `1s moveInLeft ${delay / 1.5}s ease-in-out`,
                 animationFillMode: 'backwards'
@@ -95,12 +124,61 @@ const SearchResultCard = ({ plant, delay }) => {
                 </div>
 
                 <div className="search-results--card__infoControls__icons-group">
-                    <img className="icon__info" alt="svgImg" src={caret} />
+                    <img className="icon__info" alt="svgImg" src={caret} onClick={handleExpanded} />
                     <img className="search-results__icons" alt="Add symbol" src={add2} />
                 </div>
+            </div>
+            <div className={`search-results--card__detailedInfo ${!isExpanded && 'hide'}`}>
+                <section className="search-results--card__detailedInfo__suggestions">
+                    <div className="suggestions watering">
+                        <img src={watering} alt="icon watering" />
+                        <h6>{`${plant.wateringInterval} /days`}</h6>
+                    </div>
+                    <div className="suggestions lightConditions">
+                        <img src={iconLightConditions} alt="icon lightConditions" />
+                        <h6>{`${plant.lightConditions}`}</h6>
+                    </div>
+                    <div className="suggestions season">
+                        <img src={iconSeason} alt="icon season" />
+                        <h6>{`${plant.season}`}</h6>
+                    </div>
+                    <div className="suggestions frostTolerance">
+                        <img src={frost} alt="icon frostTolerance" />
+                        <h6>{plant.frostTolerance ? 'frost tolerant' : 'not frost tolerant'}</h6>
+                    </div>
+                </section>
             </div>
         </section>
     );
 };
 
 export default SearchResultCard;
+
+/*
+import frost from '../assets/icons/infoCard/frost.svg';
+import fullSun from '../assets/icons/infoCard/fullSun.svg';
+import lowSun from '../assets/icons/infoCard/lowSun.svg';
+import noSun from '../assets/icons/infoCard/noSun.svg';
+import seasonCold from '../assets/icons/infoCard/seasonCold.svg';
+import seasonCool from '../assets/icons/infoCard/seasonCool.svg';
+import seasonWarm from '../assets/icons/infoCard/seasonWarm.svg';
+import watering from '../assets/icons/infoCard/watering.svg';
+{
+        "plantName": "",
+        "scientificName": "",
+        "briefDescription": "",
+        "type": "",
+        "goodCompanions": [""],
+        "badCompanions": [],
+        "wateringInterval": 0,
+        "lightConditions": "",
+        "season": "",
+        "frostTolerance": true,
+        "lifeSpan": "",
+        "firstHarvestExpected": 0,
+        "lastHarvestExpected": 0,
+        "icon":"",
+        "wiki": "",
+        "img": ""
+    }
+     */
