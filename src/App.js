@@ -6,6 +6,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Home from './views/Home.js';
 import Signup from './views/Signup.js';
 import Login from './views/Login.js';
+import CreateGarden from './views/CreateGarden.js';
 import NotFound from './views/NotFound.js';
 
 // plant database
@@ -62,6 +63,9 @@ const App = () => {
                     </Route>
                     <Route exact path="/login">
                         {!isLoggedIn ? <Login /> : <Redirect to="/" />}
+                    </Route>
+                    <Route exact path="/creategarden">
+                        <CreateGarden />
                     </Route>
                     <Route>
                         <NotFound />
