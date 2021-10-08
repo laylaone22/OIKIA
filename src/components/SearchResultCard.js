@@ -31,6 +31,7 @@ import noSun from '../assets/icons/infoCard/noSun.svg';
 import seasonCool from '../assets/icons/infoCard/seasonCool.svg';
 import seasonWarm from '../assets/icons/infoCard/seasonWarm.svg';
 import watering from '../assets/icons/infoCard/watering.svg';
+import wiki from '../assets/icons/infoCard/wiki.svg';
 
 // plant icons default
 import cookie from '../assets/icons/plants/cookie.svg';
@@ -193,7 +194,7 @@ const SearchResultCard = ({ plant, delay }) => {
                     </div>
                     <div className="wikipedia">
                         <a href={plant.wiki} target="_blank" rel="noreferrer">
-                            <img src={link} alt="link to wikipedia" />
+                            <img src={wiki} alt="link to wikipedia" />
                         </a>
                     </div>
                 </section>

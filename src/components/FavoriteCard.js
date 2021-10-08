@@ -26,7 +26,7 @@ const FavoriteCard = ({ favorite, delay }) => {
             <div
                 className="FavoriteCard__img"
                 style={{
-                    backgroundImage: `url(${favorite.img})`,
+                    backgroundImage: `url('http://localhost:3000${favorite.img}')`,
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
                     backgroundSize: 'cover'
