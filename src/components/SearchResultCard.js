@@ -31,6 +31,7 @@ import noSun from '../assets/icons/infoCard/noSun.svg';
 import seasonCool from '../assets/icons/infoCard/seasonCool.svg';
 import seasonWarm from '../assets/icons/infoCard/seasonWarm.svg';
 import watering from '../assets/icons/infoCard/watering.svg';
+import wiki from '../assets/icons/infoCard/wiki.svg';
 
 // plant icons default
 import cookie from '../assets/icons/plants/cookie.svg';
@@ -88,7 +89,7 @@ const SearchResultCard = ({ plant, delay }) => {
             <div
                 className="search-results--card__header"
                 style={{
-                    backgroundImage: `url(${plant.img})`,
+                    backgroundImage: `url('http://localhost:3000${plant.img}')`,
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
                     backgroundSize: 'cover'
@@ -107,7 +108,7 @@ const SearchResultCard = ({ plant, delay }) => {
 
             <div className="search-results--card__infoControls glued">
                 {plant.icon ? (
-                    <img className="plant_icon" src={plant.icon} alt="plant icon" />
+                    <img className="plant_icon" src={`http://localhost:3000${plant.icon}`} alt="plant icon" />
                 ) : (
                     <img className="plant_icon" src={killer} alt="plant icon" />
                 )}
@@ -154,17 +155,7 @@ const SearchResultCard = ({ plant, delay }) => {
                 <section className="search-results--card__detailedInfo__texts">
                     <div className="description">
                         <h5>Description:</h5>
-                        <p>
-                            The tomato is the edible berry of the plant Solanum lycopersicum, commonly known as a tomato
-                            plant. The species originated in western South America and Central America. The Nahuatl word
-                            tomatl gave rise to the Spanish word tomate, from which the English word tomato derived. Its
-                            domestication and use as a cultivated food may have originated with the indigenous peoples
-                            of Mexico. The Aztecs used tomatoes in their cooking at the time of the Spanish conquest of
-                            the Aztec Empire, and after the Spanish encountered the tomato for the first time after
-                            their contact with the Aztecs, they brought the plant to Europe. From there, the tomato was
-                            introduced to other parts of the European-colonized world during the 16th century.{' '}
-                            {plant.briefDescription}
-                        </p>
+                        <p>{plant.briefDescription}</p>
                     </div>
                     <div className="lifeSpan__Harvest">
                         <h5>
@@ -203,7 +194,7 @@ const SearchResultCard = ({ plant, delay }) => {
                     </div>
                     <div className="wikipedia">
                         <a href={plant.wiki} target="_blank" rel="noreferrer">
-                            <img src={link} alt="link to wikipedia" />
+                            <img src={wiki} alt="link to wikipedia" />
                         </a>
                     </div>
                 </section>
