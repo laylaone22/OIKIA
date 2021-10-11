@@ -70,7 +70,7 @@ const PlantCard = ({ plant, delay }) => {
                 <div className="PlantCard__info__basic">
                     <h3 className="PlantCard__info__name">{plant.plantName}</h3>
                     <form>
-                        <select>
+                        <select className="PlantCard__form--input">
                             <option>Indoor</option>
                             <option>Outdoor</option>
                         </select>
