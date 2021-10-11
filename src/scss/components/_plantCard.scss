@@ -35,7 +35,8 @@
     }
 
     .PlantCard__img {
-        width: 2rem;
+        width: 6rem;
+        height: 6rem;
         border-top-left-radius: $b-radius-normal;
         border-top-right-radius: $b-radius-normal;
         border-bottom-left-radius: $b-radius-normal;
@@ -45,7 +46,6 @@
 
     .PlantCard__info {
         width: 65%;
-        padding-top: $p-medium;
         text-align: left;
 
         display: flex;
@@ -75,7 +75,12 @@
             cursor: grab;
         }
     }
-    .search-results--card__detailedInfo {
+
+    .PlantCard__info__basic {
+        padding-top: 1rem;
+    }
+
+    .PlantCard--card__detailedInfo {
         padding: $p-small 0;
         background-color: $bg-color--secondary;
 
@@ -112,7 +117,7 @@
             }
         }
 
-        .search-results--card__detailedInfo__texts {
+        .PlantCard---card__detailedInfo__texts {
             padding: 0 $p-medium;
             text-align: left;
 

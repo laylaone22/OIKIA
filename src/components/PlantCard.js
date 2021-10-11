@@ -67,28 +67,30 @@ const PlantCard = ({ plant, delay }) => {
                         backgroundSize: 'cover'
                     }}
                 ></div>
-                <h3 className="PlantCard__info__name">{plant.plantName}</h3>
-                <form>
-                    <select>
-                        <option>Indoor</option>
-                        <option>Outdoor</option>
-                    </select>
-                </form>
-                <img
-                    className="PlantCard__info__caret"
-                    alt="Heart outline symbol"
-                    src={caret}
-                    onClick={handleExpanded}
-                />
-                <img
-                    className="PlantCard__info__remove"
-                    alt="Heart outline symbol"
-                    src={remove}
-                    onClick={() => dispatch({ type: REMOVE_PLANT, payload: plant._id })}
-                />
+                <div className="PlantCard__info__basic">
+                    <h3 className="PlantCard__info__name">{plant.plantName}</h3>
+                    <form>
+                        <select>
+                            <option>Indoor</option>
+                            <option>Outdoor</option>
+                        </select>
+                    </form>
+                    <img
+                        className="PlantCard__info__caret"
+                        alt="Heart outline symbol"
+                        src={caret}
+                        onClick={handleExpanded}
+                    />
+                    <img
+                        className="PlantCard__info__remove"
+                        alt="Heart outline symbol"
+                        src={remove}
+                        onClick={() => dispatch({ type: REMOVE_PLANT, payload: plant._id })}
+                    />
+                </div>
             </div>
-            <div className={`search-results--card__detailedInfo ${!isExpanded && 'hide'}`}>
-                <section className="search-results--card__detailedInfo__suggestions">
+            <div className={`PlantCard--card__detailedInfo ${!isExpanded && 'hide'}`}>
+                <section className="PlantCard---card__detailedInfo__suggestions">
                     <div className="suggestions watering">
                         <img src={watering} alt="icon watering" />
                         <h6>{`${plant.wateringInterval} /days`}</h6>
@@ -106,7 +108,7 @@ const PlantCard = ({ plant, delay }) => {
                         <h6>{plant.frostTolerance ? 'tolerant' : '!tolerant'}</h6>
                     </div>
                 </section>
-                <section className="search-results--card__detailedInfo__texts">
+                <section className="PlantCard---card__detailedInfo__texts">
                     <div className="description">
                         <h5>Description:</h5>
                         <p>{plant.briefDescription}</p>
