@@ -4,9 +4,12 @@ import { useContext } from 'react';
 import { authContext } from '../stores/auth/auth.js';
 import { dataContext } from '../stores/data/store';
 
+import PlantCard from '../components/PlantCard.js';
+
 const MyPlants = () => {
     // context auth data
     const { userData } = useContext(authContext);
+    const { dataState, dispatch } = useContext(dataContext);
 
     return (
         <div className="MyPlants">
@@ -16,6 +19,10 @@ const MyPlants = () => {
                 </header>
                 <section className="MyPlants__body__plants">
                     <h2>Your Plants</h2>
+
+                    {dataState.myPlants?.map((plant, i) => (
+                        <PlantCard key={plant._id} plant={plant} delay={i} />
+                    ))}
                 </section>
             </main>
         </div>
