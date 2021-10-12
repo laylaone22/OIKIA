@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import { useHistory } from 'react-router';
 
 // contexts
 import { authContext } from '../stores/auth/auth';
@@ -33,23 +34,23 @@ import seasonWarm from '../assets/icons/infoCard/seasonWarm.svg';
 import watering from '../assets/icons/infoCard/watering.svg';
 import wiki from '../assets/icons/infoCard/wiki.svg';
 
-// plant icons default
-import cookie from '../assets/icons/plants/cookie.svg';
+const SearchResultCard = ({ plant, delay, id }) => {
+    const history = useHistory();
 
-const SearchResultCard = ({ plant, delay }) => {
     // contexts
-    const { userData } = useContext(authContext);
+    const { isLoggedIn } = useContext(authContext);
     const { dataState, dispatch } = useContext(dataContext);
 
-    const [isFavorite, setIsFavorite] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
+    const [isLiked, setIsLiked] = useState(false);
 
-    const changeFavorite = () => {
-        setIsFavorite(!isFavorite);
-        console.log(isFavorite);
-        console.log(plant);
-        !isFavorite
-            ? dispatch({ type: ADD_FAVORITE, payload: plant })
+    const toggleFavorite = () => {
+        console.log(dataState.myFavorites.includes(plant._id));
+        setIsLiked(!isLiked);
+
+        //avoid duplicated plants in the favorites
+        !dataState.myFavorites.includes(plant._id)
+            ? dispatch({ type: ADD_FAVORITE, payload: plant._id })
             : dispatch({ type: REMOVE_FAVORITE, payload: plant._id });
     };
 
@@ -116,10 +117,10 @@ const SearchResultCard = ({ plant, delay }) => {
                     <div className="search-results--card__infoControls__name">
                         <div className="search-results--card__header__favorite">
                             <h3>{plant.plantName}</h3>
-                            {!isFavorite ? (
-                                <img onClick={changeFavorite} src={favoriteEmpty} alt="Heart outline symbol" />
+                            {!isLiked ? (
+                                <img onClick={toggleFavorite} src={favoriteEmpty} alt="Heart outline symbol" />
                             ) : (
-                                <img onClick={changeFavorite} src={favoriteFull} alt="Heart outline symbol" />
+                                <img onClick={toggleFavorite} src={favoriteFull} alt="Heart outline symbol" />
                             )}
                         </div>
 

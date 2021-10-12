@@ -6,13 +6,13 @@ import { dataContext } from '../stores/data/store';
 
 const MyPlants = () => {
     // context auth data
-    const { userData } = useContext(authContext);
+    const { dataState } = useContext(dataContext);
 
     return (
         <div className="MyPlants">
             <main className="MyPlants__body">
                 <header className="MyPlants__body__header">
-                    <h1 className="MyPlants__body__header__title">{`Hi ${userData.name}`}</h1>
+                    <h1 className="MyPlants__body__header__title">{`Hi ${dataState.name}`}</h1>
                 </header>
                 <section className="MyPlants__body__plants">
                     <h2>Your Plants</h2>

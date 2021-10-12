@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router';
 
 const Signup = () => {
@@ -13,12 +13,13 @@ const Signup = () => {
 
     const [formData, setFormData] = useState(initialState);
 
+    const [hasSignupError, setHasSignupError] = useState(false);
+    const [errorDetails, setErrorDetails] = useState({ message: '', details: [] });
+
     const handleChange = ({ target: { name, value } }) => setFormData({ ...formData, [name]: value });
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();
-
-        const { name, email, password } = formData;
 
         try {
             const URL = 'http://localhost:3000/users/signup';
@@ -41,7 +42,9 @@ const Signup = () => {
                 throw error;
             }
         } catch (error) {
-            console.log(error);
+            // 400s and 500s are handled here
+            setHasSignupError(true);
+            setErrorDetails(error.error);
         }
     };
 
@@ -53,6 +56,19 @@ const Signup = () => {
                 </header>
                 <section>
                     <form onSubmit={handleSubmit} className="Signup__body--form">
+                        {hasSignupError && (
+                            <p className="Signup__body--form__error">
+                                Error signing up: {errorDetails.message}
+                                <br />
+                                {errorDetails.details && (
+                                    <ul>
+                                        {errorDetails.details.map(({ field, message }, index) => (
+                                            <li key={index}>{`${field}: ${message}`}</li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </p>
+                        )}
                         <div className="Signup__body__form">
                             <label htmlFor="name" className="Signup__body--form__label">
                                 <input

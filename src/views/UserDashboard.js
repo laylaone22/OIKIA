@@ -12,15 +12,15 @@ const UserDashboard = () => {
     // history
     const history = useHistory();
 
-    // context auth data
-    const { userData } = useContext(authContext);
+    // context data
+    const { userData, isLoggedIn, authToken } = useContext(authContext);
     const { dataState } = useContext(dataContext);
 
     return (
         <div className="UserDashboard">
             <main className="UserDashboard__body">
                 <header className="UserDashboard__body__header">
-                    <h1 className="UserDashboard__body__header__title">{`Hi ${userData.name}`}</h1>
+                    <h1 className="UserDashboard__body__header__title">{`Hi ${dataState.name}`}</h1>
                 </header>
                 <section className="UserDashboard__body__dashboard">
                     <section
@@ -31,7 +31,7 @@ const UserDashboard = () => {
 
                         <div className="UserDashboard__body__dashboard__display">
                             <h3>You created:</h3>
-                            <h4>{`${dataState.myGardens.length} gardens`}</h4>
+                            <h4>{`${!dataState.myGardens ? 0 : dataState.myGardens.length} gardens`}</h4>
                             <img src={enter} alt="enter icon" />;
                         </div>
                     </section>
@@ -43,7 +43,7 @@ const UserDashboard = () => {
 
                         <div className="UserDashboard__body__dashboard__display">
                             <h3>You added:</h3>
-                            <h4>{`${dataState.myPlants.length} plants`}</h4>
+                            <h4>{`${!dataState.myPlants ? 0 : dataState.myPlants.length} plants`}</h4>
                             <img src={enter} alt="enter icon" />;
                         </div>
                     </section>
@@ -55,7 +55,7 @@ const UserDashboard = () => {
 
                         <div className="UserDashboard__body__dashboard__display">
                             <h3>You liked:</h3>
-                            <h4>{`${dataState.myFavorites.length} plants`}</h4>
+                            <h4>{`${!dataState.myFavorites ? 0 : dataState.myFavorites.length} plants`}</h4>
                             <img src={enter} alt="enter icon" />;
                         </div>
                     </section>

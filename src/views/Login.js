@@ -31,12 +31,15 @@ const Login = () => {
 
             if (res.ok) {
                 const token = res.headers.get('x-auth-token');
+
                 setIsLoggedIn(true);
-                setUserData(data);
                 setAuthToken(token);
+                setUserData(data);
+
                 localStorage.setItem('isLoggedIn', JSON.stringify(true));
-                localStorage.setItem('userData', JSON.stringify(data));
                 localStorage.setItem('authToken', JSON.stringify(token));
+                localStorage.setItem('userData', JSON.stringify(data));
+
                 history.push('/userdashboard');
             } else {
                 // 400 status codes are not errors with fetch

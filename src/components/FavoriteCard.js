@@ -8,7 +8,6 @@ import { dataContext } from '../stores/data/store';
 import { REMOVE_FAVORITE } from '../stores/data/actions.js';
 
 // assets
-import favoriteFull from '../assets/icons/ui/favoriteFull.png';
 import remove from '../assets/icons/ui/remove.svg';
 import caret from '../assets/icons/ui/caret.png';
 
@@ -40,7 +39,7 @@ const FavoriteCard = ({ favorite, delay }) => {
                     className="FavoriteCard__info__remove"
                     alt="Heart outline symbol"
                     src={remove}
-                    onClick={() => dispatch({ type: REMOVE_FAVORITE, payload: favorite._id })}
+                    onClick={() => dispatch({ type: REMOVE_FAVORITE, payload: favorite })}
                 />
             </div>
         </div>

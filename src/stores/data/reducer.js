@@ -1,4 +1,5 @@
 import { v4 as uuid } from 'uuid';
+import { useEffect, useContext } from 'react';
 
 // actions
 import {
@@ -18,12 +19,46 @@ const dataReducer = (state, action) => {
         // logic for adding favorites to users
         case ADD_FAVORITE:
             console.log('reducer renders ADD_FAVORITE');
-            return { ...state, myFavorites: [...state.myFavorites, action.payload] };
+            console.log(state.myFavorites);
+            const newState = { ...state, myFavorites: [...state.myFavorites, action.payload] };
+
+            const toPut = {
+                myFavorites: state.myFavorites
+            };
+
+            console.log(toPut);
+
+            const putFavorites = async () => {
+                try {
+                    const res = await fetch('http://localhost:3000/users/616459826f27fd986abeaf1d', {
+                        method: 'PUT',
+                        body: JSON.stringify(toPut),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    const data = await res.json();
+                    console.log(res.ok);
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+
+            //putFavorites();
+
+            return newState;
 
         // logic for removing favorites from users
         case REMOVE_FAVORITE:
             console.log('reducer renders REMOVE_FAVORITE');
-            return { ...state, myFavorites: state.myFavorites.filter((fav) => fav._id !== action.payload) };
+            console.log(state.myFavorites);
+            return {
+                ...state,
+                myFavorites: state.myFavorites.filter((fav) => {
+                    console.log(fav);
+                    return fav !== action.payload;
+                })
+            };
 
         // logic for adding plants to users
         case ADD_PLANT:

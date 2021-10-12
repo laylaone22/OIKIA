@@ -21,6 +21,7 @@ const Plantcyclopedia = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [noResultFound, setNoResultFound] = useState(false);
     const [selected, setSelected] = useState('');
+    const [myFavorites, setMyFavorites] = useState([]);
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();
@@ -29,16 +30,19 @@ const Plantcyclopedia = () => {
         setSelected('');
 
         const URL = `http://localhost:3000/plants?plantName=${searchTerm}`;
-        console.log(URL);
 
         try {
             const response = await fetch(URL);
-            console.log(response);
+
             const data = await response.json();
-            console.log(data);
+
+            // const dataWithFavorites = data.map((result) => {
+            //     return dataState.myFavorites.includes(result._id)
+            //         ? { ...result, isFavorite: true }
+            //         : { ...result, isFavorite: false };
+            // });
 
             setSearchResults(data);
-            console.log(searchResults);
 
             if (data.length === 0) setNoResultFound(true);
 
@@ -58,7 +62,7 @@ const Plantcyclopedia = () => {
         try {
             const response = await fetch(URL);
             const data = await response.json();
-
+            console.log(data);
             setSearchResults(data);
             console.log(searchResults);
 
@@ -124,7 +128,7 @@ const Plantcyclopedia = () => {
                         <h3 className="noResults">No results found</h3>
                     ) : (
                         searchResults.map((plant, i) => {
-                            return <SearchResultCard key={plant._id} plant={plant} delay={i} />;
+                            return <SearchResultCard key={plant._id} id={plant._id} plant={plant} delay={i} />;
                         })
                     )}
                 </section>

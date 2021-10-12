@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect, useState } from 'react';
+import { createContext, useReducer, useEffect } from 'react';
 // actions
 import { RESTORE_STATE } from './actions';
 
@@ -16,7 +16,7 @@ export const DataProvider = ({ children }) => {
     // useReducer to handle status and setters
     const [dataState, dispatch] = useReducer(dataReducer, initialState);
 
-    // on mount store auth data in localStorage
+    // on mount store user data in localStorage
     useEffect(() => {
         const storedData = localStorage.getItem('dataState');
         if (storedData) dispatch({ type: RESTORE_STATE, payload: JSON.parse(storedData) });
