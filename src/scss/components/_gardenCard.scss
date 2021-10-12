@@ -1,2 +1,91 @@
 @use '../abstracts/' as *;
 @use '../base/' as *;
+
+.GardenCard__display {
+    width: 100%;
+    min-height: 15rem;
+    background-color: $bg-color-card-dark;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-collapse: separate;
+    overflow: hidden;
+    margin-bottom: $m-small;
+    box-shadow: $b-shadow-normal;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        transform: translateY(0.2rem);
+        box-shadow: $b-shadow-special;
+    }
+
+    &:active {
+        transform: translateY(0.1rem);
+        box-shadow: $b-shadow-active;
+        border: 0.1rem solid white;
+    }
+
+    h3 {
+        font-size: $f-medium;
+        color: $font-color-primary;
+    }
+    h4 {
+        font-size: $f-medium;
+        color: $font-color-primary;
+    }
+}
+
+.GardenCard__display--body {
+    border-top-left-radius: 20px;
+    background-image: url(../../assets/img/plantcyclopedia-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.GardenCard__display--title {
+    background-color: $bg-color-card-dark;
+    height: 3rem;
+    padding: $p-small;
+    h3,
+    h4 {
+        color: $font-color-special;
+    }
+
+    img {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin: $m-small;
+    }
+
+    &__name {
+        float: left;
+        margin-top: 0.5rem;
+        margin-left: 0.5rem;
+    }
+
+    &__size {
+        float: right;
+    }
+}
+
+.GardenCard__display--info {
+    text-align: left;
+    margin-left: 8rem;
+
+    img {
+        width: 1rem;
+        height: 1rem;
+        margin: $m-small;
+    }
+}
+
+.GardenCard__display--buttons {
+    text-align: right;
+    margin-right: 2rem;
+    img {
+        width: 1rem;
+        height: 1rem;
+        margin: $m-small;
+        bottom: 0%;
+        right: 0%;
+    }
+}
