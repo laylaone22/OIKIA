@@ -1,1 +1,118 @@
 @use '../abstracts/' as *;
+
+// Position of the Hamburger Button
+
+.Menu-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 2rem;
+    height: 5rem;
+
+    cursor: pointer;
+
+    @media (min-width: $bp-tablet-sm) {
+        width: 0;
+        padding: 0;
+    }
+}
+//  Stylying of the middle bar
+.Menu-btn__burger {
+    width: 2rem;
+    height: 0.1rem;
+    border-radius: 0.3rem;
+    background-color: black;
+
+    @media (min-width: $bp-tablet-sm) {
+        display: none;
+    }
+}
+// Styling for the hamburger menu
+
+.Menu-btn__burger::before,
+.Menu-btn__burger::after {
+    content: '';
+    position: absolute;
+    width: 2rem;
+    height: 0.1rem;
+    border-radius: 0.3rem;
+    background-color: black;
+    transition: all 0.3s ease-in-out;
+}
+// Position of the upper bar
+.Menu-btn__burger::before {
+    transform: translateY(-0.6rem);
+}
+
+// Position of the lower bar
+.Menu-btn__burger::after {
+    transform: translateY(0.6rem);
+}
+
+// // Position of the transformed button / and make middle bar transparent
+.Menu-btn.open .Menu-btn__burger {
+    transform: translateX(-50px);
+    background: transparent;
+}
+// Rotation of the bars on click
+.Menu-btn.open .Menu-btn__burger::before {
+    transform: rotate(45deg) translate(35px, -35px);
+}
+.Menu-btn.open .Menu-btn__burger::after {
+    transform: rotate(-45deg) translate(35px, 35px);
+}
+
+ul {
+    list-style: none;
+    padding-inline-start: 0;
+    background-color: white;
+    width: 100%;
+
+    a:link {
+        text-decoration: none;
+    }
+    a:visited {
+        color: $font-color-primary;
+    }
+    a:hover {
+        color: $font-color-secondary;
+    }
+
+    @media (min-width: $bp-tablet-sm) {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: 5rem;
+    }
+    li {
+        padding: 0.8rem 0.5rem;
+        margin-left: 1rem;
+    }
+}
+.Navigation {
+    @media (min-width: $bp-tablet-sm) {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+// Display of the navigation on click
+
+.menu.inactive {
+    display: none;
+
+    @media (min-width: $bp-tablet-sm) {
+        display: block;
+    }
+}
+
+.menu.active {
+    position: absolute;
+    transform: translateY(0);
+    z-index: 100;
+    @media (min-width: $bp-tablet-sm) {
+    }
+}
