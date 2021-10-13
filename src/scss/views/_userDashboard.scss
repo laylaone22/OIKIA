@@ -62,12 +62,12 @@
     }
 
     h3 {
-        font-size: $f-small;
-        color: $font-color-special;
+        font-size: $f-medium;
+        color: $font-color-primary;
     }
     h4 {
         font-size: $f-medium;
-        color: $font-color-special;
+        color: $font-color-primary;
     }
 
     img {
@@ -83,16 +83,16 @@
 
 .UserDashboard__body__dashboard__gardens {
     .UserDashboard__body__dashboard__display {
-        background: url('https://images.unsplash.com/photo-1523349312806-f5dde0a01c32?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80');
+        background: url('https://images.unsplash.com/photo-1526381805515-3fec2d69e7cc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=657&q=80');
         background-repeat: no-repeat;
-        //background-position: top center;
+        background-position: center;
         background-size: cover;
     }
 }
 
 .UserDashboard__body__dashboard__plants {
     .UserDashboard__body__dashboard__display {
-        background: url('https://images.unsplash.com/photo-1493673272479-a20888bcee10?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80');
+        background: url('https://images.unsplash.com/photo-1540927550647-43699cb14916?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80');
         background-repeat: no-repeat;
         //background-position: top center;
         background-size: cover;
@@ -101,7 +101,7 @@
 
 .UserDashboard__body__dashboard__favorites {
     .UserDashboard__body__dashboard__display {
-        background: url('https://images.unsplash.com/photo-1503796964332-e25e282e390f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1365&q=80');
+        background: url('https://images.unsplash.com/photo-1489981424607-45c58daf0581?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
         background-repeat: no-repeat;
         //background-position: top center;
         background-size: cover;

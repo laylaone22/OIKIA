@@ -5,7 +5,7 @@ import { authContext } from '../stores/auth/auth';
 import { dataContext } from '../stores/data/store';
 
 // actions to dispatch
-import { ADD_FAVORITE, REMOVE_FAVORITE } from '../stores/data/actions';
+import { ADD_FAVORITE, REMOVE_FAVORITE, ADD_PLANT, REMOVE_PLANT } from '../stores/data/actions';
 
 // type icons
 import roots from '../assets/icons/type/roots.png';
@@ -42,7 +42,13 @@ const SearchResultCard = ({ plant, delay }) => {
     const { dataState, dispatch } = useContext(dataContext);
 
     const [isFavorite, setIsFavorite] = useState(false);
+    const [isAdded, setIsAdded] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
+
+    const handleAdded = () => {
+        setIsAdded(!isAdded);
+        !isAdded ? dispatch({ type: ADD_PLANT, payload: plant }) : dispatch({ type: ADD_PLANT, payload: plant._id });
+    };
 
     const changeFavorite = () => {
         setIsFavorite(!isFavorite);
@@ -130,7 +136,7 @@ const SearchResultCard = ({ plant, delay }) => {
                 <div className="search-results--card__infoControls__icons-group">
                     <img className="icon__info" alt="svgImg" src={caret} onClick={handleExpanded} />
 
-                    <img className="search-results__icons" alt="Add symbol" src={add2} />
+                    <img className="search-results__icons" alt="Add symbol" src={add2} onClick={handleAdded} />
                 </div>
             </div>
             <div className={`search-results--card__detailedInfo ${!isExpanded && 'hide'}`}>
