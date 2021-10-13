@@ -45,6 +45,21 @@ const Navigation = () => {
                             OIKIA
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/plantcyclopedia" activeClassName="text-link" onClick={onClick}>
+                            Plantcyclopedia
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/userdashboard" activeClassName="text-link" onClick={onClick}>
+                            My Profile
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/gardeneditor" activeClassName="text-link" onClick={onClick}>
+                            Garden Editor
+                        </NavLink>
+                    </li>
 
                     {/* 
                         
@@ -60,22 +75,6 @@ const Navigation = () => {
 
                     {isLoggedIn ? (
                         <>
-                            <li>
-                                <NavLink to="/plantcyclopedia" activeClassName="text-link" onClick={onClick}>
-                                    Plantcyclopedia
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/userdashboard" activeClassName="text-link" onClick={onClick}>
-                                    My Profile
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/gardeneditor" activeClassName="text-link" onClick={onClick}>
-                                    Garden Editor
-                                </NavLink>
-                            </li>
-
                             <li>
                                 <NavLink to="" activeClassName="text-link" aria-current="page" onClick={handleLogout}>
                                     Log out
