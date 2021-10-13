@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import GardenCard from '../components/GardenCard.js';
 
 // contexts
 import { authContext } from '../stores/auth/auth.js';
@@ -16,6 +17,7 @@ const MyGardens = () => {
                 </header>
                 <section className="MyGardens__body__gardens">
                     <h2>Your Gardens</h2>
+                    <GardenCard />
                 </section>
             </main>
         </div>
