@@ -35,7 +35,6 @@ const GardenDisplay = () => {
 
     const handleSelect = (favorite) => {
         setSelectedFav(favorite);
-        //console.log(selectedFav);
     };
 
     return (

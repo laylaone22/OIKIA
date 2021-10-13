@@ -18,8 +18,6 @@ const Signup = () => {
     const handleSubmit = async (evt) => {
         evt.preventDefault();
 
-        const { name, email, password } = formData;
-
         try {
             const URL = 'http://localhost:3000/users/signup';
             const OPTIONS = {

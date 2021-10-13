@@ -60,7 +60,6 @@ const Plantcyclopedia = () => {
             const data = await response.json();
 
             setSearchResults(data);
-            console.log(searchResults);
 
             if (data.length === 0) setNoResultFound(true);
         } catch (error) {
