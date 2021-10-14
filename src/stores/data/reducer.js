@@ -14,6 +14,7 @@ import {
 
 const dataReducer = (state, action) => {
     console.log('reducer do stuff');
+
     switch (action.type) {
         // logic for adding favorites to users
         case ADD_FAVORITE:

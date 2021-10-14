@@ -36,16 +36,16 @@ import wiki from '../assets/icons/infoCard/wiki.svg';
 // plant icons default
 import cookie from '../assets/icons/plants/cookie.svg';
 
-const SearchResultCard = ({ plant, delay }) => {
+const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
     // contexts
     const { userData, authToken } = useContext(authContext);
     const { dataState, dispatch } = useContext(dataContext);
 
-    const [isFavorite, setIsFavorite] = useState(false);
+    //const [isFavorite, setIsFavorite] = useState(false);
     const [isAdded, setIsAdded] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
-    const [favoritesToPost, setFavoritesToPost] = useState({});
-    const [favoritesToPostAgain, setFavoritesToPostAgain] = useState({});
+    //const [favoritesToPost, setFavoritesToPost] = useState({});
+    //const [favoritesToPostAgain, setFavoritesToPostAgain] = useState({});
 
     const handleAdded = () => {
         setIsAdded(!isAdded);
@@ -55,12 +55,13 @@ const SearchResultCard = ({ plant, delay }) => {
     const handleExpanded = () => {
         setIsExpanded(!isExpanded);
     };
-
+    /*
     const toggleFavorite = () => {
         setIsFavorite(!isFavorite);
+        (() => console.log(isFavorite))();
         console.log(isFavorite);
         console.log(plant);
-
+        
         !isFavorite
             ? dispatch({ type: ADD_FAVORITE, payload: plant })
             : dispatch({ type: REMOVE_FAVORITE, payload: plant._id });
@@ -88,8 +89,8 @@ const SearchResultCard = ({ plant, delay }) => {
             }
         };
         updateMyFavorites();
-    };
-
+    };*/
+    /*
     useEffect(() => {
         const copyOfMyFav = [...dataState.myFavorites];
         const favoritesData = { myFavorites: copyOfMyFav.map(({ _id }) => _id) };
@@ -98,6 +99,7 @@ const SearchResultCard = ({ plant, delay }) => {
         console.log(favoritesToPostAgain);
         console.log(JSON.stringify(favoritesToPost));
     }, [dataState.myFavorites]);
+*/
 
     // set type icons
     let iconType = null;
@@ -158,10 +160,18 @@ const SearchResultCard = ({ plant, delay }) => {
                     <div className="search-results--card__infoControls__name">
                         <div className="search-results--card__header__favorite">
                             <h3>{plant.plantName}</h3>
-                            {!isFavorite ? (
-                                <img onClick={() => toggleFavorite()} src={favoriteEmpty} alt="Heart outline symbol" />
+                            {!plant.isFavorite ? (
+                                <img
+                                    onClick={() => toggleFavorite(plant)}
+                                    src={favoriteEmpty}
+                                    alt="Heart outline symbol"
+                                />
                             ) : (
-                                <img onClick={() => toggleFavorite()} src={favoriteFull} alt="Heart outline symbol" />
+                                <img
+                                    onClick={() => toggleFavorite(plant)}
+                                    src={favoriteFull}
+                                    alt="Heart outline symbol"
+                                />
                             )}
                         </div>
 
