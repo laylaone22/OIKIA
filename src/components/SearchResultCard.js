@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 // contexts
 import { authContext } from '../stores/auth/auth';
@@ -38,30 +38,66 @@ import cookie from '../assets/icons/plants/cookie.svg';
 
 const SearchResultCard = ({ plant, delay }) => {
     // contexts
-    const { userData } = useContext(authContext);
+    const { userData, authToken } = useContext(authContext);
     const { dataState, dispatch } = useContext(dataContext);
 
     const [isFavorite, setIsFavorite] = useState(false);
     const [isAdded, setIsAdded] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
+    const [favoritesToPost, setFavoritesToPost] = useState({});
+    const [favoritesToPostAgain, setFavoritesToPostAgain] = useState({});
 
     const handleAdded = () => {
         setIsAdded(!isAdded);
         !isAdded ? dispatch({ type: ADD_PLANT, payload: plant }) : dispatch({ type: ADD_PLANT, payload: plant._id });
     };
 
-    const changeFavorite = () => {
-        setIsFavorite(!isFavorite);
-        console.log(isFavorite);
-        console.log(plant);
-        !isFavorite
-            ? dispatch({ type: ADD_FAVORITE, payload: plant })
-            : dispatch({ type: REMOVE_FAVORITE, payload: plant._id });
-    };
-
     const handleExpanded = () => {
         setIsExpanded(!isExpanded);
     };
+
+    const toggleFavorite = () => {
+        setIsFavorite(!isFavorite);
+        console.log(isFavorite);
+        console.log(plant);
+
+        !isFavorite
+            ? dispatch({ type: ADD_FAVORITE, payload: plant })
+            : dispatch({ type: REMOVE_FAVORITE, payload: plant._id });
+
+        // PUT from myFavorites virtual on click
+        // PUT /users/:id
+
+        const updateMyFavorites = async () => {
+            const URL = `http://localhost:3000/users/${userData._id}`;
+
+            const OPTIONS = {
+                method: 'PUT',
+                body: JSON.stringify(favoritesToPost),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-auth-token': authToken
+                }
+            };
+
+            try {
+                const response = await fetch(URL, OPTIONS);
+                const data = await response.json();
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        updateMyFavorites();
+    };
+
+    useEffect(() => {
+        const copyOfMyFav = [...dataState.myFavorites];
+        const favoritesData = { myFavorites: copyOfMyFav.map(({ _id }) => _id) };
+        setFavoritesToPost(favoritesData);
+        setFavoritesToPostAgain(favoritesData);
+        console.log(favoritesToPostAgain);
+        console.log(JSON.stringify(favoritesToPost));
+    }, [dataState.myFavorites]);
 
     // set type icons
     let iconType = null;
@@ -123,9 +159,9 @@ const SearchResultCard = ({ plant, delay }) => {
                         <div className="search-results--card__header__favorite">
                             <h3>{plant.plantName}</h3>
                             {!isFavorite ? (
-                                <img onClick={changeFavorite} src={favoriteEmpty} alt="Heart outline symbol" />
+                                <img onClick={() => toggleFavorite()} src={favoriteEmpty} alt="Heart outline symbol" />
                             ) : (
-                                <img onClick={changeFavorite} src={favoriteFull} alt="Heart outline symbol" />
+                                <img onClick={() => toggleFavorite()} src={favoriteFull} alt="Heart outline symbol" />
                             )}
                         </div>
 

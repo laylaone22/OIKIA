@@ -1,0 +1,78 @@
+@use '../abstracts/' as *;
+@use '../base/' as *;
+
+.EmptyTile {
+    border-radius: 0.5rem;
+
+    background: rgb(170, 105, 105);
+    box-shadow: inset 8px 8px 9px #285d27, inset -8px -8px 9px #95c894;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+
+    &:hover {
+        background-color: goldenrod;
+    }
+
+    img {
+        width: 4rem;
+
+        transform-style: preserve-3d;
+        position: absolute;
+        transform: rotateX(-60deg) rotateY(50deg) rotateZ(-20deg) translateX(-0.5rem) translateZ(5rem)
+            translateY(-2.5rem);
+    }
+}
+
+.PlantTile {
+    border-radius: 0.5rem;
+
+    background: rgb(170, 105, 105);
+    box-shadow: inset 8px 8px 9px #285d27, inset -8px -8px 9px #95c894;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+
+    &:hover {
+        background-color: goldenrod;
+    }
+
+    img {
+        width: 4rem;
+
+        transform-style: preserve-3d;
+        position: absolute;
+        transform: rotateX(-60deg) rotateY(50deg) rotateZ(-20deg) translateX(-0.5rem) translateZ(5rem)
+            translateY(-2.5rem);
+    }
+}
+
+.FavoriteTile {
+    width: 5rem;
+    aspect-ratio: 1;
+    border-radius: 0.5rem;
+
+    background: rgb(170, 105, 105);
+    box-shadow: inset 8px 8px 9px #285d27, inset -8px -8px 9px #95c894;
+
+    transform: rotateX(60deg) rotateY(0deg) rotateZ(45deg);
+    transform-style: preserve-3d;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 4rem;
+
+        transform-style: preserve-3d;
+        position: absolute;
+
+        transform: rotateX(-60deg) rotateY(50deg) rotateZ(-20deg) translateX(-0.5rem) translateZ(5rem)
+            translateY(-2.5rem);
+    }
+}

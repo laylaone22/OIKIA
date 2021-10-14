@@ -130,6 +130,7 @@
 // hidden detailed info
 
 .search-results--card__detailedInfo {
+    width: 100%;
     padding: $p-small 0;
     background-color: $bg-color--secondary;
 
@@ -192,7 +193,7 @@
         }
 
         p {
-            max-width: 60ch;
+            max-width: 18rem;
             font-size: 0.5rem;
             font-weight: 400;
             color: $font-color-secondary;

@@ -1,0 +1,11 @@
+@use '../abstracts/' as *;
+@use '../base/' as *;
+
+.Garden {
+    display: grid;
+
+    gap: 0.5rem;
+    margin: auto;
+    transform: rotateX(60deg) rotateY(0deg) rotateZ(45deg);
+    transform-style: preserve-3d;
+}
