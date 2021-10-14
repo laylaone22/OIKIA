@@ -1,5 +1,25 @@
 @use '../abstracts/' as *;
 
+// Navigation Logo and Menu
+.Navigation-logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .navbar-brand {
+        padding-left: 2rem;
+    }
+    a:link {
+        text-decoration: none;
+    }
+    a:visited {
+        color: $font-color-primary;
+    }
+    a:hover {
+        color: $font-color-secondary;
+    }
+}
+
 // Position of the Hamburger Button
 
 .Menu-btn {
@@ -63,11 +83,19 @@
     transform: rotate(-45deg) translate(35px, 35px);
 }
 
+// Styling navigation menu
+
+.Navigation {
+    @media (min-width: $bp-tablet-sm) {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
 ul {
     list-style: none;
-    padding-inline-start: 0;
     background-color: white;
-    width: 100%;
+    height: 100vh;
 
     a:link {
         text-decoration: none;
@@ -89,13 +117,8 @@ ul {
     }
     li {
         padding: 0.8rem 0.5rem;
-        margin-left: 1rem;
-    }
-}
-.Navigation {
-    @media (min-width: $bp-tablet-sm) {
-        display: flex;
-        flex-direction: row;
+        text-align: center;
+        margin: auto;
     }
 }
 
@@ -111,7 +134,8 @@ ul {
 
 .menu.active {
     position: absolute;
-    transform: translateY(0);
+    width: 100%;
+    height: 100vh;
     z-index: 100;
     @media (min-width: $bp-tablet-sm) {
     }
