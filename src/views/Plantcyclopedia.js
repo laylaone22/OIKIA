@@ -23,11 +23,13 @@ const Plantcyclopedia = () => {
     const [selected, setSelected] = useState('');
     const [favoritesToPut, setFavoritesToPut] = useState({ myFavorites: [] });
 
+    // PUT favorites ID to BE on dataState.myFavorites change
     useEffect(() => {
         console.log('useEffect runs on dataState.myFav change!!');
         // take all favorites in dataState and make an array out of the IDs
         const favoritesData = { ...favoritesToPut, myFavorites: dataState.myFavorites.map(({ _id }) => _id) };
 
+        // POST the array of myFavorite IDs
         const updateMyFavorites = async () => {
             const URL = `http://localhost:3000/users/${userData._id}`;
 
@@ -49,8 +51,11 @@ const Plantcyclopedia = () => {
         };
 
         updateMyFavorites();
+
+        // run every time myFavorites changes
     }, [dataState.myFavorites]);
 
+    // fetch plants based on name
     const handleSubmit = async (evt) => {
         evt.preventDefault();
 
@@ -59,6 +64,7 @@ const Plantcyclopedia = () => {
         setNoResultFound(false);
         setSelected('');
 
+        // fetch from this URL
         const URL = `http://localhost:3000/plants?plantName=${searchTerm}`;
 
         try {
@@ -79,11 +85,8 @@ const Plantcyclopedia = () => {
                     ? { ...result, isFavorite: true }
                     : { ...result, isFavorite: false };
             });
-            console.log(dataWithFavorites);
 
             setSearchResults(dataWithFavorites);
-            console.log(favoritesIDs);
-            console.log(searchResults);
 
             // reset after fetching
             setSearchTerm('');
@@ -92,20 +95,36 @@ const Plantcyclopedia = () => {
         }
     };
 
+    // fetch plants based on the type category
     const getPlantsByType = async (type) => {
+        // resets before fetching
         setSearchResults([]);
         setNoResultFound(false);
         setSelected(type);
 
+        // fetch from this URL
         const URL = `http://localhost:3000/plants/plantcyclopedia/type/${type}`;
 
         try {
             const response = await fetch(URL);
             const data = await response.json();
 
-            setSearchResults(data);
-
+            // backend returns an empty array if no results
+            // so we need to set the no results to true
             if (data.length === 0) setNoResultFound(true);
+
+            // take all favorites in dataState and make an array out of the IDs
+            const favoritesIDs = dataState.myFavorites.map(({ _id }) => _id);
+
+            // now check the search results against the favoritesIDs
+            // add a boolean to render isFavorite
+            const dataWithFavorites = data.map((result) => {
+                return favoritesIDs.includes(result._id)
+                    ? { ...result, isFavorite: true }
+                    : { ...result, isFavorite: false };
+            });
+
+            setSearchResults(dataWithFavorites);
         } catch (error) {
             console.log(error);
         }
@@ -114,7 +133,7 @@ const Plantcyclopedia = () => {
     // toggleFavorites happens in the resultCard:
     // changes isFavorite
     // dispatches to dataState
-    // PUT favoriteIDs to mongoDB
+    // set favorites IDs to send to BE
 
     const toggleFavorite = (plant) => {
         // map the search results and toggle isFavorite for the plant you pass
@@ -129,6 +148,7 @@ const Plantcyclopedia = () => {
             ? dispatch({ type: ADD_FAVORITE, payload: plant })
             : dispatch({ type: REMOVE_FAVORITE, payload: plant._id });
 
+        // set favoritesToPut state for the useEffect to PUT them
         const favoritesData = { ...favoritesToPut, myFavorites: dataState.myFavorites.map(({ _id }) => _id) };
         setFavoritesToPut(favoritesData);
 
