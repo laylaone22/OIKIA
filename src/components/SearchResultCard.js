@@ -58,7 +58,7 @@ const SearchResultCard = ({ plant, delay }) => {
 
     const toggleFavorite = () => {
         setIsFavorite(!isFavorite);
-        //console.log(isFavorite);
+        console.log(isFavorite);
         console.log(plant);
 
         !isFavorite

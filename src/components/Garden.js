@@ -21,7 +21,7 @@ const Garden = ({ selectedFav }) => {
         userID: '616421ca29e8480ca5f9b369',
         gardenName: 'Balcony',
         gardenType: 'outdoor',
-        width: 7,
+        width: 10,
         length: 5,
         myGardenPlants: [],
         id: '616428b2207157d8e2235598'
@@ -71,8 +71,8 @@ const Garden = ({ selectedFav }) => {
         <div
             className="Garden"
             style={{
-                gridTemplateColumns: `repeat(${garden.length}, 5rem)`,
-                gridTemplateRows: `repeat(${garden.width}, 5rem)`
+                gridTemplateColumns: `repeat(${garden.width}, 5rem)`,
+                gridTemplateRows: `repeat(${garden.length}, 5rem)`
             }}
         >
             {renderedGarden.map((tile, i) => (
