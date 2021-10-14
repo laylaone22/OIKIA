@@ -5,7 +5,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { authContext } from '../stores/auth/auth';
 import { dataContext } from '../stores/data/store';
 
-import NavigationHandler from './NavigationHandler';
+import NavigationHandler from '../utilities/NavigationHandler';
 
 const Navigation = () => {
     // dropdown logic
@@ -34,17 +34,18 @@ const Navigation = () => {
 
     return (
         <div className="Navigation">
-            <div className={`Menu-btn ${isActive ? 'open' : ''}`} onClick={onClick}>
-                <div className="Menu-btn__burger"></div>
+            <div className="Navigation-logo">
+                <div>
+                    <NavLink to="/" className="navbar-brand" onClick={onClick}>
+                        OIKIA
+                    </NavLink>
+                </div>
+                <div className={`Menu-btn ${isActive ? 'open' : ''}`} onClick={onClick}>
+                    <div className="Menu-btn__burger"></div>
+                </div>
             </div>
-
             <nav ref={dropdownRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
                 <ul>
-                    <li>
-                        <NavLink to="/" className="navbar-brand" onClick={onClick}>
-                            OIKIA
-                        </NavLink>
-                    </li>
                     <li>
                         <NavLink to="/plantcyclopedia" activeClassName="text-link" onClick={onClick}>
                             Plantcyclopedia
