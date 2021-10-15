@@ -49,6 +49,7 @@
 
         &::placeholder {
             font-size: $f-small;
+            font-family: $font-family-secondary;
         }
 
         &:focus {

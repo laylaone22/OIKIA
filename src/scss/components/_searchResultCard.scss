@@ -1,4 +1,5 @@
 @use '../abstracts/' as *;
+@use '../base/' as *;
 
 .search-results--card {
     min-width: 20rem;
@@ -63,8 +64,11 @@
     z-index: 10;
 
     position: relative;
+    transition: all 0.3s ease-in-out;
 
     .plant_icon {
+        -webkit-animation: scale-up-bottom 0.4s 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+        animation: scale-up-bottom 0.4s 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
         width: 2.5rem;
         height: 2.5rem;
 
@@ -114,25 +118,39 @@
 }
 
 .search-results--card__infoControls__icons-group {
+    -webkit-animation: rotate-center360 0.6s 1.5s ease-in-out both;
+    animation: rotate-center360 0.6s 1.5s ease-in-out both;
     img {
         width: 1.8rem;
         height: 1.8rem;
-        margin-left: $m-small;
         cursor: pointer;
+        margin: 0 $m-small;
+        transition: all 0.7s ease-in-out;
+
+        &:hover {
+            background-color: $bg-color--primary;
+            border-radius: 50%;
+        }
     }
 }
-// classes for expanding the plantInfoCard
+//// classes for expanding the plantInfoCard
 
-// hide for the detailed info
+//// hide for the detailed info
 .hide {
     display: none;
 }
 
-// hidden detailed info
+//// rotate caret
+.frontFlip {
+    -webkit-animation: rotate-center180 0.5s ease-in-out both;
+    animation: rotate-center180 0.5s ease-in-out both;
+}
+
+//// hidden detailed info
 
 .search-results--card__detailedInfo {
     width: 100%;
-    padding: $p-small 0;
+    padding-top: $p-small;
     background-color: $bg-color--secondary;
 
     &__suggestions {
@@ -147,7 +165,6 @@
 
         .suggestion {
             background-color: $bg-color-suggest-box;
-            min-width: 4rem;
             flex-basis: 4rem;
 
             border-radius: $b-radius-special;
@@ -156,7 +173,7 @@
                 width: 1.5rem;
                 height: 1.5rem;
 
-                margin: $m-small 0;
+                margin-top: $m-small;
             }
 
             h6 {
@@ -164,6 +181,7 @@
                 font-weight: 300;
                 font-style: italic;
                 text-transform: capitalize;
+                padding-bottom: $p-small;
             }
         }
     }
@@ -199,16 +217,16 @@
             font-size: 0.6rem;
             font-weight: 400;
             color: $font-color-secondary;
-            margin-bottom: $m-small;
+            margin-bottom: $m-medium;
         }
 
         .lifeSpan__Harvest {
             margin-bottom: $m-medium;
             h5 {
-                font-size: 0.5rem;
+                font-size: 0.7rem;
             }
             span {
-                font-size: 0.5rem;
+                font-size: 0.6rem;
                 font-weight: 400;
                 color: $font-color-secondary;
                 text-transform: capitalize;
@@ -229,11 +247,11 @@
                 padding: 0.3rem 0.5rem;
                 margin: 0 0.3rem 0.3rem 0;
 
-                background-color: $bg-color-card-dark;
+                background-color: $bg-color-companion-good;
                 border-radius: 0.5rem;
 
                 font-size: 0.5rem;
-                color: $bg-color-card-light;
+                color: $font-color-light;
                 text-transform: capitalize;
             }
 
@@ -241,11 +259,11 @@
                 padding: 0.3rem 0.5rem;
                 margin: 0 0.3rem 0.3rem 0;
 
-                background-color: $bg-color--primary;
+                background-color: $bg-color-companion-bad;
                 border-radius: 0.5rem;
 
                 font-size: 0.5rem;
-                color: $font-color-primary;
+                color: $font-color-light;
                 text-transform: capitalize;
             }
         }
