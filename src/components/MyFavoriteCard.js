@@ -62,7 +62,7 @@ const MyFavoriteCard = ({ favorite, delay, removeFavorite }) => {
                 animationName: 'moveInLeft',
                 animationDuration: '1s',
                 animationTimingFunction: 'ease-in-out',
-                animationDelay: `${delay / 1.5}s`,
+                animationDelay: `${delay / 2}s`,
                 animationFillMode: 'backwards'
             }}
         >
@@ -101,12 +101,12 @@ const MyFavoriteCard = ({ favorite, delay, removeFavorite }) => {
                         className="plant_icon"
                         src={`http://localhost:3000${favorite.icon}`}
                         alt="plant icon"
-                        style={{
-                            WebkitAnimation: `scale-up-bottom 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) ${
-                                delay + 0.6
-                            }s both`,
-                            animation: `scale-up-bottom 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) ${delay + 0.6}s both}`
-                        }}
+                        // style={{
+                        //     WebkitAnimation: `scale-up-bottom 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) ${
+                        //         delay + 0.6
+                        //     }s both`,
+                        //     animation: `scale-up-bottom 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) ${delay + 0.6}s both}`
+                        // }}
                     />
                 ) : (
                     <img className="plant_icon" src={killer} alt="plant icon" />

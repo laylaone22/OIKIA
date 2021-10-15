@@ -67,6 +67,10 @@ $f-x-large: $f-base * 6;
 $b-radius-normal: 1rem;
 $b-radius-special: 1rem;
 
+// TRANSITION //////////////////////////////////
+
+$transition-normal: all 0.5s ease-in-out;
+
 // BREAKPOINTS //////////////////////////////////
 
 // Mobile-first (use min-width in the media queries)

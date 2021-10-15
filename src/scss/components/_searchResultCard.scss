@@ -18,8 +18,6 @@
 
     overflow: hidden;
 
-    transition: all 0.2s ease-in-out;
-
     &:hover {
         transform: translateY(-0.2rem);
         box-shadow: $b-shadow-special;
@@ -67,14 +65,22 @@
     transition: all 0.3s ease-in-out;
 
     .plant_icon {
-        -webkit-animation: scale-up-bottom 0.4s 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-        animation: scale-up-bottom 0.4s 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+        // -webkit-animation: scale-up-bottom 0.4s 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+        //     animation: scale-up-bottom 0.4s 1.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
         width: 2.5rem;
         height: 2.5rem;
 
         position: absolute;
         top: -43%;
         right: 15%;
+
+        &:hover {
+            // -webkit-animation: wobble-hor-bottom 0.8s both;
+            // animation: wobble-hor-bottom 0.8s both;
+
+            -webkit-animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+            animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+        }
     }
 }
 
@@ -222,6 +228,7 @@
 
         .lifeSpan__Harvest {
             margin-bottom: $m-medium;
+
             h5 {
                 font-size: 0.7rem;
             }

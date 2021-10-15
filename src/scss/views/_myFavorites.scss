@@ -61,3 +61,34 @@
         animation: slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
     }
 }
+
+// mQueries //////
+
+@include mQuery($bp-mobile-md) {
+    .MyFavorites {
+        //background: yellow;
+    }
+}
+
+@include mQuery($bp-tablet-sm) {
+    .MyFavorites__body__favorites {
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
+
+@include mQuery($bp-laptop-sm) {
+    .MyFavorites {
+        //background: yellow;
+    }
+}
+
+@include mQuery($bp-desktop-sm) {
+    .MyFavorites {
+        //background: yellow;
+    }
+}

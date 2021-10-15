@@ -80,8 +80,10 @@ const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
         <section
             className="search-results--card"
             style={{
-                WebkitAnimation: `1s moveInLeft ${delay / 1.5}s ease-in-out`,
-                animation: `1s moveInLeft ${delay / 1.5}s ease-in-out`,
+                animationName: 'moveInLeft',
+                animationDuration: '1s',
+                animationTimingFunction: 'ease-in-out',
+                animationDelay: `${delay / 2}s`,
                 animationFillMode: 'backwards'
             }}
         >
@@ -111,12 +113,12 @@ const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
                         className="plant_icon"
                         src={`http://localhost:3000${plant.icon}`}
                         alt="plant icon"
-                        style={{
-                            WebkitAnimation: `scale-up-bottom 0.4s  cubic-bezier(0.39, 0.575, 0.565, 1) ${
-                                delay + 0.6
-                            }s both`,
-                            animation: `scale-up-bottom 0.4s  cubic-bezier(0.39, 0.575, 0.565, 1) ${delay + 0.6}s both}`
-                        }}
+                        // style={{
+                        //     WebkitAnimation: `scale-up-bottom 0.4s  cubic-bezier(0.39, 0.575, 0.565, 1) ${
+                        //         delay + 0.6
+                        //     }s both`,
+                        //     animation: `scale-up-bottom 0.4s  cubic-bezier(0.39, 0.575, 0.565, 1) ${delay + 0.6}s both}`
+                        // }}
                     />
                 ) : (
                     <img className="plant_icon" src={killer} alt="plant icon" />
