@@ -41,12 +41,11 @@ const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
     const { userData, authToken } = useContext(authContext);
     const { dataState, dispatch } = useContext(dataContext);
 
-    //const [isFavorite, setIsFavorite] = useState(false);
+    // states
     const [isAdded, setIsAdded] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
-    //const [favoritesToPost, setFavoritesToPost] = useState({});
-    //const [favoritesToPostAgain, setFavoritesToPostAgain] = useState({});
 
+    // handlers
     const handleAdded = () => {
         setIsAdded(!isAdded);
         !isAdded ? dispatch({ type: ADD_PLANT, payload: plant }) : dispatch({ type: ADD_PLANT, payload: plant._id });
@@ -55,51 +54,6 @@ const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
     const handleExpanded = () => {
         setIsExpanded(!isExpanded);
     };
-    /*
-    const toggleFavorite = () => {
-        setIsFavorite(!isFavorite);
-        (() => console.log(isFavorite))();
-        console.log(isFavorite);
-        console.log(plant);
-        
-        !isFavorite
-            ? dispatch({ type: ADD_FAVORITE, payload: plant })
-            : dispatch({ type: REMOVE_FAVORITE, payload: plant._id });
-
-        // PUT from myFavorites virtual on click
-        // PUT /users/:id
-
-        const updateMyFavorites = async () => {
-            const URL = `http://localhost:3000/users/${userData._id}`;
-
-            const OPTIONS = {
-                method: 'PUT',
-                body: JSON.stringify(favoritesToPost),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-auth-token': authToken
-                }
-            };
-
-            try {
-                const response = await fetch(URL, OPTIONS);
-                const data = await response.json();
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        updateMyFavorites();
-    };*/
-    /*
-    useEffect(() => {
-        const copyOfMyFav = [...dataState.myFavorites];
-        const favoritesData = { myFavorites: copyOfMyFav.map(({ _id }) => _id) };
-        setFavoritesToPost(favoritesData);
-        setFavoritesToPostAgain(favoritesData);
-        console.log(favoritesToPostAgain);
-        console.log(JSON.stringify(favoritesToPost));
-    }, [dataState.myFavorites]);
-*/
 
     // set type icons
     let iconType = null;
@@ -187,19 +141,19 @@ const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
             </div>
             <div className={`search-results--card__detailedInfo ${!isExpanded && 'hide'}`}>
                 <section className="search-results--card__detailedInfo__suggestions">
-                    <div className="suggestions watering">
+                    <div className="suggestion watering">
                         <img src={watering} alt="icon watering" />
                         <h6>{`${plant.wateringInterval} /days`}</h6>
                     </div>
-                    <div className="suggestions lightConditions">
+                    <div className="suggestion lightConditions">
                         <img src={iconLightConditions} alt="icon lightConditions" />
                         <h6>{`${plant.lightConditions}`}</h6>
                     </div>
-                    <div className="suggestions season">
+                    <div className="suggestion season">
                         <img src={iconSeason} alt="icon season" />
                         <h6>{`${plant.season}`}</h6>
                     </div>
-                    <div className="suggestions frostTolerance">
+                    <div className="suggestion frostTolerance">
                         <img src={frost} alt="icon frostTolerance" />
                         <h6>{plant.frostTolerance ? 'tolerant' : '!tolerant'}</h6>
                     </div>
