@@ -36,12 +36,19 @@ const Navigation = () => {
         <div className="Navigation">
             <div className="Navigation-logo">
                 <div>
-                    <NavLink to="/" className="navbar-brand" onClick={onClick}>
+                    <div
+                        className="navbar-brand"
+                        onClick={() => {
+                            history.push('/');
+                        }}
+                    >
                         OIKIA
-                    </NavLink>
+                    </div>
                 </div>
-                <div className={`Menu-btn ${isActive ? 'open' : ''}`} onClick={onClick}>
-                    <div className="Menu-btn__burger"></div>
+                <div>
+                    <div className={`Menu-btn ${isActive ? 'open' : ''}`} onClick={onClick}>
+                        <div className="Menu-btn__burger"></div>
+                    </div>
                 </div>
             </div>
             <nav ref={dropdownRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
