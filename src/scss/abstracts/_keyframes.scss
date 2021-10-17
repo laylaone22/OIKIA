@@ -293,3 +293,29 @@
         transform: rotate(2deg);
     }
 }
+
+////////////////////////////////////////
+@-webkit-keyframes slide-in-top {
+    0% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translateY(1.6rem);
+        transform: translateY(1.6rem);
+        opacity: 1;
+    }
+}
+@keyframes slide-in-top {
+    0% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translateY(1.6rem);
+        transform: translateY(1.6rem);
+        opacity: 1;
+    }
+}

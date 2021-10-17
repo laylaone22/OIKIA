@@ -4,20 +4,13 @@ import { useContext, useState } from 'react';
 import { authContext } from '../stores/auth/auth.js';
 import { dataContext } from '../stores/data/store';
 
-// actions
-import { REMOVE_FAVORITE } from '../stores/data/actions.js';
-
 // assets
+
 // default
 import killer from '../assets/icons/type/killer.png';
 
 // ui icons
-import add from '../assets/icons/ui/add.svg';
-import add2 from '../assets/icons/ui/add-2.svg';
-import addChecked from '../assets/icons/ui/add-checked.svg';
-import favoriteFull from '../assets/icons/ui/favoriteFull.png';
-import favoriteEmpty from '../assets/icons/ui/favoriteEmpty.png';
-import caret from '../assets/icons/ui/caret.png';
+import caret from '../assets/icons/ui/caret.svg';
 import remove from '../assets/icons/ui/remove.svg';
 
 // info icons

@@ -12,8 +12,7 @@ import { REMOVE_FAVORITE } from '../stores/data/actions';
 import MyFavoriteCard from '../components/MyFavoriteCard.js';
 
 // assets
-import addFav from '../assets/icons/ui/addFav.svg';
-import favorites from '../assets/icons/ui/favorites.svg';
+import add from '../assets/icons/ui/add-1.svg';
 
 const MyFavorites = () => {
     const history = useHistory();
@@ -90,7 +89,7 @@ const MyFavorites = () => {
                 </section>
             </main>
             <div className="MyFavorites__addFavorites">
-                <img src={addFav} alt="add more favorites" onClick={() => history.push('/plantcyclopedia')} />
+                <img src={add} alt="add more favorites" onClick={() => history.push('/plantcyclopedia')} />
             </div>
         </div>
     );

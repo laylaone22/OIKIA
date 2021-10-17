@@ -1,0 +1,217 @@
+@use '../abstracts/' as *;
+@use '../base/' as *;
+
+.MyGardenCard {
+    min-width: 20rem;
+    min-height: 10rem;
+    margin-bottom: $m-large;
+
+    background-color: $bg-color-card-dark;
+    border-radius: $b-radius-normal 0 $b-radius-normal 0;
+
+    box-shadow: $b-shadow-normal;
+
+    transition: $transition-normal;
+
+    &:hover {
+        transform: translateY(0.2rem);
+        box-shadow: $b-shadow-special;
+    }
+
+    &:active {
+        transform: translateY(0.1rem);
+        box-shadow: $b-shadow-active;
+    }
+
+    h3 {
+        font-size: $f-medium;
+        color: $font-color-primary;
+    }
+
+    h4 {
+        font-size: $f-medium;
+        color: $font-color-primary;
+    }
+}
+
+.MyGardenCard__header {
+    width: 100%;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    padding: $p-small $p-medium;
+
+    background-color: $bg-color-card-dark;
+    border-radius: $b-radius-normal 0 $b-radius-normal 0;
+    text-transform: capitalize;
+
+    h3,
+    h4 {
+        font-family: $font-family-primary;
+        font-size: $f-medium;
+        letter-spacing: 0.2rem;
+        color: $font-color-special;
+    }
+
+    .MyGardenCard__header__gardenName {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-end;
+
+        img {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: $m-small;
+        }
+    }
+}
+
+.MyGardenCard__body {
+    width: 100%;
+    padding: $p-small;
+    border-radius: $b-radius-normal 0 $b-radius-normal 0;
+
+    box-shadow: $b-shadow-normal;
+
+    display: flex;
+    flex-flow: row nowrap;
+    //overflow: hidden;
+
+    position: relative;
+
+    .MyGardenCard__details {
+        width: 70%;
+        padding: $p-small;
+        display: flex;
+        flex-flow: column nowrap;
+    }
+
+    .MyGardenCard__img {
+        width: 40%;
+        background-image: url('../../assets/img/plants-1.jpeg');
+        background-size: cover;
+        border: 0.2rem solid $bg-color-card-light;
+        border-radius: $b-radius-normal 0 $b-radius-normal 0;
+    }
+}
+
+.MyGardenCard__info {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    margin-bottom: $m-small;
+
+    h3 {
+        font-family: $font-family-primary;
+        font-size: $f-medium;
+        letter-spacing: 2px;
+        color: $font-color-primary;
+    }
+
+    h4 {
+        font-family: $font-family-secondary;
+        font-size: $f-small;
+        font-weight: 300;
+        color: $font-color-primary;
+        text-transform: lowercase;
+    }
+
+    img {
+        width: 1rem;
+        height: 1rem;
+        margin-right: $m-small;
+    }
+}
+
+.MyGardenCard__actions {
+    position: absolute;
+    bottom: 0%;
+    right: 2%;
+
+    z-index: 200;
+
+    display: flex;
+    flex-flow: row;
+
+    .action {
+        position: relative;
+    }
+
+    .enter {
+        &:hover::before {
+            @include flex-col-center;
+
+            content: 'enter your garden';
+            position: absolute;
+            right: 20%;
+            top: 0%;
+
+            width: 7rem;
+
+            background: $bg-color--secondary;
+            border-radius: $b-radius-normal;
+
+            text-transform: capitalize;
+            font-size: $f-x-small;
+            font-weight: 300;
+
+            -webkit-animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+            animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+    }
+
+    .edit {
+        &:hover::before {
+            @include flex-col-center;
+
+            content: 'edit garden information';
+            position: absolute;
+            right: 10%;
+            top: 0%;
+
+            width: 7rem;
+
+            background: $bg-color--secondary;
+            border-radius: $b-radius-normal;
+
+            text-transform: capitalize;
+            font-size: $f-x-small;
+            font-weight: 300;
+
+            -webkit-animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+            animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+    }
+
+    .cancel {
+        &:hover::before {
+            @include flex-col-center;
+
+            content: 'delete this garden';
+            position: absolute;
+            right: 5%;
+            top: 0%;
+
+            width: 7rem;
+
+            background: $bg-color--secondary;
+            border-radius: $b-radius-normal;
+
+            text-transform: capitalize;
+            font-size: $f-x-small;
+            font-weight: 300;
+
+            -webkit-animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+            animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+    }
+    img {
+        width: 1.5rem;
+        height: 1.5rem;
+        cursor: pointer;
+    }
+}
