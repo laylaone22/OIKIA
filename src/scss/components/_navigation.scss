@@ -37,6 +37,7 @@
         padding: 0;
     }
 }
+
 //  Stylying of the middle bar
 .Menu-btn__burger {
     width: 2rem;
@@ -48,6 +49,7 @@
         display: none;
     }
 }
+
 // Styling for the hamburger menu
 
 .Menu-btn__burger::before,
@@ -90,35 +92,35 @@
         display: flex;
         flex-direction: row;
     }
-}
 
-ul {
-    list-style: none;
-    background-color: white;
-    height: 100vh;
+    ul {
+        list-style: none;
+        background-color: white;
+        height: 100vh;
 
-    a:link {
-        text-decoration: none;
-    }
-    a:visited {
-        color: $font-color-primary;
-    }
-    a:hover {
-        color: $font-color-secondary;
-    }
+        a:link {
+            text-decoration: none;
+        }
+        a:visited {
+            color: $font-color-primary;
+        }
+        a:hover {
+            color: $font-color-secondary;
+        }
 
-    @media (min-width: $bp-tablet-sm) {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        height: 5rem;
-    }
-    li {
-        padding: 0.8rem 0.5rem;
-        text-align: center;
-        margin: auto;
+        @media (min-width: $bp-tablet-sm) {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            height: 5rem;
+        }
+        li {
+            padding: 0.8rem 0.5rem;
+            text-align: center;
+            margin: auto;
+        }
     }
 }
 
@@ -133,10 +135,11 @@ ul {
 }
 
 .menu.active {
-    position: absolute;
-    width: 100%;
-    height: 100vh;
+    // position: absolute;
+    //width: 100%;
+    //height: 100vh;
     z-index: 100;
+
     @media (min-width: $bp-tablet-sm) {
     }
 }

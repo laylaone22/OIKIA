@@ -25,7 +25,7 @@ const Plantcyclopedia = () => {
 
     // PUT favorites ID to BE on dataState.myFavorites change
     useEffect(() => {
-        console.log('useEffect runs on dataState.myFav change!!');
+        console.log('PlantCyclopedia View - useEffect runs on dataState.myFav change!!');
         // take all favorites in dataState and make an array out of the IDs
         const favoritesData = { ...favoritesToPut, myFavorites: dataState.myFavorites.map(({ _id }) => _id) };
 

@@ -11,7 +11,6 @@
 
 // mix main containers layouts mobile
 @mixin viewsMain {
-    width: auto;
     min-height: 100%;
     overflow: hidden;
 
@@ -25,23 +24,39 @@
         font-size: $f-small;
         font-weight: 500;
         color: $font-color-secondary;
-        margin-bottom: $m-small;
+        margin-bottom: $m-medium;
     }
 }
 
 // mix main containers layouts mobile
 @mixin viewsBody {
-    min-height: calc(100vh - 3.5rem);
+    max-width: 64rem;
+    min-height: calc(100vh - 5rem);
+    margin: auto;
     text-align: center;
 
     &__header {
-        padding: $p-x-large 0;
+        padding: $p-large 0;
+    }
+
+    @include mQuery($bp-tablet-sm) {
+        &__header {
+            transition: $transition-normal;
+            padding: $p-x-large 0;
+        }
     }
 }
 
 @mixin flex-col-center {
     display: flex;
     flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-row-center {
+    display: flex;
+    flex-flow: row;
     justify-content: center;
     align-items: center;
 }
