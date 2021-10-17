@@ -21,6 +21,7 @@ import addChecked from '../assets/icons/ui/add-checked.svg';
 import favoriteFull from '../assets/icons/ui/favoriteFull.png';
 import favoriteEmpty from '../assets/icons/ui/favoriteEmpty.png';
 import caret from '../assets/icons/ui/caret.png';
+
 import link from '../assets/icons/ui/link.svg';
 
 // info icons
