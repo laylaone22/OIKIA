@@ -22,7 +22,7 @@ import cancel from '../assets/icons/ui/cancel.svg';
 import inside from '../assets/img/inside.jpeg';
 import outside from '../assets/img/outside.jpg';
 
-const MyGardenCard = ({ garden, id }) => {
+const MyGardenCard = ({ garden, id, deleteGarden, editGarden }) => {
     // sim data
     const gardenBerlin = {
         _id: '616428b2207157d8e2235598',
@@ -41,16 +41,16 @@ const MyGardenCard = ({ garden, id }) => {
             <header className="MyGardenCard__header">
                 <div className="MyGardenCard__header__gardenName">
                     <img src={potPlant} alt="potted plant icon" />
-                    <h3 className="MyGardenCard__header__gardenName">{gardenBerlin.gardenName}</h3>
+                    <h3 className="MyGardenCard__header__gardenName">{garden.gardenName}</h3>
                 </div>
 
-                <h4>{`${gardenBerlin.width}x${gardenBerlin.length}`}</h4>
+                <h4>{`${garden.width}x${garden.length}`}</h4>
             </header>
 
             <div
                 className="MyGardenCard__body"
                 style={{
-                    backgroundImage: `url(${gardenBerlin.gardenType === 'indoor' ? inside : outside})`,
+                    backgroundImage: `url(${garden.gardenType === 'indoor' ? inside : outside})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',
                     backgroundPosition: 'top'
@@ -59,11 +59,11 @@ const MyGardenCard = ({ garden, id }) => {
                 <div className="MyGardenCard__details">
                     <div className="MyGardenCard__info time">
                         <img src={clock} alt="date icon" />
-                        <h4>{`${calculateAge(gardenBerlin.createdAt)} days old`}</h4>
+                        <h4>{`${calculateAge(garden.createdAt)} days old`}</h4>
                     </div>
                     <div className="MyGardenCard__info plants">
                         <img src={plant} alt="plant icon" />
-                        <h4>{`${gardenBerlin.myGardenPlants.length} plants`}</h4>
+                        <h4>{`${garden.myGardenPlants.length} plants`}</h4>
                     </div>
                     <div className="MyGardenCard__info water">
                         <img src={watering} alt="water icon" />
@@ -79,10 +79,10 @@ const MyGardenCard = ({ garden, id }) => {
                         <img src={enter} alt="trash icon" />
                     </div>
                     <div className="action edit">
-                        <img src={edit} alt="enter icon" />
+                        <img src={edit} alt="enter icon" onClick={() => editGarden(garden)} />
                     </div>
                     <div className="action cancel">
-                        <img src={cancel} alt="enter icon" />
+                        <img src={cancel} alt="enter icon" onClick={() => deleteGarden(garden)} />
                     </div>
                 </div>
             </div>

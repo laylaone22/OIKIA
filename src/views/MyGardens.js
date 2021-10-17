@@ -6,7 +6,7 @@ import { authContext } from '../stores/auth/auth';
 import { dataContext } from '../stores/data/store';
 
 // actions to dispatch
-import { ADD_FAVORITE, REMOVE_FAVORITE } from '../stores/data/actions';
+import { ADD_GARDEN, EDIT_GARDEN, DELETE_GARDEN } from '../stores/data/actions';
 
 // components
 import MyGardenCard from '../components/MyGardenCard.js';
@@ -80,8 +80,38 @@ const MyGardens = () => {
             createdAt: '2021-10-11T12:59:34.219Z'
         }
     ];
-    const removeGarden = () => {};
-    const editGarden = () => {};
+
+    const deleteGarden = ({ garden }) => {
+        console.log(garden);
+        // to remove a garden we need the garden._id to filter it out of the dataState
+        dispatch({ type: DELETE_GARDEN, payload: garden._id });
+
+        const deleteMyGarden = async () => {
+            const URL = `http://localhost:3000/mygardens/${garden._id}`;
+
+            const OPTIONS = {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-auth-token': authToken
+                }
+            };
+
+            try {
+                const response = await fetch(URL, OPTIONS);
+                const data = await response.json();
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        deleteMyGarden();
+    };
+
+    const editGarden = ({ garden }) => {
+        console.log(garden);
+    };
+
     return (
         <div className="MyGardens">
             <main className="MyGardens__body">
@@ -97,13 +127,13 @@ const MyGardens = () => {
                                 key={garden._id}
                                 garden={garden}
                                 delay={i}
-                                removeGarden={removeGarden}
+                                deleteGarden={deleteGarden}
                                 editGarden={editGarden}
                             />
                         ))}
                 </section>
                 <div className="MyGardens__addGardens">
-                    <img src={add} alt="add more gardens" onClick={() => history.push('/plantcyclopedia')} />
+                    <img src={add} alt="add more gardens" onClick={() => history.push('/createGarden')} />
                 </div>
             </main>
         </div>

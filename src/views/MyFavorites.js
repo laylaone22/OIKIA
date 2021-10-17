@@ -77,8 +77,8 @@ const MyFavorites = () => {
                 </header>
                 <h2>Your Favorite Plants</h2>
                 <section className="MyFavorites__body__favorites">
-                    {dataState.myFavorites?.map((favorite, i) => (
-                        // <FavoriteCard key={fav._id} favorite={fav} delay={i} />
+                    {dataState.myFavorites.length === 0 && <h2>Add some plants to your favorites</h2>}
+                    {dataState.myFavorites.map((favorite, i) => (
                         <MyFavoriteCard
                             key={favorite._id}
                             favorite={favorite}
