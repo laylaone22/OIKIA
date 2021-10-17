@@ -39,12 +39,12 @@
     min-height: 15rem;
 
     border-radius: $b-radius-normal;
-    margin-bottom: $m-small;
+    margin-bottom: $m-medium;
     box-shadow: $b-shadow-normal;
 
     display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-end;
+    flex-flow: column;
+    justify-content: space-around;
 
     position: relative;
 
@@ -58,32 +58,49 @@
     &:active {
         transform: translateY(0.1rem);
         box-shadow: $b-shadow-active;
-        border: 0.1rem solid white;
+    }
+
+    h2 {
+        font-family: $font-family-secondary;
+        font-size: $f-large;
+        color: $font-color-special;
     }
 
     h3 {
+        font-family: $font-family-primary;
         font-size: $f-medium;
-        color: $font-color-primary;
-    }
-    h4 {
-        font-size: $f-medium;
-        color: $font-color-primary;
+        color: $font-color-light;
     }
 
-    img {
-        width: 1.5rem;
-        height: 1.5rem;
-        margin: $m-small;
+    h4 {
+        font-size: $f-medium;
+        color: $font-color-light;
+    }
+    .display__icon {
+        background-color: $bg-color--secondary;
+        width: 2rem;
+        aspect-ratio: 1;
+        border-radius: 1rem 0 1rem 0;
 
         position: absolute;
         bottom: 0%;
         right: 0%;
     }
+    img {
+        width: 1rem;
+        height: 1rem;
+        margin: $m-small;
+        cursor: pointer;
+
+        position: absolute;
+        bottom: 1%;
+        right: 1%;
+    }
 }
 
 .UserDashboard__body__dashboard__gardens {
     .UserDashboard__body__dashboard__display {
-        background: url('https://images.unsplash.com/photo-1526381805515-3fec2d69e7cc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=657&q=80');
+        background: url('../../assets/img/plants-2.jpeg');
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -92,18 +109,62 @@
 
 .UserDashboard__body__dashboard__plants {
     .UserDashboard__body__dashboard__display {
-        background: url('https://images.unsplash.com/photo-1540927550647-43699cb14916?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80');
+        background: url('../../assets/img/plants-5.jpeg');
         background-repeat: no-repeat;
-        //background-position: top center;
+        background-position: top center;
         background-size: cover;
     }
 }
 
 .UserDashboard__body__dashboard__favorites {
     .UserDashboard__body__dashboard__display {
-        background: url('https://images.unsplash.com/photo-1489981424607-45c58daf0581?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+        background: url('../../assets/img/plants-3.jpeg');
         background-repeat: no-repeat;
-        //background-position: top center;
+        background-position: center center;
         background-size: cover;
+    }
+}
+
+// mQueries //////
+
+@include mQuery($bp-mobile-md) {
+    .UserDashboard {
+        //background: yellow;
+    }
+}
+
+@include mQuery($bp-tablet-sm) {
+    .UserDashboard__body__dashboard {
+        transition: $transition-normal;
+        width: 80%;
+
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 1rem;
+
+        section {
+            flex: 1 0 15rem;
+            margin: 0;
+        }
+    }
+}
+
+@include mQuery($bp-laptop-sm) {
+    .UserDashboard__body__dashboard {
+        width: 80%;
+        gap: 1rem;
+
+        section {
+            flex: 1 0 20rem;
+            margin: 0;
+        }
+    }
+}
+
+@include mQuery($bp-desktop-sm) {
+    .UserDashboard {
+        //background: yellow;
     }
 }

@@ -37,6 +37,7 @@
         padding: 0;
     }
 }
+
 //  Stylying of the middle bar
 .Menu-btn__burger {
     width: 2rem;
@@ -48,6 +49,7 @@
         display: none;
     }
 }
+
 // Styling for the hamburger menu
 
 .Menu-btn__burger::before,
@@ -92,9 +94,11 @@
     }
 
     ul {
+
         height: 100vh;
         list-style: none;
         background-color: white;
+
 
         a:link {
             text-decoration: none;
@@ -114,10 +118,12 @@
         @media (min-width: $bp-tablet-sm) {
             width: 100%;
             display: flex;
+
             align-items: center;
             justify-content: space-between;
             height: 5rem;
         }
+
     }
 }
 
@@ -132,7 +138,9 @@
 }
 
 .menu.active {
+
     z-index: 100;
+
     @media (min-width: $bp-tablet-sm) {
         display: block;
     }

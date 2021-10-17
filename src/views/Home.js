@@ -3,7 +3,11 @@ const Home = () => {
         <div className="Home">
             <main className="Home__body">
                 <header className="Home__body__header">
-                    <h1 className="Home__body--header__title">Home</h1>
+                    <h1 className="Home__body--header__title">
+                        Oops!
+                        <br /> I Killed
+                        <br /> It Again
+                    </h1>
                 </header>
             </main>
         </div>

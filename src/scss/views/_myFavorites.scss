@@ -25,3 +25,70 @@
     padding-bottom: $p-large;
     margin: auto;
 }
+
+.MyFavorites__addFavorites {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    position: fixed;
+    bottom: 2%;
+    left: 2%;
+
+    z-index: 200;
+
+    img {
+        width: 3rem;
+        height: 3rem;
+        cursor: pointer;
+    }
+
+    &:hover::after {
+        content: 'add more favorites';
+
+        background: $bg-color--secondary;
+        border-radius: $b-radius-normal;
+
+        padding: 0 $p-small;
+        margin-bottom: 0.1rem;
+        text-transform: capitalize;
+
+        font-size: $f-x-small;
+        font-weight: 300;
+
+        -webkit-animation: slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        animation: slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+}
+
+// mQueries //////
+
+@include mQuery($bp-mobile-md) {
+    .MyFavorites {
+        //background: yellow;
+    }
+}
+
+@include mQuery($bp-tablet-sm) {
+    .MyFavorites__body__favorites {
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
+
+@include mQuery($bp-laptop-sm) {
+    .MyFavorites {
+        //background: yellow;
+    }
+}
+
+@include mQuery($bp-desktop-sm) {
+    .MyFavorites {
+        //background: yellow;
+    }
+}

@@ -1,17 +1,14 @@
-import { useState, useContext, useEffect } from 'react';
+import { useContext, useState } from 'react';
 
 // contexts
-import { authContext } from '../stores/auth/auth';
+import { authContext } from '../stores/auth/auth.js';
 import { dataContext } from '../stores/data/store';
 
-// actions to dispatch
-import { ADD_FAVORITE, REMOVE_FAVORITE, ADD_PLANT, REMOVE_PLANT } from '../stores/data/actions';
+// actions
+import { REMOVE_FAVORITE } from '../stores/data/actions.js';
 
-// type icons
-import roots from '../assets/icons/type/roots.png';
-import vegetables from '../assets/icons/type/vegetables.png';
-import fruits from '../assets/icons/type/fruits.png';
-import herbs from '../assets/icons/type/herbs.png';
+// assets
+// default
 import killer from '../assets/icons/type/killer.png';
 
 // ui icons
@@ -21,8 +18,7 @@ import addChecked from '../assets/icons/ui/add-checked.svg';
 import favoriteFull from '../assets/icons/ui/favoriteFull.png';
 import favoriteEmpty from '../assets/icons/ui/favoriteEmpty.png';
 import caret from '../assets/icons/ui/caret.png';
-
-import link from '../assets/icons/ui/link.svg';
+import remove from '../assets/icons/ui/remove.svg';
 
 // info icons
 import frost from '../assets/icons/infoCard/frost.svg';
@@ -34,47 +30,29 @@ import seasonWarm from '../assets/icons/infoCard/seasonWarm.svg';
 import watering from '../assets/icons/infoCard/watering.svg';
 import wiki from '../assets/icons/infoCard/wiki.svg';
 
-// plant icons default
-import cookie from '../assets/icons/plants/cookie.svg';
-
-const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
+const MyFavoriteCard = ({ favorite, delay, removeFavorite }) => {
     // contexts
     const { userData, authToken } = useContext(authContext);
     const { dataState, dispatch } = useContext(dataContext);
 
     // states
-    const [isAdded, setIsAdded] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
-
-    // handlers
-    const handleAdded = () => {
-        setIsAdded(!isAdded);
-        !isAdded ? dispatch({ type: ADD_PLANT, payload: plant }) : dispatch({ type: ADD_PLANT, payload: plant._id });
-    };
 
     const handleExpanded = () => {
         setIsExpanded(!isExpanded);
     };
 
-    // set type icons
-    let iconType = null;
-    if (plant.type === 'fruits') iconType = fruits;
-    else if (plant.type === 'vegetables') iconType = vegetables;
-    else if (plant.type === 'roots') iconType = roots;
-    else if (plant.type === 'herbs') iconType = herbs;
-    else iconType = killer;
-
     // set season icons
     let iconSeason = null;
-    if (plant.season === 'warm') iconSeason = seasonWarm;
-    else if (plant.season === 'cool') iconSeason = seasonCool;
+    if (favorite.season === 'warm') iconSeason = seasonWarm;
+    else if (favorite.season === 'cool') iconSeason = seasonCool;
     else iconSeason = killer;
 
     // set season icons
     let iconLightConditions = null;
-    if (plant.lightConditions === 'full sun') iconLightConditions = fullSun;
-    else if (plant.lightConditions === 'part sun') iconLightConditions = lowSun;
-    else if (plant.lightConditions === 'shade') iconLightConditions = noSun;
+    if (favorite.lightConditions === 'full sun') iconLightConditions = fullSun;
+    else if (favorite.lightConditions === 'part sun') iconLightConditions = lowSun;
+    else if (favorite.lightConditions === 'shade') iconLightConditions = noSun;
     else iconLightConditions = killer;
 
     return (
@@ -88,10 +66,19 @@ const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
                 animationFillMode: 'backwards'
             }}
         >
+            <div className="search-results--card__deleteFavorites">
+                <img
+                    onClick={() => removeFavorite(favorite)}
+                    src={remove}
+                    alt="remove favorite icon"
+                    className="deleteIcon"
+                />
+            </div>
+
             <div
                 className="search-results--card__header"
                 style={{
-                    backgroundImage: `url('http://localhost:3000${plant.img}')`,
+                    backgroundImage: `url('http://localhost:3000${favorite.img}')`,
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
                     backgroundSize: 'cover'
@@ -109,16 +96,16 @@ const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
             </div>
 
             <div className="search-results--card__infoControls glued">
-                {plant.icon ? (
+                {favorite.icon ? (
                     <img
                         className="plant_icon"
-                        src={`http://localhost:3000${plant.icon}`}
+                        src={`http://localhost:3000${favorite.icon}`}
                         alt="plant icon"
                         // style={{
-                        //     WebkitAnimation: `scale-up-bottom 0.4s  cubic-bezier(0.39, 0.575, 0.565, 1) ${
+                        //     WebkitAnimation: `scale-up-bottom 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) ${
                         //         delay + 0.6
                         //     }s both`,
-                        //     animation: `scale-up-bottom 0.4s  cubic-bezier(0.39, 0.575, 0.565, 1) ${delay + 0.6}s both}`
+                        //     animation: `scale-up-bottom 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) ${delay + 0.6}s both}`
                         // }}
                     />
                 ) : (
@@ -127,23 +114,10 @@ const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
                 <div className="search-results--card__infoControls__nameFavorite">
                     <div className="search-results--card__infoControls__name">
                         <div className="search-results--card__header__favorite">
-                            <h3>{plant.plantName}</h3>
-                            {!plant.isFavorite ? (
-                                <img
-                                    onClick={() => toggleFavorite(plant)}
-                                    src={favoriteEmpty}
-                                    alt="Heart outline symbol"
-                                />
-                            ) : (
-                                <img
-                                    onClick={() => toggleFavorite(plant)}
-                                    src={favoriteFull}
-                                    alt="Heart outline symbol"
-                                />
-                            )}
+                            <h3>{favorite.plantName}</h3>
                         </div>
 
-                        <h6>{`"${plant.scientificName}"`}</h6>
+                        <h6>{`"${favorite.scientificName}"`}</h6>
                     </div>
                 </div>
 
@@ -154,52 +128,50 @@ const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
                         src={caret}
                         onClick={handleExpanded}
                     />
-
-                    {/* <img className="search-results__icons" alt="Add symbol" src={add2} onClick={handleAdded} /> */}
                 </div>
             </div>
             <div className={`search-results--card__detailedInfo ${!isExpanded && 'hide'}`}>
                 <section className="search-results--card__detailedInfo__suggestions">
                     <div className="suggestion watering">
                         <img src={watering} alt="icon watering" />
-                        <h6>{`${plant.wateringInterval} /days`}</h6>
+                        <h6>{`${favorite.wateringInterval} /days`}</h6>
                     </div>
                     <div className="suggestion lightConditions">
                         <img src={iconLightConditions} alt="icon lightConditions" />
-                        <h6>{`${plant.lightConditions}`}</h6>
+                        <h6>{`${favorite.lightConditions}`}</h6>
                     </div>
                     <div className="suggestion season">
                         <img src={iconSeason} alt="icon season" />
-                        <h6>{`${plant.season}`}</h6>
+                        <h6>{`${favorite.season}`}</h6>
                     </div>
                     <div className="suggestion frostTolerance">
                         <img src={frost} alt="icon frostTolerance" />
-                        <h6>{plant.frostTolerance ? 'tolerant' : '!tolerant'}</h6>
+                        <h6>{favorite.frostTolerance ? 'tolerant' : '!tolerant'}</h6>
                     </div>
                 </section>
                 <section className="search-results--card__detailedInfo__texts">
                     <div className="description">
                         <h5>Description:</h5>
-                        <p>{plant.briefDescription}</p>
+                        <p>{favorite.briefDescription}</p>
                     </div>
                     <div className="lifeSpan__Harvest">
                         <h5>
-                            Life Span: <span>{plant.lifeSpan}</span>
+                            Life Span: <span>{favorite.lifeSpan}</span>
                         </h5>
 
                         <h5>
-                            First Harvest Expected: <span>{`after ${plant.firstHarvestExpected} weeks`}</span>
+                            First Harvest Expected: <span>{`after ${favorite.firstHarvestExpected} weeks`}</span>
                         </h5>
 
                         <h5>
-                            Last Harvest Expected: <span>{`after ${plant.lastHarvestExpected} weeks`}</span>
+                            Last Harvest Expected: <span>{`after ${favorite.lastHarvestExpected} weeks`}</span>
                         </h5>
                     </div>
                     <div className="companions">
                         <div className="companions_good">
                             <h5>Good Companions</h5>
                             <ul>
-                                {plant.goodCompanions.map((good, i) => (
+                                {favorite.goodCompanions.map((good, i) => (
                                     <li key={i} className="good">
                                         {good}
                                     </li>
@@ -209,7 +181,7 @@ const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
                         <div className="companions_bad">
                             <h5>Bad Companions</h5>
                             <ul>
-                                {plant.badCompanions.map((bad, i) => (
+                                {favorite.badCompanions.map((bad, i) => (
                                     <li key={i} className="bad">
                                         {bad}
                                     </li>
@@ -218,7 +190,7 @@ const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
                         </div>
                     </div>
                     <div className="wikipedia">
-                        <a href={plant.wiki} target="_blank" rel="noreferrer">
+                        <a href={favorite.wiki} target="_blank" rel="noreferrer">
                             <img src={wiki} alt="link to wikipedia" />
                         </a>
                     </div>
@@ -228,4 +200,41 @@ const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
     );
 };
 
-export default SearchResultCard;
+export default MyFavoriteCard;
+
+/*
+const FavoriteCard = ({ favorite, delay }) => {
+    const { dataState, dispatch } = useContext(dataContext);
+
+    return (
+        <div
+            className="FavoriteCard"
+            style={{
+                animation: `1s moveInLeft ${delay / 1.5}s ease-in-out`,
+                animationFillMode: 'backwards'
+            }}
+        >
+            <div
+                className="FavoriteCard__img"
+                style={{
+                    backgroundImage: `url('http://localhost:3000${favorite.img}')`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover'
+                }}
+            ></div>
+            <div className="FavoriteCard__info">
+                <h3 className="FavoriteCard__info__name">{favorite.plantName}</h3>
+                <h4>added on DATE</h4>
+                <img className="FavoriteCard__info__caret" alt="Heart outline symbol" src={caret} />
+                <img
+                    className="FavoriteCard__info__remove"
+                    alt="Heart outline symbol"
+                    src={remove}
+                    onClick={() => dispatch({ type: REMOVE_FAVORITE, payload: favorite._id })}
+                />
+            </div>
+        </div>
+    );
+};
+*/

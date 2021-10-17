@@ -1,8 +1,10 @@
 @forward '../components/button';
 @forward '../components/navigation';
-@forward '../components/PlantcyclopediaCard';
-@forward '../components/searchresultcard';
-@forward '../components/favoriteCard';
+
+@forward '../components/plantcyclopediaType';
+@forward '../components/searchResultCard';
+
+@forward '../components/myFavoriteCard';
 @forward '../components/gardenCard';
 @forward '../components/plantCard';
 

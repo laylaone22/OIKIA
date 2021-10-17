@@ -1,12 +1,8 @@
 @use '../abstracts/' as *;
-
-.selected {
-    border: 1px solid black;
-}
+@use '../base/' as *;
 
 .PlantcyclopediaCard {
     flex: 1 0 4rem;
-    min-height: 4rem;
 
     box-shadow: $b-shadow-normal;
     border-radius: $b-radius-normal;
@@ -14,7 +10,7 @@
     transition: all 0.2s ease-in-out;
 
     h3 {
-        font-size: $f-small;
+        font-size: $f-x-small;
         font-weight: 500;
         color: $font-color-secondary;
         margin-bottom: $m-small;
@@ -25,7 +21,7 @@
 
     img {
         width: 2rem;
-        height: auto;
+        // height: auto;
         margin: $m-small;
     }
 
@@ -74,4 +70,9 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.PlantcyclopediaCard.selected {
+    transform: scale(1.15);
+    box-shadow: $b-shadow-special;
 }

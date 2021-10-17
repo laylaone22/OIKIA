@@ -9,11 +9,16 @@ $bg-color-card-light: #e8fffe;
 $bg-color-card-dark: #3d413a;
 $bg-color-suggest-box: #d5eebb;
 
+$bg-color-companion-good: #0e884b;
+$bg-color-companion-bad: #e60c55;
+
 //Font colors
 $font-color-primary: #3d413a;
 $font-color-secondary: #567059;
 $font-color-special: #f3dd8b;
 $font-color-place-holder: #3d413a80;
+$font-color-light: #e8fffe;
+$font-color-dark: #3d413a;
 
 // SHADOWS //////////////////////////////////
 
@@ -51,6 +56,7 @@ $m-x-large: $m-base * 6;
 $f-base: 0.5rem;
 ////////////////////////////
 
+$f-x-small: $f-base * 1;
 $f-small: $f-base * 1.5;
 $f-medium: $f-base * 2;
 $f-large: $f-base * 4;
@@ -60,6 +66,10 @@ $f-x-large: $f-base * 6;
 
 $b-radius-normal: 1rem;
 $b-radius-special: 1rem;
+
+// TRANSITION //////////////////////////////////
+
+$transition-normal: all 0.5s ease-in-out;
 
 // BREAKPOINTS //////////////////////////////////
 
