@@ -7,6 +7,9 @@ import { dataContext } from '../stores/data/store';
 // actions
 import { REMOVE_PLANT } from '../stores/data/actions.js';
 
+// navigation
+// import NavigationHandler from '../utilities/NavigationHandler';
+
 // type icons
 import killer from '../assets/icons/type/killer.png';
 
@@ -30,6 +33,7 @@ import wiki from '../assets/icons/infoCard/wiki.svg';
 const PlantCard = ({ plant, delay }) => {
     const { userData } = useContext(authContext);
     const { dataState, dispatch } = useContext(dataContext);
+
     const [isExpanded, setIsExpanded] = useState(false);
 
     const handleExpanded = () => {
