@@ -39,17 +39,20 @@ const dataReducer = (state, action) => {
         // logic for adding gardens to users
         case ADD_GARDEN:
             console.log('reducer renders ADD_GARDEN');
-            return state;
+            console.log(action.payload);
+            return { ...state, myGardens: [...state.myGardens, action.payload] };
 
         // logic for editing gardens to users !!EXTRA!!
         case EDIT_GARDEN:
             console.log('reducer renders EDIT_GARDEN');
+            console.log(action.payload);
             return state;
 
         // logic for deleting gardens from users
         case DELETE_GARDEN:
             console.log('reducer renders DELETE_GARDEN');
-            return state;
+            console.log(action.payload);
+            return { ...state, myGardens: state.myGardens.filter((garden) => garden._id !== action.payload) };
 
         // logic to get tasks from local storage when mounting
         case RESTORE_STATE:

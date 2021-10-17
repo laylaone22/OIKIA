@@ -21,21 +21,19 @@ const MyGardens = () => {
     const { userData, authToken } = useContext(authContext);
     const { dataState, dispatch } = useContext(dataContext);
 
-    /*
-    // POST new Gardens ID to BE on dataState.myGardens change
+    // state
+    const [myGardensData, setMyGardenData] = useState([]);
+
+    // load gardens on mount
     useEffect(() => {
         console.log('myGardens View - useEffect runs on dataState.myGardens change!!');
 
-        // take all favorites in dataState and make an array out of the IDs
-        const myGardensData = { ...favoritesToPut, myFavorites: dataState.myFavorites.map(({ _id }) => _id) };
-
-        // POST the array of myFavorite IDs
-        const updateMyFavorites = async () => {
-            const URL = `http://localhost:3000/users/${userData._id}`;
+        // GET the array of myFavorite IDs
+        const loadMyGardens = async () => {
+            const URL = `http://localhost:3000/users/${userData._id}/mygardens`;
 
             const OPTIONS = {
-                method: 'PUT',
-                body: JSON.stringify(favoritesData),
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'x-auth-token': authToken
@@ -45,46 +43,22 @@ const MyGardens = () => {
             try {
                 const response = await fetch(URL, OPTIONS);
                 const data = await response.json();
+                console.log(data);
+                setMyGardenData(data);
             } catch (error) {
                 console.log(error);
             }
         };
 
-        updateMyFavorites();
+        loadMyGardens();
 
-        // run every time myGardens changes
-    }, [dataState.myGardens]);
-*/
+        // run only on mount
+    }, []);
 
-    const myGardensUser = [
-        {
-            _id: '616428b2207157d8e2235598',
-            userID: '616421ca29e8480ca5f9b369',
-            gardenName: 'garden berlin',
-            gardenType: 'indoor',
-            width: 3,
-            length: 5,
-            myGardenPlants: [],
-            id: '616428b2207157d8e2235598',
-            createdAt: '2021-10-11T12:59:34.219Z'
-        },
-        {
-            _id: '616428b2207157d8e2235599',
-            userID: '616421ca29e8480ca5f9b369',
-            gardenName: 'balcony berlin',
-            gardenType: 'outdoor',
-            width: 5,
-            length: 7,
-            myGardenPlants: [],
-            id: '616428b2207157d8e2235598',
-            createdAt: '2021-10-11T12:59:34.219Z'
-        }
-    ];
-
-    const deleteGarden = ({ garden }) => {
-        console.log(garden);
-        // to remove a garden we need the garden._id to filter it out of the dataState
-        dispatch({ type: EDIT_GARDEN, payload: garden._id });
+    const deleteGarden = (garden) => {
+        //console.log(garden);
+        // to delete a garden we need the garden._id to filter it out of the dataState
+        //dispatch({ type: DELETE_GARDEN, payload: garden._id });
 
         const deleteMyGarden = async () => {
             const URL = `http://localhost:3000/mygardens/${garden._id}`;
@@ -116,9 +90,9 @@ const MyGardens = () => {
                 </header>
                 <h2>Your Gardens</h2>
                 <section className="MyGardens__body__gardens">
-                    {myGardensUser.length === 0 && <h2>Create your first garden!!</h2>}
-                    {myGardensUser &&
-                        myGardensUser.map((garden, i) => (
+                    {myGardensData.length === 0 && <h2>Create your first garden!!</h2>}
+                    {myGardensData &&
+                        myGardensData?.map((garden, i) => (
                             <MyGardenCard key={garden._id} garden={garden} delay={i} deleteGarden={deleteGarden} />
                         ))}
                 </section>

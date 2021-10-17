@@ -22,7 +22,8 @@ import cancel from '../assets/icons/ui/cancel.svg';
 import inside from '../assets/img/inside.jpeg';
 import outside from '../assets/img/outside.jpg';
 
-const MyGardenCard = ({ garden, id, deleteGarden }) => {
+const MyGardenCard = ({ garden, deleteGarden }) => {
+    console.log(garden);
     // sim data
     const gardenBerlin = {
         _id: '616428b2207157d8e2235598',
