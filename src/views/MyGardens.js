@@ -52,7 +52,7 @@ const MyGardens = () => {
 
         loadMyGardens();
 
-        // run only on mount
+        // runs only on mount
     }, []);
 
     const deleteGarden = (garden) => {
