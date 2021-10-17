@@ -22,7 +22,7 @@ import cancel from '../assets/icons/ui/cancel.svg';
 import inside from '../assets/img/inside.jpeg';
 import outside from '../assets/img/outside.jpg';
 
-const MyGardenCard = ({ garden, id, deleteGarden, editGarden }) => {
+const MyGardenCard = ({ garden, id, deleteGarden }) => {
     // sim data
     const gardenBerlin = {
         _id: '616428b2207157d8e2235598',
@@ -78,9 +78,9 @@ const MyGardenCard = ({ garden, id, deleteGarden, editGarden }) => {
                     <div className="action enter">
                         <img src={enter} alt="trash icon" />
                     </div>
-                    <div className="action edit">
+                    {/* <div className="action edit">
                         <img src={edit} alt="enter icon" onClick={() => editGarden(garden)} />
-                    </div>
+                    </div> */}
                     <div className="action cancel">
                         <img src={cancel} alt="enter icon" onClick={() => deleteGarden(garden)} />
                     </div>

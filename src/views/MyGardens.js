@@ -84,7 +84,7 @@ const MyGardens = () => {
     const deleteGarden = ({ garden }) => {
         console.log(garden);
         // to remove a garden we need the garden._id to filter it out of the dataState
-        dispatch({ type: DELETE_GARDEN, payload: garden._id });
+        dispatch({ type: EDIT_GARDEN, payload: garden._id });
 
         const deleteMyGarden = async () => {
             const URL = `http://localhost:3000/mygardens/${garden._id}`;
@@ -108,10 +108,6 @@ const MyGardens = () => {
         deleteMyGarden();
     };
 
-    const editGarden = ({ garden }) => {
-        console.log(garden);
-    };
-
     return (
         <div className="MyGardens">
             <main className="MyGardens__body">
@@ -123,13 +119,7 @@ const MyGardens = () => {
                     {myGardensUser.length === 0 && <h2>Create your first garden!!</h2>}
                     {myGardensUser &&
                         myGardensUser.map((garden, i) => (
-                            <MyGardenCard
-                                key={garden._id}
-                                garden={garden}
-                                delay={i}
-                                deleteGarden={deleteGarden}
-                                editGarden={editGarden}
-                            />
+                            <MyGardenCard key={garden._id} garden={garden} delay={i} deleteGarden={deleteGarden} />
                         ))}
                 </section>
                 <div className="MyGardens__addGardens">
