@@ -50,7 +50,7 @@ const MyGardens = () => {
             }
         };
 
-        loadMyGardens();
+        //loadMyGardens();
 
         // runs only on mount
     }, []);
@@ -58,7 +58,7 @@ const MyGardens = () => {
     const deleteGarden = (garden) => {
         //console.log(garden);
         // to delete a garden we need the garden._id to filter it out of the dataState
-        //dispatch({ type: DELETE_GARDEN, payload: garden._id });
+        dispatch({ type: DELETE_GARDEN, payload: garden._id });
 
         const deleteMyGarden = async () => {
             const URL = `http://localhost:3000/mygardens/${garden._id}`;
@@ -90,7 +90,7 @@ const MyGardens = () => {
                 </header>
                 <h2>Your Gardens</h2>
                 <section className="MyGardens__body__gardens">
-                    {/* {dataState.myGardens.length === 0 && <h2>Create your first garden!!</h2>} */}
+                    {(!dataState.myGardens || dataState.myGardens.length === 0) && <h2>Create your first garden!!</h2>}
                     {dataState.myGardens &&
                         dataState.myGardens.map((garden, i) => (
                             <MyGardenCard key={garden._id} garden={garden} delay={i} deleteGarden={deleteGarden} />

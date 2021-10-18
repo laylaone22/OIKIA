@@ -1,21 +1,19 @@
-// import moment from 'moment';
-
 // helpers
 import { calculateAge } from '../utilities/helpers';
 
 // assets
 
 // icons
-import click from '../assets/icons/ui/click.svg';
-import trash from '../assets/icons/ui/trash.svg';
-import watering from '../assets/icons/infoCard/watering.svg';
-import harvest from '../assets/icons/ui/harvest.svg';
-import potPlant from '../assets/icons/ui/potplant.svg';
-import clock from '../assets/icons/ui/clock.svg';
-import plant from '../assets/icons/ui/plant.svg';
+import watering from '../assets/icons/gardenCard/watering.svg';
+import harvest from '../assets/icons/gardenCard/harvest.svg';
+import plants from '../assets/icons/gardenCard/plants.svg';
+import calendar from '../assets/icons/gardenCard/calendar.svg';
+import indoorGarden from '../assets/icons/gardenCard/indoorGarden.svg';
+import outdoorGarden from '../assets/icons/gardenCard/outdoorGarden.svg';
 
+// actions icons
 import enter from '../assets/icons/ui/enter.svg';
-import edit from '../assets/icons/ui/edit.svg';
+//import edit from '../assets/icons/ui/edit.svg';
 import cancel from '../assets/icons/ui/cancel.svg';
 
 // img
@@ -23,25 +21,13 @@ import inside from '../assets/img/inside.jpeg';
 import outside from '../assets/img/outside.jpg';
 
 const MyGardenCard = ({ garden, deleteGarden }) => {
-    console.log(garden);
-    // sim data
-    const gardenBerlin = {
-        _id: '616428b2207157d8e2235598',
-        userID: '616421ca29e8480ca5f9b369',
-        gardenName: 'garden berlin',
-        gardenType: 'indoor',
-        width: 10,
-        length: 5,
-        myGardenPlants: [],
-        id: '616428b2207157d8e2235598',
-        createdAt: '2021-10-11T12:59:34.219Z'
-    };
+    // console.log(garden;
 
     return (
         <section className="MyGardenCard">
             <header className="MyGardenCard__header">
                 <div className="MyGardenCard__header__gardenName">
-                    <img src={potPlant} alt="potted plant icon" />
+                    <img src={garden.gardenType === 'indoor' ? indoorGarden : outdoorGarden} alt="potted plant icon" />
                     <h3 className="MyGardenCard__header__gardenName">{garden.gardenName}</h3>
                 </div>
 
@@ -59,11 +45,11 @@ const MyGardenCard = ({ garden, deleteGarden }) => {
             >
                 <div className="MyGardenCard__details">
                     <div className="MyGardenCard__info time">
-                        <img src={clock} alt="date icon" />
+                        <img src={calendar} alt="date icon" />
                         <h4>{`${calculateAge(garden.createdAt)} days old`}</h4>
                     </div>
                     <div className="MyGardenCard__info plants">
-                        <img src={plant} alt="plant icon" />
+                        <img src={plants} alt="plant icon" />
                         <h4>{`${garden.myGardenPlants ? garden.myGardenPlants.length : 0} plants`}</h4>
                     </div>
                     <div className="MyGardenCard__info water">
