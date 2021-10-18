@@ -4,20 +4,13 @@ import { useContext, useState } from 'react';
 import { authContext } from '../stores/auth/auth.js';
 import { dataContext } from '../stores/data/store';
 
-// actions
-import { REMOVE_FAVORITE } from '../stores/data/actions.js';
-
 // assets
+
 // default
 import killer from '../assets/icons/type/killer.png';
 
 // ui icons
-import add from '../assets/icons/ui/add.svg';
-import add2 from '../assets/icons/ui/add-2.svg';
-import addChecked from '../assets/icons/ui/add-checked.svg';
-import favoriteFull from '../assets/icons/ui/favoriteFull.png';
-import favoriteEmpty from '../assets/icons/ui/favoriteEmpty.png';
-import caret from '../assets/icons/ui/caret.png';
+import caret from '../assets/icons/ui/caret.svg';
 import remove from '../assets/icons/ui/remove.svg';
 
 // info icons
@@ -201,40 +194,3 @@ const MyFavoriteCard = ({ favorite, delay, removeFavorite }) => {
 };
 
 export default MyFavoriteCard;
-
-/*
-const FavoriteCard = ({ favorite, delay }) => {
-    const { dataState, dispatch } = useContext(dataContext);
-
-    return (
-        <div
-            className="FavoriteCard"
-            style={{
-                animation: `1s moveInLeft ${delay / 1.5}s ease-in-out`,
-                animationFillMode: 'backwards'
-            }}
-        >
-            <div
-                className="FavoriteCard__img"
-                style={{
-                    backgroundImage: `url('http://localhost:3000${favorite.img}')`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
-                    backgroundSize: 'cover'
-                }}
-            ></div>
-            <div className="FavoriteCard__info">
-                <h3 className="FavoriteCard__info__name">{favorite.plantName}</h3>
-                <h4>added on DATE</h4>
-                <img className="FavoriteCard__info__caret" alt="Heart outline symbol" src={caret} />
-                <img
-                    className="FavoriteCard__info__remove"
-                    alt="Heart outline symbol"
-                    src={remove}
-                    onClick={() => dispatch({ type: REMOVE_FAVORITE, payload: favorite._id })}
-                />
-            </div>
-        </div>
-    );
-};
-*/

@@ -14,36 +14,32 @@
     .CreateGarden__body {
         @include viewsBody;
     }
-
-    .CreateGarden__body {
-        min-height: calc(100vh - 3.5rem);
-
-        &__header {
-            padding: 2rem 0;
-
-            h1 {
-                color: $font-color-primary;
-            }
-        }
-    }
 }
 
 .CreateGarden__body--form {
+    @include flex-col-center;
     width: 80%;
     padding-bottom: $p-large;
     margin: auto;
 
     &__label {
-        font-family: inherit;
-        width: 80%;
-        text-align: left;
-        padding-top: 1rem;
+        font-family: $font-family-secondary;
+        width: 100%;
+        padding-bottom: $p-medium;
+    }
+
+    select {
+        &:disabled {
+            font-size: $f-small;
+            font-family: $font-family-secondary;
+            color: $font-color-place-holder;
+        }
     }
 
     &__input {
         width: 100%;
         height: 2rem;
-        padding: 0 $p-large 0 $p-medium;
+        padding: 0 $p-medium;
         background-color: $bg-color--secondary;
         border: 0.1rem solid $bg-color--secondary;
         border-radius: $b-radius-normal;
@@ -53,6 +49,8 @@
 
         &::placeholder {
             font-size: $f-small;
+            font-family: $font-family-secondary;
+            color: $font-color-place-holder;
         }
 
         &:focus {
@@ -61,29 +59,34 @@
         }
     }
 
-    &__button {
-        border: none;
-        width: 30%;
-        margin: 1rem;
-        height: 2rem;
-        font-family: $font-family-secondary;
-        position: relative;
-        border: 0.1rem solid $bg-color--secondary;
-        border-radius: $b-radius-normal;
-        box-shadow: $b-shadow-normal;
-        outline: none;
+    .CreateGarden__body--search__form__buttons {
+        width: 100%;
     }
-    &__button--submit {
-        border: none;
-        width: 30%;
-        background-color: #f3dd8b;
-        margin: 1rem;
-        height: 2rem;
-        font-family: $font-family-secondary;
-        position: relative;
-        border: 0.1rem solid $bg-color--secondary;
-        border-radius: $b-radius-normal;
-        box-shadow: $b-shadow-normal;
-        outline: none;
+}
+
+// mQueries //////
+
+@include mQuery($bp-mobile-md) {
+    .CreateGarden {
+        //background: yellow;
+    }
+}
+
+@include mQuery($bp-tablet-sm) {
+    .CreateGarden__body__form {
+        transition: $transition-normal;
+        width: 60%;
+    }
+}
+
+@include mQuery($bp-laptop-sm) {
+    .CreateGarden {
+        //background: yellow;
+    }
+}
+
+@include mQuery($bp-desktop-sm) {
+    .CreateGarden {
+        //background: yellow;
     }
 }

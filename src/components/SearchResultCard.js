@@ -15,14 +15,9 @@ import herbs from '../assets/icons/type/herbs.png';
 import killer from '../assets/icons/type/killer.png';
 
 // ui icons
-import add from '../assets/icons/ui/add.svg';
-import add2 from '../assets/icons/ui/add-2.svg';
-import addChecked from '../assets/icons/ui/add-checked.svg';
 import favoriteFull from '../assets/icons/ui/favoriteFull.png';
 import favoriteEmpty from '../assets/icons/ui/favoriteEmpty.png';
-import caret from '../assets/icons/ui/caret.png';
-
-import link from '../assets/icons/ui/link.svg';
+import caret from '../assets/icons/ui/caret.svg';
 
 // info icons
 import frost from '../assets/icons/infoCard/frost.svg';
@@ -33,9 +28,6 @@ import seasonCool from '../assets/icons/infoCard/seasonCool.svg';
 import seasonWarm from '../assets/icons/infoCard/seasonWarm.svg';
 import watering from '../assets/icons/infoCard/watering.svg';
 import wiki from '../assets/icons/infoCard/wiki.svg';
-
-// plant icons default
-import cookie from '../assets/icons/plants/cookie.svg';
 
 const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
     // contexts

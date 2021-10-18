@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { authContext } from '../stores/auth/auth.js';
 import { dataContext } from '../stores/data/store';
 
+// components
 import PlantCard from '../components/PlantCard.js';
 
 const MyPlants = () => {

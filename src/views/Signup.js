@@ -51,7 +51,7 @@ const Signup = () => {
                 </header>
                 <section>
                     <form onSubmit={handleSubmit} className="Signup__body--form">
-                        <div className="Signup__body__form">
+                        <div className="Signup__body--form">
                             <label htmlFor="name" className="Signup__body--form__label">
                                 <input
                                     type="text"

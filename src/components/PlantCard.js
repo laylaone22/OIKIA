@@ -14,7 +14,7 @@ import { REMOVE_PLANT } from '../stores/data/actions.js';
 import killer from '../assets/icons/type/killer.png';
 
 // ui icons
-import caret from '../assets/icons/ui/caret.png';
+import caret from '../assets/icons/ui/caret.svg';
 
 import remove from '../assets/icons/ui/remove.svg';
 

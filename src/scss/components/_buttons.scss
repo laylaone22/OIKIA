@@ -1,0 +1,36 @@
+@use '../abstracts/' as *;
+@use '../base/' as *;
+
+.button {
+    min-width: 10rem;
+
+    padding: $p-small $p-medium;
+    margin: $m-small;
+
+    font-family: $font-family-secondary;
+
+    border-radius: $b-radius-normal;
+    box-shadow: $b-shadow-normal;
+
+    border: none;
+    outline: none;
+
+    transition: $transition-normal;
+
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: $b-shadow-special;
+    }
+
+    &:active {
+        box-shadow: $b-shadow-active;
+    }
+}
+
+.button__primary {
+    background-color: #f3dd8b;
+}
+
+.button__secondary {
+    background-color: $bg-color--secondary;
+}
