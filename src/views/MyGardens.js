@@ -90,9 +90,9 @@ const MyGardens = () => {
                 </header>
                 <h2>Your Gardens</h2>
                 <section className="MyGardens__body__gardens">
-                    {myGardensData.length === 0 && <h2>Create your first garden!!</h2>}
-                    {myGardensData &&
-                        myGardensData?.map((garden, i) => (
+                    {/* {dataState.myGardens.length === 0 && <h2>Create your first garden!!</h2>} */}
+                    {dataState.myGardens &&
+                        dataState.myGardens.map((garden, i) => (
                             <MyGardenCard key={garden._id} garden={garden} delay={i} deleteGarden={deleteGarden} />
                         ))}
                 </section>

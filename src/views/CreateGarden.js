@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { useHistory } from 'react-router';
 
 // contexts
@@ -13,8 +13,9 @@ const CreateGarden = () => {
 
     // contexts
     const { userData, authToken } = useContext(authContext);
-    const { dataState, dispatch } = useContext(dataContext);
+    const { dispatch } = useContext(dataContext);
 
+    // initial state for the form
     const initialState = {
         userID: userData._id,
         gardenName: '',
@@ -23,22 +24,21 @@ const CreateGarden = () => {
         length: ''
     };
 
+    // states
     const [gardenData, setGardenData] = useState(initialState);
     const [isGardenCreated, setIsGardenCreated] = useState(false);
     const [gardenToAdd, setGardenToAdd] = useState(null);
-    const [gardenToAdd2, setGardenToAdd2] = useState({});
 
+    // change handler for the form
     const handleChange = ({ target: { name, value } }) => setGardenData({ ...gardenData, [name]: value });
 
-    // useEffect(() => {
-
-    // }, [gardenToAdd]);
-
+    // handleSubmit POSTs the new garden to mongoDB and dispatches to dataState and localStorage
     const handleSubmit = async (evt) => {
         evt.preventDefault();
 
         try {
             const URL = 'http://localhost:3000/mygardens';
+
             const OPTIONS = {
                 method: 'POST',
                 body: JSON.stringify(gardenData),
@@ -50,18 +50,21 @@ const CreateGarden = () => {
 
             const response = await fetch(URL, OPTIONS);
             const data = await response.json();
-            console.log(data);
+
+            // set local state to render the name of the garden
             setGardenToAdd(data);
 
-            const copyOfGardenToAdd = { ...gardenToAdd, gardenToAdd };
-            dispatch({ type: ADD_GARDEN, payload: copyOfGardenToAdd });
+            // dispatch to dataState with the new garden
+            dispatch({ type: ADD_GARDEN, payload: data });
 
             if (response.ok) {
+                // if the creation is successful set state to true to render a message for the user
                 setIsGardenCreated(true);
 
-                // setTimeout(() => {
-                //     history.push('/mygardens');
-                // }, 2000);
+                // after 2 seconds go to myGardens
+                setTimeout(() => {
+                    history.push('/mygardens');
+                }, 2000);
             } else {
                 // 400 status codes are not errors with fetch
                 const error = new Error('Garden creation failed');
@@ -154,7 +157,7 @@ const CreateGarden = () => {
                             </button>
                         </div>
                     </form>
-                    {isGardenCreated && <h1>{`${gardenToAdd.gardenName} has been added to your gardens`}</h1>}
+                    {isGardenCreated && <h3>{`${gardenToAdd.gardenName} has been added to your gardens`}</h3>}
                 </section>
             </main>
         </div>

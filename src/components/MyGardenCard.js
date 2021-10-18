@@ -64,7 +64,7 @@ const MyGardenCard = ({ garden, deleteGarden }) => {
                     </div>
                     <div className="MyGardenCard__info plants">
                         <img src={plant} alt="plant icon" />
-                        <h4>{`${garden.myGardenPlants.length} plants`}</h4>
+                        <h4>{`${garden.myGardenPlants ? garden.myGardenPlants.length : 0} plants`}</h4>
                     </div>
                     <div className="MyGardenCard__info water">
                         <img src={watering} alt="water icon" />
