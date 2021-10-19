@@ -2,42 +2,39 @@
 @use '../base/' as *;
 
 .Login {
-    width: auto;
-    min-height: 100%;
-    text-align: center;
+    @include viewsMain;
 
-    background: linear-gradient(180deg, rgba(208, 235, 182, 0.34) 16.69%, rgba(61, 65, 58, 0.5) 95.13%),
-        url('https://images.unsplash.com/photo-1604481986614-e48521951d81?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1587&q=80')
-            no-repeat left center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
+    // background & linear gradient
+    background: linear-gradient(180deg, #cbe9b357 16%, #89a57480 90%),
+        url('https://images.unsplash.com/photo-1604481986614-e48521951d81?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1587&q=80');
+    background-repeat: no-repeat;
+    background-position: left center;
     background-size: cover;
-
-    overflow: hidden;
+    background-attachment: fixed;
 
     .Login__body {
-        min-height: calc(100vh - 3.5rem);
-
-        &__header {
-            padding: 2rem 0;
-
-            h1 {
-                color: $font-color-primary;
-            }
-        }
+        @include viewsBody;
     }
 }
 
 .Login__body--form {
-    width: 100%;
-    padding-bottom: 2rem 0 2rem 0;
-    margin-right: 1rem;
+    @include flex-col-center;
+    width: 80%;
+    padding-bottom: $p-large;
+    margin: auto;
 
     &__label {
-        font-family: inherit;
-        width: 80%;
-        position: relative;
+        font-family: $font-family-secondary;
+        width: 100%;
+        padding-bottom: $p-medium;
+    }
+
+    select {
+        &:disabled {
+            font-size: $f-small;
+            font-family: $font-family-secondary;
+            color: $font-color-place-holder;
+        }
     }
 
     &__input {
@@ -75,5 +72,30 @@
         border-radius: $b-radius-normal;
         box-shadow: $b-shadow-normal;
         outline: none;
+    }
+}
+
+@include mQuery($bp-mobile-md) {
+    .Login {
+        //background: yellow;
+    }
+}
+
+@include mQuery($bp-tablet-sm) {
+    .Login__body--form {
+        transition: $transition-normal;
+        width: 60%;
+    }
+}
+
+@include mQuery($bp-laptop-sm) {
+    .Login {
+        //background: yellow;
+    }
+}
+
+@include mQuery($bp-desktop-sm) {
+    .Login {
+        //background: yellow;
     }
 }
