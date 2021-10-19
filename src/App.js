@@ -68,9 +68,6 @@ const App = () => {
                     <Route exact path="/login">
                         {!isLoggedIn ? <Login /> : <Redirect to="/" />}
                     </Route>
-                    <Route exact path="/creategarden">
-                        <CreateGarden />
-                    </Route>
                     <Route>
                         <NotFound />
                     </Route>

@@ -1,21 +1,21 @@
 # [Oops! I Kill It Again](https://github.com/laylaone22/OIKIA)
 
-How many times did you get a plant as a present? or you got one from the shop just for fun?
-How many times did you prepare your garden looking forward to the best harvest of your life?
+How many times have you gotten a plant as a present? Or bought yourself one just for fun?
+How many times have you prepared your garden, looking forward to the best harvest of your life?
 
-How happy were you when you water your green friends for the first time and promised yourself to take care of them?
+How happy were you when you watered your green friends for the first time and promised yourself to take care of them?
 
-The reality is unfortunately that you probably killed all of them again, and again ... and again!!
+Unfortunately the reality is that you probably killed them all again, and again... and again!!
 
-We all want to put an end to this with Oop! I Killed It Again (OIKIA)!
+We want to put an end to this with Oops! I Killed It Again (OIKIA)!
 
-OIKIA is a MERN full-stack web application which helps you:
+OIKIA is a MERN full-stack web application which helps you to:
 
-- Gathering information about your green friends, keeping them into your list of favorite plants
-- Organizing your gardens, either indoor or outdoor (... yes your room or balcony CAN be a garden!)
-- Planing your garden disposition ahead using an interactive garden interface to make your life easier and funnier
-- Placing your favorite plants correctly by checking their good and bad companions
-- Getting an overview of your plants and notifications about when they need your attention
+- Gather information about your green friends, keeping them in a list of your favorite plants
+- Organize your gardens, either indoor or outdoor (...yes, your room or balcony CAN be a garden!)
+- Plan your garden arrangement using an interactive garden interface to make your life easier and more fun.
+- Place your favorite plants correctly by checking their good and bad companions.
+- Get an overview of your plants and notifications for when they need your attention.
 
 ## Technology & Features
 
@@ -51,7 +51,10 @@ Created by:
 
 [Julia](#)
 
-[Luke](#)
+[Luke](https://www.linkedin.com/in/lukecoyne21/)
+[<img src="https://img.icons8.com/clouds/100/000000/github.png" alt="GitHub Icon"/>](https://github.com/lukec2194)
+[<img src="https://img.icons8.com/clouds/100/000000/linkedin.png" alt="LinkedIn Icon"/>](https://www.linkedin.com/in/lukecoyne21/)
+[<img src="https://img.icons8.com/clouds/100/000000/gmail-new.png" alt="gmail Icon"/>](mailto:luke2194@outlook.com)
 
 [Frank](#)
 
