@@ -107,7 +107,7 @@ const CreateGarden = () => {
                                 className="CreateGarden__body--form__input"
                                 onChange={handleChange}
                             >
-                                <option value="" readOnly>
+                                <option value="" disabled selected>
                                     Placement
                                 </option>
                                 <option value="outdoor">Outdoor</option>
