@@ -8,32 +8,37 @@ import { dataContext } from '../stores/data/store';
 import EmptyTile from './EmptyTile';
 import PlantTile from './PlantTile';
 
-const Garden = ({ selectedFav, gardenID, selectedGarden }) => {
+const Garden = ({ selectedFav, gardenID }) => {
     const history = useHistory();
 
     // contexts
     const { userData, authToken } = useContext(authContext);
     const { dataState } = useContext(dataContext);
 
-    const gardenBerlin = {
-        _id: '616428b2207157d8e2235598',
-        userID: '616421ca29e8480ca5f9b369',
-        gardenName: 'Balcony',
+    // sim data
+    const tomatoGarden = {
+        createdAt: '2021-10-19T09:38:52.347Z',
+        gardenName: 'tomato garden',
         gardenType: 'outdoor',
-        width: 10,
-        length: 5,
+        id: '616e922cc77fe03a3931966d',
+        length: 4,
         myGardenPlants: [],
-        id: '616428b2207157d8e2235598'
+        updatedAt: '2021-10-19T09:38:52.347Z',
+        userID: '61681fb473ea9c74e11a3139',
+        width: 3,
+        __v: 0,
+        _id: '616e922cc77fe03a3931966d'
     };
 
-    const [garden, setGarden] = useState(gardenBerlin);
+    // this is the fetched garden from the backend
+    const [selectedGarden, setSelectedGarden] = useState({});
+    // this is the garden we render e.g. [null, {plant1}, null, null]
     const [renderedGarden, setRenderedGarden] = useState([]);
-    //const [selectedGarden, setSelectedGarden] = useState({});
+    //const [garden, setGarden] = useState(selectedGarden);
 
-    /*
     // useEffect to get garden data from mongoDB on mount
     useEffect(() => {
-        console.log('GardenDisplay Component - useEffect fetches garden on mount!!');
+        console.log('GardenEditor Component - useEffect fetches garden on mount!!');
 
         // GET the garden based on the ID
         const getGarden = async () => {
@@ -50,9 +55,8 @@ const Garden = ({ selectedFav, gardenID, selectedGarden }) => {
             try {
                 const response = await fetch(URL, OPTIONS);
                 const data = await response.json();
-                console.log(data);
+
                 setSelectedGarden(data);
-                console.log(selectedGarden);
             } catch (error) {
                 console.log(error);
             }
@@ -63,50 +67,77 @@ const Garden = ({ selectedFav, gardenID, selectedGarden }) => {
 
         // fetch on mount
     }, []);
-*/
-    const setArea = () => {
-        //console.log(selectedGarden.length);
-        const gardenArea = Number(selectedGarden.width) * Number(selectedGarden.length);
-        console.log(gardenArea);
-
-        // if no plants
-        if (!selectedGarden.myGardenPlants || selectedGarden?.myGardenPlants?.length === 0) {
-            const emptyGarden = new Array(gardenArea).fill(null);
-
-            setRenderedGarden(emptyGarden);
-        }
-
-        // if plants
-        if (selectedGarden.myGardenPlants && selectedGarden.myGardenPlants?.length !== 0) {
-            const emptyGarden = new Array(gardenArea).fill(null);
-
-            const filledGarden = emptyGarden.map((tile, i) => {
-                for (const myPlant of garden.myGardenPlants) {
-                    if (i === myPlant.position) return myPlant;
-                }
-                return tile;
-            });
-
-            setRenderedGarden(filledGarden);
-        }
-    };
 
     useEffect(() => {
-        //setArea();
+        console.log('Garden Component - useEffect runs on selectedGarden changes!!');
+        const setArea = () => {
+            // calculate the area of the garden based on width and length
+            const area = Number(selectedGarden.width) * Number(selectedGarden.length);
 
-        const gardenCopy = { ...selectedGarden };
-        console.log(gardenCopy);
-    }, []);
+            // if no plants in myGardenPlants create and empty garden and render it
+            if (selectedGarden.myGardenPlants && selectedGarden.myGardenPlants.length === 0) {
+                const emptyGarden = new Array(area).fill(null);
+                setRenderedGarden(emptyGarden);
+                //console.log(renderedGarden);
+            }
+
+            // if plants in myGardenPlants create and empty garden and render it
+            if (selectedGarden.myGardenPlants && selectedGarden.myGardenPlants?.length !== 0) {
+                const emptyGarden = new Array(area).fill(null);
+
+                const filledGarden = emptyGarden.map((tile, i) => {
+                    // myPlant is the plant ("John the tomato") we will have in myGarden
+                    for (const myPlant of selectedGarden.myGardenPlants) {
+                        if (i === myPlant.position) return myPlant;
+                    }
+                    return tile;
+                });
+
+                setRenderedGarden(filledGarden);
+                //console.log(renderedGarden);
+            }
+        };
+
+        setArea();
+    }, [selectedGarden]);
 
     const handleClick = (id) => {
         const copySelectedFav = { ...selectedFav, position: id };
 
+        const myPlantData = {
+            userID: userData._id,
+            gardenID: gardenID,
+            plant: selectedFav,
+            name: 'John the tomato',
+            plantedAt: '09/09/2021',
+            personalWatering: 3,
+            position: id
+        };
+        console.log(myPlantData);
+        // dispatch should filter for gardenID in myGardens
+        // copy myGardenPlants of that garden
+        // add the myPlant to it
+        const toDataState = {};
+
+        //console.log(toDispatch);
+        // dispatch({type: ADD_PLANT, payload: userID, plantID, position})
+
+        // const copyGarden = {
+        //     ...selectedGarden,
+        //     myGardenPlants: [...selectedGarden.myGardenPlants, copySelectedFav]
+        // };
+
         const copyGarden = {
-            ...garden,
-            myGardenPlants: [...garden.myGardenPlants, copySelectedFav]
+            ...selectedGarden,
+            myGardenPlants: [...selectedGarden.myGardenPlants, myPlantData]
         };
 
-        setGarden(copyGarden);
+        console.log(copyGarden);
+
+        setSelectedGarden(copyGarden);
+        console.log(selectedGarden);
+        //setRenderedGarden(copyGarden);
+        // console.log(garden);
     };
 
     return (

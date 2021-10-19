@@ -45,7 +45,7 @@
     display: flex;
     flex-flow: column;
     justify-content: space-around;
-
+    cursor: pointer;
     position: relative;
 
     transition: all 0.2s ease-in-out;
@@ -78,23 +78,30 @@
     }
     .display__icon {
         background-color: $bg-color--secondary;
-        width: 2rem;
+        width: 3rem;
         aspect-ratio: 1;
         border-radius: 1rem 0 1rem 0;
 
         position: absolute;
         bottom: 0%;
         right: 0%;
-    }
-    img {
-        width: 1rem;
-        height: 1rem;
-        margin: $m-small;
-        cursor: pointer;
 
-        position: absolute;
-        bottom: 1%;
-        right: 1%;
+        transition: $transition-normal;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        img {
+            width: 1.5rem;
+            aspect-ratio: 1;
+            margin: $m-small;
+            cursor: pointer;
+
+            position: absolute;
+            bottom: 5%;
+            right: 5%;
+        }
     }
 }
 

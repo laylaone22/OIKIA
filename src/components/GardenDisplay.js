@@ -15,8 +15,7 @@ import frost from '../assets/icons/infoCard/frost.svg';
 import fullSun from '../assets/icons/infoCard/fullSun.svg';
 import lowSun from '../assets/icons/infoCard/lowSun.svg';
 
-const GardenDisplay = ({ gardenID, selectedGarden }) => {
-    console.log(selectedGarden);
+const GardenDisplay = ({ gardenID }) => {
     const history = useHistory();
 
     // contexts
@@ -26,6 +25,7 @@ const GardenDisplay = ({ gardenID, selectedGarden }) => {
     // states
 
     const [selectedFav, setSelectedFav] = useState({});
+    const [expandFav, setExpandFav] = useState(false);
 
     // sim data
     const favorites = [
@@ -48,15 +48,20 @@ const GardenDisplay = ({ gardenID, selectedGarden }) => {
 
     const handleSelect = (favorite) => {
         setSelectedFav(favorite);
+        //console.log(selectedFav);
+
+        //setExpandFav(!expandFav);
+        //console.log(expandFav);
     };
 
     return (
         <div className="GardenDisplay">
-            <header className="GardenDisplay__body__header">
+            {/* <header className="GardenDisplay__body__header">
                 <h1 className="GardenDisplay__body--header__title">GardenEditor</h1>
-            </header>
+            </header> */}
 
-            <Garden selectedFav={selectedFav} gardenID={gardenID} selectedGarden={selectedGarden} />
+            {/* <Garden selectedFav={selectedFav} gardenID={gardenID} selectedGarden={selectedGarden} /> */}
+            <Garden selectedFav={selectedFav} gardenID={gardenID} />
 
             <div className="GardenDisplay__selectPlants">
                 {dataState.myFavorites.map((favorite, i) => (

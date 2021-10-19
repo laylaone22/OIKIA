@@ -63,11 +63,11 @@ const Navigation = () => {
                             My Profile
                         </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                         <NavLink to="/gardeneditor" activeClassName="text-link" onClick={onClick}>
                             Garden Editor
                         </NavLink>
-                    </li>
+                    </li> */}
 
                     {/* 
                         
