@@ -26,6 +26,8 @@ const GardenDisplay = ({ gardenID }) => {
 
     const [selectedFav, setSelectedFav] = useState({});
     const [expandFav, setExpandFav] = useState(false);
+    // state to force user selecting a favorite
+    const [isRequestedFav, setIsRequestedFav] = useState(true);
 
     // sim data
     const favorites = [
@@ -61,13 +63,17 @@ const GardenDisplay = ({ gardenID }) => {
             </header> */}
 
             {/* <Garden selectedFav={selectedFav} gardenID={gardenID} selectedGarden={selectedGarden} /> */}
-            <Garden selectedFav={selectedFav} gardenID={gardenID} />
+            <Garden selectedFav={selectedFav} gardenID={gardenID} setIsRequestedFav={setIsRequestedFav} />
 
-            <div className="GardenDisplay__selectPlants">
-                {dataState.myFavorites.map((favorite, i) => (
-                    <FavoriteTile key={i} favorite={favorite} handleSelect={handleSelect} />
-                ))}
-            </div>
+            <aside className="GardenDisplay__aside__plantSelection">
+                <h6>Please click on one plant</h6>
+                <div className="GardenDisplay__selectPlants">
+                    {dataState.myFavorites.map((favorite, i) => (
+                        <FavoriteTile key={i} favorite={favorite} handleSelect={handleSelect} />
+                    ))}
+                </div>
+            </aside>
+
             <button className="button button_secondary">+</button>
         </div>
     );

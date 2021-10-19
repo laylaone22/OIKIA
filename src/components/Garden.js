@@ -8,7 +8,7 @@ import { dataContext } from '../stores/data/store';
 import EmptyTile from './EmptyTile';
 import PlantTile from './PlantTile';
 
-const Garden = ({ selectedFav, gardenID }) => {
+const Garden = ({ selectedFav, gardenID, setIsRequestedFav }) => {
     const history = useHistory();
 
     // contexts
@@ -102,6 +102,7 @@ const Garden = ({ selectedFav, gardenID }) => {
     }, [selectedGarden]);
 
     const handleClick = (id) => {
+        if (!selectedFav) setIsRequestedFav(false);
         const copySelectedFav = { ...selectedFav, position: id };
 
         const myPlantData = {

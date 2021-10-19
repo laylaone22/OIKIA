@@ -5,7 +5,7 @@
     display: grid;
 
     gap: 0.5rem;
-    margin: auto;
+    //margin: $m-large;
     transform: rotateX(60deg) rotateY(0deg) rotateZ(45deg);
     transform-style: preserve-3d;
 }
