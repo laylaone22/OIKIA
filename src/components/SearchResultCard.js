@@ -35,14 +35,7 @@ const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
     const { dataState, dispatch } = useContext(dataContext);
 
     // states
-    const [isAdded, setIsAdded] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
-
-    // handlers
-    const handleAdded = () => {
-        setIsAdded(!isAdded);
-        !isAdded ? dispatch({ type: ADD_PLANT, payload: plant }) : dispatch({ type: ADD_PLANT, payload: plant._id });
-    };
 
     const handleExpanded = () => {
         setIsExpanded(!isExpanded);
@@ -102,17 +95,7 @@ const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
 
             <div className="search-results--card__infoControls glued">
                 {plant.icon ? (
-                    <img
-                        className="plant_icon"
-                        src={`http://localhost:3000${plant.icon}`}
-                        alt="plant icon"
-                        // style={{
-                        //     WebkitAnimation: `scale-up-bottom 0.4s  cubic-bezier(0.39, 0.575, 0.565, 1) ${
-                        //         delay + 0.6
-                        //     }s both`,
-                        //     animation: `scale-up-bottom 0.4s  cubic-bezier(0.39, 0.575, 0.565, 1) ${delay + 0.6}s both}`
-                        // }}
-                    />
+                    <img className="plant_icon" src={`http://localhost:3000${plant.icon}`} alt="plant icon" />
                 ) : (
                     <img className="plant_icon" src={killer} alt="plant icon" />
                 )}
@@ -146,10 +129,9 @@ const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
                         src={caret}
                         onClick={handleExpanded}
                     />
-
-                    {/* <img className="search-results__icons" alt="Add symbol" src={add2} onClick={handleAdded} /> */}
                 </div>
             </div>
+
             <div className={`search-results--card__detailedInfo ${!isExpanded && 'hide'}`}>
                 <section className="search-results--card__detailedInfo__suggestions">
                     <div className="suggestion watering">

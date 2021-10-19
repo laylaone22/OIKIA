@@ -94,7 +94,6 @@ const Garden = ({ selectedFav, gardenID, setIsRequestedFav }) => {
                 });
 
                 setRenderedGarden(filledGarden);
-                //console.log(renderedGarden);
             }
         };
 
@@ -114,6 +113,7 @@ const Garden = ({ selectedFav, gardenID, setIsRequestedFav }) => {
             personalWatering: 3,
             position: id
         };
+
         console.log(myPlantData);
         // dispatch should filter for gardenID in myGardens
         // copy myGardenPlants of that garden

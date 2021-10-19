@@ -2,8 +2,6 @@
 @use '../base/' as *;
 
 .button {
-    min-width: 10rem;
-
     padding: $p-small $p-medium;
     margin: $m-small;
 
@@ -14,7 +12,7 @@
 
     border: none;
     outline: none;
-
+    cursor: pointer;
     transition: $transition-normal;
 
     &:hover {

@@ -61,6 +61,15 @@
 
     .CreateGarden__body--search__form__buttons {
         width: 100%;
+
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+
+        .button {
+            width: 30%;
+        }
     }
 }
 

@@ -90,11 +90,9 @@ const Signup = () => {
                             />
                         </label>
 
-                        <div className="Signup__body--form">
-                            <button type="submit" className="button button__primary">
-                                Sign Up
-                            </button>
-                        </div>
+                        <button type="submit" className="button button__primary">
+                            Sign Up
+                        </button>
                     </form>
                 </section>
             </main>

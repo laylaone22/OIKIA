@@ -15,7 +15,7 @@ import frost from '../assets/icons/infoCard/frost.svg';
 import fullSun from '../assets/icons/infoCard/fullSun.svg';
 import lowSun from '../assets/icons/infoCard/lowSun.svg';
 
-const GardenDisplay = ({ gardenID }) => {
+const GardenDisplay = ({ gardenID, selectedFav }) => {
     const history = useHistory();
 
     // contexts
@@ -24,37 +24,9 @@ const GardenDisplay = ({ gardenID }) => {
 
     // states
 
-    const [selectedFav, setSelectedFav] = useState({});
     const [expandFav, setExpandFav] = useState(false);
     // state to force user selecting a favorite
     const [isRequestedFav, setIsRequestedFav] = useState(true);
-
-    // sim data
-    const favorites = [
-        {
-            plantID: '123456780',
-            plantName: 'tomato',
-            icon: frost
-        },
-        {
-            plantID: '123456781',
-            plantName: 'lettuce',
-            icon: fullSun
-        },
-        {
-            plantID: '123456782',
-            plantName: 'asparagus',
-            icon: lowSun
-        }
-    ];
-
-    const handleSelect = (favorite) => {
-        setSelectedFav(favorite);
-        //console.log(selectedFav);
-
-        //setExpandFav(!expandFav);
-        //console.log(expandFav);
-    };
 
     return (
         <div className="GardenDisplay">
@@ -64,17 +36,6 @@ const GardenDisplay = ({ gardenID }) => {
 
             {/* <Garden selectedFav={selectedFav} gardenID={gardenID} selectedGarden={selectedGarden} /> */}
             <Garden selectedFav={selectedFav} gardenID={gardenID} setIsRequestedFav={setIsRequestedFav} />
-
-            <aside className="GardenDisplay__aside__plantSelection">
-                <h6>Please click on one plant</h6>
-                <div className="GardenDisplay__selectPlants">
-                    {dataState.myFavorites.map((favorite, i) => (
-                        <FavoriteTile key={i} favorite={favorite} handleSelect={handleSelect} />
-                    ))}
-                </div>
-            </aside>
-
-            <button className="button button_secondary">+</button>
         </div>
     );
 };

@@ -1,4 +1,9 @@
 @use '../abstracts/' as *;
+@use '../base/' as *;
+
+.Navigation {
+    background-color: #fafafa;
+}
 
 // Navigation Logo and Menu
 .Navigation-logo {
@@ -6,8 +11,10 @@
     justify-content: space-between;
     align-items: center;
 
+    cursor: pointer;
+
     .navbar-brand {
-        padding-left: 2rem;
+        padding: 0 $p-large;
     }
     a:link {
         text-decoration: none;
@@ -21,14 +28,15 @@
 }
 
 // Position of the Hamburger Button
-
 .Menu-btn {
     position: relative;
+
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding: 2rem;
-    height: 5rem;
+
+    padding: 1rem 3rem 1rem 1rem;
+    height: 4rem;
 
     cursor: pointer;
 
@@ -38,7 +46,7 @@
     }
 }
 
-//  Stylying of the middle bar
+//  Styling of the middle bar
 .Menu-btn__burger {
     width: 2rem;
     height: 0.1rem;
@@ -51,7 +59,6 @@
 }
 
 // Styling for the hamburger menu
-
 .Menu-btn__burger::before,
 .Menu-btn__burger::after {
     content: '';
@@ -62,6 +69,7 @@
     background-color: black;
     transition: all 0.3s ease-in-out;
 }
+
 // Position of the upper bar
 .Menu-btn__burger::before {
     transform: translateY(-0.6rem);
@@ -77,16 +85,17 @@
     transform: translateX(-50px);
     background: transparent;
 }
+
 // Rotation of the bars on click
 .Menu-btn.open .Menu-btn__burger::before {
     transform: rotate(45deg) translate(35px, -35px);
 }
+
 .Menu-btn.open .Menu-btn__burger::after {
     transform: rotate(-45deg) translate(35px, 35px);
 }
 
 // Styling navigation menu
-
 .Navigation {
     @media (min-width: $bp-tablet-sm) {
         display: flex;
@@ -94,11 +103,8 @@
     }
 
     ul {
-
         height: 100vh;
         list-style: none;
-        background-color: white;
-
 
         a:link {
             text-decoration: none;
@@ -115,20 +121,19 @@
             text-align: center;
             margin: auto;
         }
+
         @media (min-width: $bp-tablet-sm) {
+            height: 4rem;
+
             width: 100%;
             display: flex;
-
             align-items: center;
-            justify-content: space-between;
-            height: 5rem;
+            justify-content: center;
         }
-
     }
 }
 
 // Display of the navigation on click
-
 .menu.inactive {
     display: none;
 
@@ -138,7 +143,6 @@
 }
 
 .menu.active {
-
     z-index: 100;
 
     @media (min-width: $bp-tablet-sm) {
