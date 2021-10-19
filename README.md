@@ -49,7 +49,9 @@ Created by:
 
 [Kim](#)
 
-[Julia](#)
+[Julia](https://www.linkedin.com/in/julia-knaack/)
+[<img src="https://img.icons8.com/clouds/100/000000/github.png" alt="GitHub Icon"/>](https://github.com/scubanaut23)
+[<img src="https://img.icons8.com/clouds/100/000000/linkedin.png" alt="LinkedIn Icon"/>](https://www.linkedin.com/in/julia-knaack/)
 
 [Luke](https://www.linkedin.com/in/lukecoyne21/)
 [<img src="https://img.icons8.com/clouds/100/000000/github.png" alt="GitHub Icon"/>](https://github.com/lukec2194)
