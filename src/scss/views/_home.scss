@@ -16,4 +16,38 @@
     .Home__body {
         @include viewsBody;
     }
+    @include flex-col-center;
+}
+.Home__body--text {
+    width: 80%;
+    min-height: 10rem;
+
+    border-radius: $b-radius-normal;
+    margin-bottom: $m-medium;
+    box-shadow: $b-shadow-normal;
+    padding: 0 1.5rem 0 $p-small;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    margin: 2.5rem;
+    background-color: $bg-color--secondary;
+    position: relative;
+
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        transform: translateY(0.2rem);
+        box-shadow: $b-shadow-special;
+    }
+
+    &:active {
+        transform: translateY(0.1rem);
+        box-shadow: $b-shadow-active;
+    }
+
+    h2 {
+        font-family: $font-family-primary;
+        font-size: $f-large;
+        color: $font-color-primary;
+    }
 }
