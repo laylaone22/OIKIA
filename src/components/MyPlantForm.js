@@ -5,9 +5,6 @@ import { useParams, useHistory } from 'react-router-dom';
 import { authContext } from '../stores/auth/auth';
 import { dataContext } from '../stores/data/store';
 
-// actions to dispatch
-import { ADD_FAVORITE, REMOVE_FAVORITE, ADD_PLANT, REMOVE_PLANT } from '../stores/data/actions';
-
 // type icons
 import roots from '../assets/icons/type/roots.png';
 import vegetables from '../assets/icons/type/vegetables.png';
@@ -30,34 +27,38 @@ import seasonWarm from '../assets/icons/infoCard/seasonWarm.svg';
 import watering from '../assets/icons/infoCard/watering.svg';
 import wiki from '../assets/icons/infoCard/wiki.svg';
 
-const MyPlantForm = ({ selectedFav }) => {
-    console.log(selectedFav);
+const MyPlantForm = ({ selectedFav, handleSubmit, setMyPlantData, myPlantData, initialState }) => {
+    //console.log(selectedFav);
     // contexts
     const { userData, authToken } = useContext(authContext);
     const { dataState, dispatch } = useContext(dataContext);
 
     // initial form state for user defined data about myPlants
-    const initialState = {
-        name: '', // form
-        plantedAt: '', // form
-        userWatering: '', // form
-        notes: '', // form
-        isAlive: true
-    };
+    // const initialState = {
+    //     name: '', // form
+    //     plantedAt: '', // form
+    //     userWatering: '', // form
+    //     notes: '', // form
+    //     isAlive: true
+    // };
 
     // states
     const [isExpanded, setIsExpanded] = useState(false);
-    const [formData, setFormData] = useState(initialState);
+    //const [formData, setFormData] = useState(initialState);
 
+    // expand/collapse the suggestions
     const handleExpanded = () => {
         setIsExpanded(!isExpanded);
     };
 
-    const handleChange = ({ target: { name, value } }) => setFormData({ ...formData, [name]: value });
+    // change handler for the form
+    const handleChange = ({ target: { name, value } }) => setMyPlantData({ ...myPlantData, [name]: value });
 
-    const handleSubmit = async (evt) => {
-        evt.preventDefault();
-    };
+    // on submit we save the user defined information
+    // this will be then saved in dataState/localStorage and sent to mongoDB
+    // const handleSubmit = async (evt) => {
+    //     evt.preventDefault();
+    // };
 
     // set type icons
     let iconType = null;
@@ -121,8 +122,7 @@ const MyPlantForm = ({ selectedFav }) => {
                         <div className="MyPlantForm__header__favorite">
                             <h3>{selectedFav.plantName}</h3>
                         </div>
-
-                        <h6>{`"${selectedFav.scientificName}"`}</h6>
+                        <h6 className="MyPlantForm__infoControls__scientificName">{`"${selectedFav.scientificName}"`}</h6>
                     </div>
                 </div>
 
@@ -216,7 +216,7 @@ const MyPlantForm = ({ selectedFav }) => {
                             name="name"
                             placeholder="Name"
                             required
-                            value={formData.name}
+                            value={myPlantData.name}
                             onChange={handleChange}
                             className="MyPlantForm__form__input"
                         />
@@ -229,7 +229,7 @@ const MyPlantForm = ({ selectedFav }) => {
                             name="plantedAt"
                             placeholder="Planted On"
                             required
-                            value={formData.plantedAt}
+                            value={myPlantData.plantedAt}
                             onChange={handleChange}
                             className="MyPlantForm__form__input"
                         />
@@ -242,7 +242,7 @@ const MyPlantForm = ({ selectedFav }) => {
                             name="userWatering"
                             placeholder="Preferred Watering time (days)"
                             required
-                            value={formData.userWatering}
+                            value={myPlantData.userWatering}
                             onChange={handleChange}
                             className="MyPlantForm__form__input"
                         />
@@ -253,7 +253,7 @@ const MyPlantForm = ({ selectedFav }) => {
                             id="notes"
                             name="notes"
                             placeholder="add some notes if you like..."
-                            value={formData.notes}
+                            value={myPlantData.notes}
                             onChange={handleChange}
                             className="MyPlantForm__form__input"
                         />
@@ -262,12 +262,12 @@ const MyPlantForm = ({ selectedFav }) => {
                         <button
                             type="reset"
                             className="button button__secondary"
-                            onClick={() => setFormData(initialState)}
+                            onClick={() => setMyPlantData(initialState)}
                         >
-                            back
+                            reset
                         </button>
                         <button type="submit" className="button button__primary">
-                            Next
+                            Plant!!
                         </button>
                     </div>
                 </form>

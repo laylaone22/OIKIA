@@ -5,36 +5,26 @@ import { useHistory } from 'react-router-dom';
 import { authContext } from '../stores/auth/auth';
 import { dataContext } from '../stores/data/store';
 
-import EmptyTile from './EmptyTile';
+// actions
+import { ADD_PLANT, REMOVE_PLANT } from '../stores/data/actions';
+
+// components
 import PlantTile from './PlantTile';
 
-const Garden = ({ selectedFav, gardenID, setIsRequestedFav }) => {
+const Garden = ({ selectedFav, gardenID, setIsRequestedFav, myPlantData }) => {
     const history = useHistory();
 
     // contexts
     const { userData, authToken } = useContext(authContext);
-    const { dataState } = useContext(dataContext);
+    const { dataState, dispatch } = useContext(dataContext);
 
-    // sim data
-    const tomatoGarden = {
-        createdAt: '2021-10-19T09:38:52.347Z',
-        gardenName: 'tomato garden',
-        gardenType: 'outdoor',
-        id: '616e922cc77fe03a3931966d',
-        length: 4,
-        myGardenPlants: [],
-        updatedAt: '2021-10-19T09:38:52.347Z',
-        userID: '61681fb473ea9c74e11a3139',
-        width: 3,
-        __v: 0,
-        _id: '616e922cc77fe03a3931966d'
-    };
-
+    // states
     // this is the fetched garden from the backend
     const [selectedGarden, setSelectedGarden] = useState({});
     // this is the garden we render e.g. [null, {plant1}, null, null]
     const [renderedGarden, setRenderedGarden] = useState([]);
-    //const [garden, setGarden] = useState(selectedGarden);
+    // this is to open and close the myPlantInfo display
+    const [isMyPlantInfoOpen, setIsMyPlantInfoOpen] = useState(false);
 
     // useEffect to get garden data from mongoDB on mount
     useEffect(() => {
@@ -68,6 +58,7 @@ const Garden = ({ selectedFav, gardenID, setIsRequestedFav }) => {
         // fetch on mount
     }, []);
 
+    // useEffect to re-render the garden on any change of myGarden (selectedGarden)
     useEffect(() => {
         console.log('Garden Component - useEffect runs on selectedGarden changes!!');
         const setArea = () => {
@@ -78,7 +69,6 @@ const Garden = ({ selectedFav, gardenID, setIsRequestedFav }) => {
             if (selectedGarden.myGardenPlants && selectedGarden.myGardenPlants.length === 0) {
                 const emptyGarden = new Array(area).fill(null);
                 setRenderedGarden(emptyGarden);
-                //console.log(renderedGarden);
             }
 
             // if plants in myGardenPlants create and empty garden and render it
@@ -102,43 +92,77 @@ const Garden = ({ selectedFav, gardenID, setIsRequestedFav }) => {
 
     const handleClick = (id) => {
         if (!selectedFav) setIsRequestedFav(false);
-        const copySelectedFav = { ...selectedFav, position: id };
 
-        const myPlantData = {
-            userID: userData._id,
-            gardenID: gardenID,
-            plant: selectedFav,
-            name: 'John the tomato',
-            plantedAt: '09/09/2021',
-            personalWatering: 3,
-            position: id
-        };
+        // the tiles are null when empty thus undefined
+        // when you click on an empty tile the selectedGarden.myGardenPlants[i] of that tile is undefined
+        // therefore if empty (null) put the new myPlant in the tile
 
-        console.log(myPlantData);
-        // dispatch should filter for gardenID in myGardens
-        // copy myGardenPlants of that garden
-        // add the myPlant to it
-        const toDataState = {};
+        if (!renderedGarden[id]) {
+            // ADD_PLANT to dataState
+            const myPlantDataToReducer = {
+                ...myPlantData,
+                userID: userData._id,
+                plantID: { ...selectedFav },
+                gardenID: gardenID,
+                position: id
+            };
 
-        //console.log(toDispatch);
-        // dispatch({type: ADD_PLANT, payload: userID, plantID, position})
+            // POST new plant to myPlants DB
+            const myPlantDataToDB = {
+                ...myPlantData,
+                userID: userData._id,
+                plantID: selectedFav._id,
+                gardenID: gardenID,
+                position: id
+            };
+            const copyGarden = {
+                ...selectedGarden,
+                myGardenPlants: [...selectedGarden.myGardenPlants, myPlantDataToReducer]
+            };
+            setSelectedGarden(copyGarden);
 
-        // const copyGarden = {
-        //     ...selectedGarden,
-        //     myGardenPlants: [...selectedGarden.myGardenPlants, copySelectedFav]
-        // };
+            // the function takes the data for the reducer and database and updates
+            const updateMyGardenPlants = async () => {
+                try {
+                    const URL = 'http://localhost:3000/myplants';
 
-        const copyGarden = {
-            ...selectedGarden,
-            myGardenPlants: [...selectedGarden.myGardenPlants, myPlantData]
-        };
+                    const OPTIONS = {
+                        method: 'POST',
+                        body: JSON.stringify(myPlantDataToDB),
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'x-auth-token': authToken
+                        }
+                    };
 
-        console.log(copyGarden);
+                    const response = await fetch(URL, OPTIONS);
+                    const data = await response.json();
+                    console.log(data);
+                    // // set local state to render the name of the garden
+                    // setGardenToAdd(data);
 
-        setSelectedGarden(copyGarden);
-        console.log(selectedGarden);
-        //setRenderedGarden(copyGarden);
-        // console.log(garden);
+                    // dispatch to dataState with the new garden
+                    dispatch({ type: ADD_PLANT, payload: data });
+
+                    if (response.ok) {
+                        // if the creation is successful set state to true to render a message for the user
+                        console.log('success!!');
+                    } else {
+                        // 400 status codes are not errors with fetch
+                        const error = new Error('Plant creation failed');
+                        error.error = data.error;
+                        throw error;
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+
+            // don't forget to call the update!!
+            updateMyGardenPlants();
+
+            // if the tile is not empty then do something else
+        } else setIsMyPlantInfoOpen(!isMyPlantInfoOpen);
     };
 
     return (

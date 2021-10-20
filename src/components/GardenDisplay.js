@@ -15,7 +15,7 @@ import frost from '../assets/icons/infoCard/frost.svg';
 import fullSun from '../assets/icons/infoCard/fullSun.svg';
 import lowSun from '../assets/icons/infoCard/lowSun.svg';
 
-const GardenDisplay = ({ gardenID, selectedFav }) => {
+const GardenDisplay = ({ gardenID, selectedFav, myPlantData }) => {
     const history = useHistory();
 
     // contexts
@@ -35,7 +35,12 @@ const GardenDisplay = ({ gardenID, selectedFav }) => {
             </header> */}
 
             {/* <Garden selectedFav={selectedFav} gardenID={gardenID} selectedGarden={selectedGarden} /> */}
-            <Garden selectedFav={selectedFav} gardenID={gardenID} setIsRequestedFav={setIsRequestedFav} />
+            <Garden
+                selectedFav={selectedFav}
+                gardenID={gardenID}
+                setIsRequestedFav={setIsRequestedFav}
+                myPlantData={myPlantData}
+            />
         </div>
     );
 };

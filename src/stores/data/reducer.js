@@ -29,7 +29,25 @@ const dataReducer = (state, action) => {
         // logic for adding plants to users
         case ADD_PLANT:
             console.log('reducer renders ADD_PLANT');
-            return { ...state, myPlants: [...state.myPlants, action.payload] };
+            console.log(action.payload);
+
+            /**const myPlantDataToSave = {
+                ...myPlantData,
+                userID: userData._id,
+                plantID: selectedFav._id,
+                plant: selectedFav,
+                gardenID: gardenID,
+                position: id
+            }; **/
+
+            return {
+                ...state,
+                myGardens: state.myGardens.map((garden) => {
+                    if (garden._id === action.payload.gardenID)
+                        return { ...garden, myGardenPlants: [...garden.myGardenPlants, action.payload] };
+                    else return garden;
+                })
+            };
 
         // logic for removing plants from users
         case REMOVE_PLANT:

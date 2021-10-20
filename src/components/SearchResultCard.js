@@ -4,9 +4,6 @@ import { useState, useContext, useEffect } from 'react';
 import { authContext } from '../stores/auth/auth';
 import { dataContext } from '../stores/data/store';
 
-// actions to dispatch
-import { ADD_FAVORITE, REMOVE_FAVORITE, ADD_PLANT, REMOVE_PLANT } from '../stores/data/actions';
-
 // type icons
 import roots from '../assets/icons/type/roots.png';
 import vegetables from '../assets/icons/type/vegetables.png';
