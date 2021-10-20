@@ -17,7 +17,6 @@ const GardenEditor = () => {
     // Take out the value I need (gardenID) from useParams
     const { gardenID } = useParams();
     const history = useHistory();
-    //console.log(gardenID);
 
     // contexts
     const { userData, authToken } = useContext(authContext);
@@ -86,7 +85,9 @@ const GardenEditor = () => {
                 <aside className={`GardenEditor__aside__plantSelection ${!isExpanded && 'hide'}`}>
                     <div className="GardenEditor__aside__plantSelection__header">
                         {!selectedFav ? '' : <MyPlantForm gardenID={gardenID} selectedFav={selectedFav} />}
-                        <h6>Click on the plant you want to place</h6>
+                        <h6 className="GardenEditor__aside__plantSelection__text">
+                            Click on the plant you want to place
+                        </h6>
                     </div>
 
                     <div className="GardenEditor__selectPlants">

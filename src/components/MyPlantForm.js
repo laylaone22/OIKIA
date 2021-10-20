@@ -31,7 +31,7 @@ import watering from '../assets/icons/infoCard/watering.svg';
 import wiki from '../assets/icons/infoCard/wiki.svg';
 
 const MyPlantForm = ({ selectedFav }) => {
-    console.log(selectedFav);
+    //console.log(selectedFav);
     // contexts
     const { userData, authToken } = useContext(authContext);
     const { dataState, dispatch } = useContext(dataContext);
@@ -49,12 +49,16 @@ const MyPlantForm = ({ selectedFav }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [formData, setFormData] = useState(initialState);
 
+    // expand/collapse the suggestions
     const handleExpanded = () => {
         setIsExpanded(!isExpanded);
     };
 
+    // change handler for the form
     const handleChange = ({ target: { name, value } }) => setFormData({ ...formData, [name]: value });
 
+    // on submit we save the user defined information
+    // this will be then saved in dataState/localStorage and sent to mongoDB
     const handleSubmit = async (evt) => {
         evt.preventDefault();
     };
@@ -121,8 +125,7 @@ const MyPlantForm = ({ selectedFav }) => {
                         <div className="MyPlantForm__header__favorite">
                             <h3>{selectedFav.plantName}</h3>
                         </div>
-
-                        <h6>{`"${selectedFav.scientificName}"`}</h6>
+                        <h6 className="MyPlantForm__infoControls__scientificName">{`"${selectedFav.scientificName}"`}</h6>
                     </div>
                 </div>
 
@@ -264,10 +267,10 @@ const MyPlantForm = ({ selectedFav }) => {
                             className="button button__secondary"
                             onClick={() => setFormData(initialState)}
                         >
-                            back
+                            reset
                         </button>
                         <button type="submit" className="button button__primary">
-                            Next
+                            Plant!!
                         </button>
                     </div>
                 </form>

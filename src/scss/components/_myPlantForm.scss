@@ -90,7 +90,7 @@
     .MyPlantForm__infoControls__name {
         text-align: left;
 
-        h6 {
+        .MyPlantForm__infoControls__scientificName {
             padding: 0 0 $p-small $p-small;
             font-size: 0.5rem;
             font-weight: 300;
@@ -161,7 +161,7 @@
     &__suggestions {
         width: 90%;
         margin: 0 auto $m-medium auto;
-
+        text-align: center;
         display: flex;
         flex-flow: row;
         align-items: center;
@@ -183,6 +183,7 @@
 
             h6 {
                 font-size: 0.5rem;
+                color: black;
                 font-weight: 300;
                 font-style: italic;
                 text-transform: capitalize;
