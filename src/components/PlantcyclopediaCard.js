@@ -1,3 +1,4 @@
+// assets
 import roots from '../assets/icons/type/roots.png';
 import vegetables from '../assets/icons/type/vegetables.png';
 import fruits from '../assets/icons/type/fruits.png';

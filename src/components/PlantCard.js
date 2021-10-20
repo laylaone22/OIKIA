@@ -89,7 +89,7 @@ const PlantCard = ({ plant, delay }) => {
                         className="PlantCard__info__remove"
                         alt="Heart outline symbol"
                         src={remove}
-                        onClick={() => dispatch({ type: REMOVE_PLANT, payload: plant._id })}
+                        //onClick={() => dispatch({ type: REMOVE_PLANT, payload: plant._id })}
                     />
                 </div>
             </div>

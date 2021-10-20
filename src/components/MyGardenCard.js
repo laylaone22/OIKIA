@@ -25,8 +25,6 @@ import outside from '../assets/img/outside.jpg';
 const MyGardenCard = ({ garden, deleteGarden }) => {
     const history = useHistory();
 
-    // console.log(garden);
-
     return (
         <section className="MyGardenCard">
             <header className="MyGardenCard__header">

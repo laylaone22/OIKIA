@@ -35,6 +35,8 @@ const CreateGarden = () => {
     // handleSubmit POSTs the new garden to mongoDB and dispatches to dataState and localStorage
     const handleSubmit = async (evt) => {
         evt.preventDefault();
+        setGardenData(initialState);
+        setIsGardenCreated(false);
 
         try {
             const URL = 'http://localhost:3000/mygardens';
@@ -104,11 +106,12 @@ const CreateGarden = () => {
                                 name="gardenType"
                                 id="gardenType"
                                 required
+                                defaultValue=""
                                 className="CreateGarden__body--form__input"
                                 onChange={handleChange}
                             >
-                                <option value="" disabled selected>
-                                    Placement
+                                <option value="" disabled>
+                                    Choose a Placement
                                 </option>
                                 <option value="outdoor">Outdoor</option>
                                 <option value="indoor">Indoor</option>

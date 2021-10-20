@@ -58,8 +58,19 @@ const GardenEditor = () => {
 
     // states
 
+    // initial form state for user defined data about myPlants
+    const initialState = {
+        name: '', // form
+        plantedAt: '', // form
+        userWatering: '', // form
+        notes: '', // form
+        isAlive: true
+    };
+
+    // states
     const [selectedFav, setSelectedFav] = useState(undefined);
     const [isExpanded, setIsExpanded] = useState(true);
+    const [myPlantData, setMyPlantData] = useState(initialState);
 
     const handleExpanded = () => {
         setIsExpanded(!isExpanded);
@@ -73,6 +84,12 @@ const GardenEditor = () => {
         //console.log(expandFav);
     };
 
+    // on submit we save the user defined information
+    // this will be then saved in dataState/localStorage and sent to mongoDB
+    const handleSubmit = async (evt) => {
+        evt.preventDefault();
+        setIsExpanded(false);
+    };
     return (
         <div className="GardenEditor">
             <main className="GardenEditor__body">
@@ -80,11 +97,22 @@ const GardenEditor = () => {
                     <h1 className="GardenEditor__body--header__title">GardenEditor</h1>
                 </header> */}
 
-                <GardenDisplay gardenID={gardenID} selectedFav={selectedFav} />
+                <GardenDisplay gardenID={gardenID} selectedFav={selectedFav} myPlantData={myPlantData} />
 
                 <aside className={`GardenEditor__aside__plantSelection ${!isExpanded && 'hide'}`}>
                     <div className="GardenEditor__aside__plantSelection__header">
-                        {!selectedFav ? '' : <MyPlantForm gardenID={gardenID} selectedFav={selectedFav} />}
+                        {!selectedFav ? (
+                            ''
+                        ) : (
+                            <MyPlantForm
+                                gardenID={gardenID}
+                                selectedFav={selectedFav}
+                                handleSubmit={handleSubmit}
+                                setMyPlantData={setMyPlantData}
+                                myPlantData={myPlantData}
+                                initialState={initialState}
+                            />
+                        )}
                         <h6 className="GardenEditor__aside__plantSelection__text">
                             Click on the plant you want to place
                         </h6>
