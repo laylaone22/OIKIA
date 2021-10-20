@@ -51,53 +51,48 @@ const Signup = () => {
                 </header>
                 <section>
                     <form onSubmit={handleSubmit} className="Signup__body--form">
-                        <div className="Signup__body--form">
-                            <label htmlFor="name" className="Signup__body--form__label">
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    placeholder="Name"
-                                    required
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    className="Signup__body--form__input"
-                                />
-                            </label>
-                        </div>
-                        <div className="Signup__body--form">
-                            <label htmlFor="email" className="Signup__body--form__label">
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    placeholder="Email"
-                                    required
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    className="Signup__body--form__input"
-                                />
-                            </label>
-                        </div>
-                        <div className="Signup__body--form">
-                            <label htmlFor="password" className="Signup__body--form__label">
-                                <input
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    placeholder="Password"
-                                    required
-                                    value={formData.password}
-                                    onChange={handleChange}
-                                    className="Signup__body--form__input"
-                                />
-                            </label>
-                        </div>
-                        <div className="Signup__body--form">
-                            <button type="submit" className="Signup__body--form__button">
-                                Sign Up
-                            </button>
-                        </div>
+                        <label htmlFor="name" className="Signup__body--form__label">
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Name"
+                                required
+                                value={formData.name}
+                                onChange={handleChange}
+                                className="Signup__body--form__input"
+                            />
+                        </label>
+
+                        <label htmlFor="email" className="Signup__body--form__label">
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Email"
+                                required
+                                value={formData.email}
+                                onChange={handleChange}
+                                className="Signup__body--form__input"
+                            />
+                        </label>
+
+                        <label htmlFor="password" className="Signup__body--form__label">
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Password"
+                                required
+                                value={formData.password}
+                                onChange={handleChange}
+                                className="Signup__body--form__input"
+                            />
+                        </label>
+
+                        <button type="submit" className="button button__primary">
+                            Sign Up
+                        </button>
                     </form>
                 </section>
             </main>

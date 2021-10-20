@@ -2,21 +2,20 @@
 @use '../base/' as *;
 
 .GardenDisplay {
-    min-height: 100vh;
-    min-width: 100vw;
+    min-height: calc(100vh - 4rem);
+    // min-width: 100vw;
     text-align: center;
     perspective: 500rem;
 
-    background-color: #f3dd8b;
+    background-color: $bg-color--primary;
     border-radius: $b-radius-normal;
-
-    padding: 1rem;
 
     display: flex;
     flex-flow: row nowrap;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
 
-    overflow: scroll;
+    overflow: hidden;
 
     position: relative;
 
@@ -26,25 +25,33 @@
         padding: $p-x-large 0;
     }
 
-    .GardenDisplay__selectPlants {
+    .GardenDisplay__aside__plantSelection {
+        //max-width: 50rem;
         position: absolute;
         bottom: 10%;
-        right: 20%;
+        right: 5%;
+        text-align: left;
+    }
 
-        border: 1px solid black;
-        background-color: white;
+    .GardenDisplay__selectPlants {
+        max-height: calc(100vh - 5rem);
+        padding: 1rem;
+        border-radius: $b-radius-normal;
+        background-color: $bg-color--secondary;
 
-        padding: 2rem;
+        display: inline-block;
+        // flex-flow: row nowrap;
+        // justify-content: center;
+        // align-content: flex-end;
 
-        display: flex;
-        flex-flow: row wrap;
-        gap: 5rem;
+        overflow-x: hidden;
+        overflow-y: hidden;
     }
 
     button {
-        position: absolute;
         padding: 0.5rem;
-        margin: 1rem;
+        cursor: pointer;
+        position: absolute;
         bottom: 5%;
         right: 5%;
     }

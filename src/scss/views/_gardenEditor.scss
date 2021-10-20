@@ -15,5 +15,70 @@
     // view Body
     .GardenEditor__body {
         @include viewsBody;
+        position: relative;
+
+        .GardenEditor__aside__plantSelection {
+            width: 100%;
+            text-align: left;
+            background-color: rgba(0, 0, 0, 0.609);
+            border-radius: $b-radius-normal $b-radius-normal 0 0;
+            padding-top: $p-small;
+            transition: $transition-normal;
+            position: absolute;
+            bottom: 0%;
+
+            .GardenEditor__aside__plantSelection__header {
+                position: relative;
+
+                h6 {
+                    padding-left: $p-medium;
+                    color: $font-color-light;
+                    font-size: $f-medium;
+                    font-weight: 300;
+                }
+            }
+
+            .GardenEditor__selectPlants {
+                min-height: 5rem;
+                padding: 1rem;
+                width: 100%;
+                display: flex;
+                flex-flow: row;
+                justify-content: flex-start;
+                align-items: center;
+
+                overflow-x: scroll;
+                overflow-y: hidden;
+            }
+        }
     }
+
+    .GardenEditor__selectPlants__expand {
+        cursor: pointer;
+
+        transition: $transition-normal;
+
+        position: absolute;
+        bottom: 2rem;
+        right: 5%;
+
+        img {
+            background-color: $bg-color--primary;
+            border-radius: 50%;
+            width: 3rem;
+
+            &:hover {
+                transform: scale(1.1);
+                background-color: $bg-color--secondary;
+            }
+
+            &:active {
+                background-color: $bg-color--primary;
+            }
+        }
+    }
+}
+
+.flip {
+    transform: rotate(180deg);
 }

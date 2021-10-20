@@ -1,3 +1,5 @@
+import { useHistory } from 'react-router-dom';
+
 // helpers
 import { calculateAge } from '../utilities/helpers';
 
@@ -21,7 +23,9 @@ import inside from '../assets/img/inside.jpeg';
 import outside from '../assets/img/outside.jpg';
 
 const MyGardenCard = ({ garden, deleteGarden }) => {
-    // console.log(garden;
+    const history = useHistory();
+
+    // console.log(garden);
 
     return (
         <section className="MyGardenCard">
@@ -63,7 +67,7 @@ const MyGardenCard = ({ garden, deleteGarden }) => {
                 </div>
                 <div className="MyGardenCard__actions">
                     <div className="action enter">
-                        <img src={enter} alt="trash icon" />
+                        <img src={enter} alt="trash icon" onClick={() => history.push(`/gardeneditor/${garden._id}`)} />
                     </div>
                     {/* <div className="action edit">
                         <img src={edit} alt="enter icon" onClick={() => editGarden(garden)} />

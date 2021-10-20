@@ -59,7 +59,12 @@ const App = () => {
                     <Route exact path="/creategarden">
                         {isLoggedIn ? <CreateGarden /> : <Redirect to="/signup" />}
                     </Route>
-                    <Route exact path="/gardeneditor">
+                    {/* <Route exact path="/gardeneditor">
+                        {isLoggedIn ? <GardenEditor /> : <Redirect to="/signup" />}
+                    </Route> */}
+                    <Route exact path="/gardeneditor/:gardenID">
+                        {/* => Concrete link: "/gardeneditor/656454654654851515asa515" */}
+                        {/* => in useParams, we get {gardenID: "656454654654851515asa515"} */}
                         {isLoggedIn ? <GardenEditor /> : <Redirect to="/signup" />}
                     </Route>
                     <Route exact path="/signup">

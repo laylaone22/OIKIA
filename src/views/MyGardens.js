@@ -1,12 +1,12 @@
 import { useState, useContext, useEffect } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 // contexts
 import { authContext } from '../stores/auth/auth';
 import { dataContext } from '../stores/data/store';
 
 // actions to dispatch
-import { ADD_GARDEN, EDIT_GARDEN, DELETE_GARDEN } from '../stores/data/actions';
+import { DELETE_GARDEN } from '../stores/data/actions';
 
 // components
 import MyGardenCard from '../components/MyGardenCard.js';
@@ -24,6 +24,7 @@ const MyGardens = () => {
     // state
     const [myGardensData, setMyGardenData] = useState([]);
 
+    /*
     // load gardens on mount
     useEffect(() => {
         console.log('myGardens View - useEffect runs on dataState.myGardens change!!');
@@ -54,9 +55,9 @@ const MyGardens = () => {
 
         // runs only on mount
     }, []);
+*/
 
     const deleteGarden = (garden) => {
-        //console.log(garden);
         // to delete a garden we need the garden._id to filter it out of the dataState
         dispatch({ type: DELETE_GARDEN, payload: garden._id });
 

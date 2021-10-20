@@ -1,78 +1,152 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+
+// contexts
+import { authContext } from '../stores/auth/auth';
 import { dataContext } from '../stores/data/store';
 
 import EmptyTile from './EmptyTile';
 import PlantTile from './PlantTile';
 
-// //icons
-// import carrot from '../assets/1_carrot.svg';
-// import lettuce from '../assets/2_lettuce.svg';
-// import asparagus from '../assets/18_asparagus.svg';
-// import goji from '../assets/82_gojiberry.svg';
+const Garden = ({ selectedFav, gardenID, setIsRequestedFav }) => {
+    const history = useHistory();
 
-//import asparagus from '../assets/asparagus.png';
-
-const Garden = ({ selectedFav }) => {
+    // contexts
+    const { userData, authToken } = useContext(authContext);
     const { dataState } = useContext(dataContext);
-    //console.log(selectedFav);
 
-    const gardenBerlin = {
-        _id: '616428b2207157d8e2235598',
-        userID: '616421ca29e8480ca5f9b369',
-        gardenName: 'Balcony',
+    // sim data
+    const tomatoGarden = {
+        createdAt: '2021-10-19T09:38:52.347Z',
+        gardenName: 'tomato garden',
         gardenType: 'outdoor',
-        width: 10,
-        length: 5,
+        id: '616e922cc77fe03a3931966d',
+        length: 4,
         myGardenPlants: [],
-        id: '616428b2207157d8e2235598'
+        updatedAt: '2021-10-19T09:38:52.347Z',
+        userID: '61681fb473ea9c74e11a3139',
+        width: 3,
+        __v: 0,
+        _id: '616e922cc77fe03a3931966d'
     };
 
-    const [position, setPosition] = useState(null);
-    const [garden, setGarden] = useState(gardenBerlin);
+    // this is the fetched garden from the backend
+    const [selectedGarden, setSelectedGarden] = useState({});
+    // this is the garden we render e.g. [null, {plant1}, null, null]
     const [renderedGarden, setRenderedGarden] = useState([]);
+    //const [garden, setGarden] = useState(selectedGarden);
 
+    // useEffect to get garden data from mongoDB on mount
     useEffect(() => {
-        const gardenArea = garden.width * garden.length;
+        console.log('GardenEditor Component - useEffect fetches garden on mount!!');
 
-        // if no plants
-        if (garden.myGardenPlants.length === 0) {
-            const emptyGarden = new Array(gardenArea).fill(null);
-            console.log(emptyGarden);
-            setRenderedGarden(emptyGarden);
-        }
+        // GET the garden based on the ID
+        const getGarden = async () => {
+            const URL = `http://localhost:3000/mygardens/${gardenID}`;
 
-        // if plants
-        if (garden.myGardenPlants.length !== 0) {
-            const emptyGarden = new Array(gardenArea).fill(null);
-
-            const filledGarden = emptyGarden.map((tile, i) => {
-                for (const myPlant of garden.myGardenPlants) {
-                    if (i === myPlant.position) return myPlant;
+            const OPTIONS = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-auth-token': authToken
                 }
-                return tile;
-            });
+            };
 
-            setRenderedGarden(filledGarden);
-        }
-    }, [garden]);
+            try {
+                const response = await fetch(URL, OPTIONS);
+                const data = await response.json();
 
-    const handleClick = (id) => {
-        const copySelectedFav = { ...selectedFav, position: id };
-
-        const copyGarden = {
-            ...garden,
-            myGardenPlants: [...garden.myGardenPlants, copySelectedFav]
+                setSelectedGarden(data);
+            } catch (error) {
+                console.log(error);
+            }
         };
 
-        setGarden(copyGarden);
+        // run the fetch
+        getGarden();
+
+        // fetch on mount
+    }, []);
+
+    useEffect(() => {
+        console.log('Garden Component - useEffect runs on selectedGarden changes!!');
+        const setArea = () => {
+            // calculate the area of the garden based on width and length
+            const area = Number(selectedGarden.width) * Number(selectedGarden.length);
+
+            // if no plants in myGardenPlants create and empty garden and render it
+            if (selectedGarden.myGardenPlants && selectedGarden.myGardenPlants.length === 0) {
+                const emptyGarden = new Array(area).fill(null);
+                setRenderedGarden(emptyGarden);
+                //console.log(renderedGarden);
+            }
+
+            // if plants in myGardenPlants create and empty garden and render it
+            if (selectedGarden.myGardenPlants && selectedGarden.myGardenPlants?.length !== 0) {
+                const emptyGarden = new Array(area).fill(null);
+
+                const filledGarden = emptyGarden.map((tile, i) => {
+                    // myPlant is the plant ("John the tomato") we will have in myGarden
+                    for (const myPlant of selectedGarden.myGardenPlants) {
+                        if (i === myPlant.position) return myPlant;
+                    }
+                    return tile;
+                });
+
+                setRenderedGarden(filledGarden);
+            }
+        };
+
+        setArea();
+    }, [selectedGarden]);
+
+    const handleClick = (id) => {
+        if (!selectedFav) setIsRequestedFav(false);
+        const copySelectedFav = { ...selectedFav, position: id };
+
+        const myPlantData = {
+            userID: userData._id,
+            gardenID: gardenID,
+            plant: selectedFav,
+            name: 'John the tomato',
+            plantedAt: '09/09/2021',
+            personalWatering: 3,
+            position: id
+        };
+
+        console.log(myPlantData);
+        // dispatch should filter for gardenID in myGardens
+        // copy myGardenPlants of that garden
+        // add the myPlant to it
+        const toDataState = {};
+
+        //console.log(toDispatch);
+        // dispatch({type: ADD_PLANT, payload: userID, plantID, position})
+
+        // const copyGarden = {
+        //     ...selectedGarden,
+        //     myGardenPlants: [...selectedGarden.myGardenPlants, copySelectedFav]
+        // };
+
+        const copyGarden = {
+            ...selectedGarden,
+            myGardenPlants: [...selectedGarden.myGardenPlants, myPlantData]
+        };
+
+        console.log(copyGarden);
+
+        setSelectedGarden(copyGarden);
+        console.log(selectedGarden);
+        //setRenderedGarden(copyGarden);
+        // console.log(garden);
     };
 
     return (
         <div
             className="Garden"
             style={{
-                gridTemplateColumns: `repeat(${garden.width}, 5rem)`,
-                gridTemplateRows: `repeat(${garden.length}, 5rem)`
+                gridTemplateColumns: `repeat(${Number(selectedGarden.width)}, 5rem)`,
+                gridTemplateRows: `repeat(${Number(selectedGarden.length)}, 5rem)`
             }}
         >
             {renderedGarden.map((tile, i) => (
