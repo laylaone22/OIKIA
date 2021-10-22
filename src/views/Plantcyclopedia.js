@@ -31,7 +31,7 @@ const Plantcyclopedia = () => {
 
         // POST the array of myFavorite IDs
         const updateMyFavorites = async () => {
-            const URL = `http://localhost:3000/users/${userData._id}`;
+            const URL = `https://safe-crag-23600.herokuapp.com/users/${userData._id}`;
 
             const OPTIONS = {
                 method: 'PUT',
@@ -65,7 +65,7 @@ const Plantcyclopedia = () => {
         setSelected('');
 
         // fetch from this URL
-        const URL = `http://localhost:3000/plants?plantName=${searchTerm}`;
+        const URL = `https://safe-crag-23600.herokuapp.com/plants?plantName=${searchTerm}`;
 
         try {
             const response = await fetch(URL);
@@ -103,7 +103,7 @@ const Plantcyclopedia = () => {
         setSelected(type);
 
         // fetch from this URL
-        const URL = `http://localhost:3000/plants/plantcyclopedia/type/${type}`;
+        const URL = `https://safe-crag-23600.herokuapp.com/plants/plantcyclopedia/type/${type}`;
 
         try {
             const response = await fetch(URL);

@@ -94,7 +94,7 @@ const MyPlantForm = ({ selectedFav, handleSubmit, setMyPlantData, myPlantData, i
             <div
                 className="MyPlantForm__header"
                 style={{
-                    backgroundImage: `url('http://localhost:3000${selectedFav.img}')`,
+                    backgroundImage: `url('https://safe-crag-23600.herokuapp.com${selectedFav.img}')`,
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
                     backgroundSize: 'cover'
@@ -113,7 +113,11 @@ const MyPlantForm = ({ selectedFav, handleSubmit, setMyPlantData, myPlantData, i
 
             <div className="MyPlantForm__infoControls glued">
                 {selectedFav.icon ? (
-                    <img className="plant_icon" src={`http://localhost:3000${selectedFav.icon}`} alt="plant icon" />
+                    <img
+                        className="plant_icon"
+                        src={`https://safe-crag-23600.herokuapp.com${selectedFav.icon}`}
+                        alt="plant icon"
+                    />
                 ) : (
                     <img className="plant_icon" src={killer} alt="plant icon" />
                 )}
