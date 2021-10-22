@@ -164,7 +164,7 @@ const Plantcyclopedia = () => {
                 </header>
                 <section className="Plantcyclopedia__body--search">
                     <form className="Plantcyclopedia__body--search__form" onSubmit={handleSubmit}>
-                        <h2 className="Plantcyclopedia__body--search__title">Search by Name</h2>
+                        {/* <h2 className="Plantcyclopedia__body--search__title">Search by Name</h2> */}
                         <label htmlFor="searchWord" className="Plantcyclopedia__body--search__form__label">
                             <input
                                 className="Plantcyclopedia__body--search__form__input"
@@ -181,7 +181,7 @@ const Plantcyclopedia = () => {
                         </label>
                     </form>
                     <section className="Plantcyclopedia__body--searchByType">
-                        <h2 className="Plantcyclopedia__body--searchByType__title">Search by Type</h2>
+                        {/* <h2 className="Plantcyclopedia__body--searchByType__title">Search by Type</h2> */}
                         <div className="Plantcyclopedia__body--searchByType__cards">
                             <PlantcyclopediaCard
                                 plantType={'fruits'}
