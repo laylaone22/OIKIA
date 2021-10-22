@@ -9,7 +9,8 @@ import {
     ADD_GARDEN,
     EDIT_GARDEN,
     DELETE_GARDEN,
-    RESTORE_STATE
+    RESTORE_STATE,
+    RESET_STATE
 } from './actions';
 
 const dataReducer = (state, action) => {
@@ -65,6 +66,12 @@ const dataReducer = (state, action) => {
         // logic to get tasks from local storage when mounting
         case RESTORE_STATE:
             console.log('reducer renders RESTORE_STATE');
+            return action.payload;
+
+        // logic to reset dataState on logout
+        case RESET_STATE:
+            console.log('reducer renders RESET_STATE');
+            console.log(action.payload);
             return action.payload;
 
         // default

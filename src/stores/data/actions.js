@@ -13,3 +13,4 @@ export const DELETE_GARDEN = 'DELETE_GARDEN';
 
 //State (localStorage)
 export const RESTORE_STATE = 'RESTORE_STATE';
+export const RESET_STATE = 'RESET_STATE';

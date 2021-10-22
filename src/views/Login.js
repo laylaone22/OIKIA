@@ -1,10 +1,19 @@
 import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+
+// contexts
 import { authContext } from '../stores/auth/auth';
+import { dataContext } from '../stores/data/store';
+
+// actions to dispatch
+import { RESTORE_STATE } from '../stores/data/actions';
 
 const Login = () => {
     // history
     const history = useHistory();
+
+    // contexts
+    const { dataState, dispatch } = useContext(dataContext);
 
     const [formData, setFormData] = useState({
         email: '',
@@ -31,12 +40,24 @@ const Login = () => {
 
             if (res.ok) {
                 const token = res.headers.get('x-auth-token');
+
                 setIsLoggedIn(true);
                 setUserData(data);
                 setAuthToken(token);
+
                 localStorage.setItem('isLoggedIn', JSON.stringify(true));
                 localStorage.setItem('userData', JSON.stringify(data));
                 localStorage.setItem('authToken', JSON.stringify(token));
+
+                // const dataToReducer = {
+                //     ...data,
+                //     myFavorites: [...data.myFavorites],
+                //     myPlants: [...data.myPlants],
+                //     myGardens: [...data.myGardens]
+                // };
+
+                // localStorage.setItem('dataState', JSON.stringify(dataToReducer));
+
                 history.push('/userdashboard');
             } else {
                 // 400 status codes are not errors with fetch

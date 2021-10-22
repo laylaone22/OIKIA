@@ -5,31 +5,43 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { authContext } from '../stores/auth/auth';
 import { dataContext } from '../stores/data/store';
 
+// actions
+import { RESET_STATE } from '../stores/data/actions';
+
+// custom hook
 import NavigationHandler from '../utilities/NavigationHandler';
 
 const Navigation = () => {
-    // dropdown logic
-    const dropdownRef = useRef(null);
-    const [isActive, setIsActive] = NavigationHandler(dropdownRef, false);
-    const onClick = () => {
-        setIsActive(!isActive);
-    };
-
-    // auth context data
-    const { isLoggedIn, setIsLoggedIn, setUserData, setAuthToken } = useContext(authContext);
-
     // useHistory to redirect when needed
     const history = useHistory();
+
+    // contexts
+    const { isLoggedIn, setIsLoggedIn, setUserData, setAuthToken } = useContext(authContext);
+    const { dispatch } = useContext(dataContext);
+
+    // initial state for dataState
+    const initialState = { myFavorites: [], myPlants: [], myGardens: [] };
 
     // logout logic
     const handleLogout = () => {
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('userData');
         localStorage.removeItem('authToken');
+        //localStorage.removeItem('dataState');
+
         setIsLoggedIn(false);
         setUserData({ userName: '' });
         setAuthToken('');
+        //dispatch({ type: RESET_STATE, payload: initialState });
+
         history.push('/');
+    };
+
+    // dropdown logic
+    const dropdownRef = useRef(null);
+    const [isActive, setIsActive] = NavigationHandler(dropdownRef, false);
+    const onClick = () => {
+        setIsActive(!isActive);
     };
 
     return (
