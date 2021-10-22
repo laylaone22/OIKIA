@@ -60,7 +60,7 @@ const Navigation = () => {
                     </li>
                     {isLoggedIn && (
                         <li>
-                            <NavLink to="/userdashboard" className="nav-link" aria-current="page">
+                            <NavLink to="/userdashboard" className="nav-link" aria-current="page" onClick={onClick}>
                                 My Profile
                             </NavLink>
                         </li>
