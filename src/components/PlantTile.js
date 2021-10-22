@@ -16,7 +16,12 @@ const PlantTile = ({ id, tile, handleClick, selectedFav }) => {
             className={`Tile ${tile ? 'PlantTile' : 'EmptyTile'} ${pleaseWaterMe ? 'needsWater' : ''}`}
             onClick={() => handleClick(id)}
         >
-            {tile && <img src={`http://localhost:3000${tile.plantID.icon}`} alt={`${tile.plantID.name} icon`} />}
+            {tile && (
+                <img
+                    src={`https://safe-crag-23600.herokuapp.com${tile.plantID.icon}`}
+                    alt={`${tile.plantID.name} icon`}
+                />
+            )}
         </div>
     );
 };
