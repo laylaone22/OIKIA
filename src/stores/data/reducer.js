@@ -29,16 +29,6 @@ const dataReducer = (state, action) => {
         // logic for adding plants to users
         case ADD_PLANT:
             console.log('reducer renders ADD_PLANT');
-            console.log(action.payload);
-
-            /**const myPlantDataToSave = {
-                ...myPlantData,
-                userID: userData._id,
-                plantID: selectedFav._id,
-                plant: selectedFav,
-                gardenID: gardenID,
-                position: id
-            }; **/
 
             return {
                 ...state,

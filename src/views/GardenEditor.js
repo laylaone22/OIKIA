@@ -22,40 +22,6 @@ const GardenEditor = () => {
     const { userData, authToken } = useContext(authContext);
     const { dataState } = useContext(dataContext);
 
-    // const [selectedGarden, setSelectedGarden] = useState({});
-
-    // // useEffect to get garden data from mongoDB on mount
-    // useEffect(() => {
-    //     console.log('GardenEditor Component - useEffect fetches garden on mount!!');
-
-    //     // GET the garden based on the ID
-    //     const getGarden = async () => {
-    //         const URL = `http://localhost:3000/mygardens/${gardenID}`;
-
-    //         const OPTIONS = {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'x-auth-token': authToken
-    //             }
-    //         };
-
-    //         try {
-    //             const response = await fetch(URL, OPTIONS);
-    //             const data = await response.json();
-
-    //             setSelectedGarden(data);
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     };
-
-    //     // run the fetch
-    //     getGarden();
-
-    //     // fetch on mount
-    // }, []);
-
     // states
 
     // initial form state for user defined data about myPlants

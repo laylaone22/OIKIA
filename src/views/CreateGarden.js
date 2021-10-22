@@ -39,7 +39,7 @@ const CreateGarden = () => {
         setIsGardenCreated(false);
 
         try {
-            const URL = 'http://localhost:3000/mygardens';
+            const URL = `${process.env.REACT_APP_DB_URL}/mygardens`;
 
             const OPTIONS = {
                 method: 'POST',

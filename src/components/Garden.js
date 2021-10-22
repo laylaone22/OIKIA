@@ -32,17 +32,17 @@ const Garden = ({ selectedFav, gardenID, setIsRequestedFav, myPlantData }) => {
 
         // GET the garden based on the ID
         const getGarden = async () => {
-            const URL = `http://localhost:3000/mygardens/${gardenID}`;
-
-            const OPTIONS = {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-auth-token': authToken
-                }
-            };
-
             try {
+                const URL = `${process.env.REACT_APP_DB_URL}/mygardens/${gardenID}`;
+
+                const OPTIONS = {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-auth-token': authToken
+                    }
+                };
+
                 const response = await fetch(URL, OPTIONS);
                 const data = await response.json();
 
@@ -124,7 +124,7 @@ const Garden = ({ selectedFav, gardenID, setIsRequestedFav, myPlantData }) => {
             // the function takes the data for the reducer and database and updates
             const updateMyGardenPlants = async () => {
                 try {
-                    const URL = 'http://localhost:3000/myplants';
+                    const URL = `${process.env.REACT_APP_DB_URL}/myplants`;
 
                     const OPTIONS = {
                         method: 'POST',

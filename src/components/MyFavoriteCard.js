@@ -71,7 +71,7 @@ const MyFavoriteCard = ({ favorite, delay, removeFavorite }) => {
             <div
                 className="search-results--card__header"
                 style={{
-                    backgroundImage: `url('https://safe-crag-23600.herokuapp.com${favorite.img}')`,
+                    backgroundImage: `url('${process.env.REACT_APP_DB_URL}${favorite.img}')`,
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
                     backgroundSize: 'cover'
@@ -92,14 +92,8 @@ const MyFavoriteCard = ({ favorite, delay, removeFavorite }) => {
                 {favorite.icon ? (
                     <img
                         className="plant_icon"
-                        src={`https://safe-crag-23600.herokuapp.com${favorite.icon}`}
+                        src={`${process.env.REACT_APP_DB_URL}${favorite.icon}`}
                         alt="plant icon"
-                        // style={{
-                        //     WebkitAnimation: `scale-up-bottom 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) ${
-                        //         delay + 0.6
-                        //     }s both`,
-                        //     animation: `scale-up-bottom 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) ${delay + 0.6}s both}`
-                        // }}
                     />
                 ) : (
                     <img className="plant_icon" src={killer} alt="plant icon" />

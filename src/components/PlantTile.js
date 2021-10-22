@@ -17,10 +17,7 @@ const PlantTile = ({ id, tile, handleClick, selectedFav }) => {
             onClick={() => handleClick(id)}
         >
             {tile && (
-                <img
-                    src={`https://safe-crag-23600.herokuapp.com${tile.plantID.icon}`}
-                    alt={`${tile.plantID.name} icon`}
-                />
+                <img src={`${process.env.REACT_APP_DB_URL}${tile.plantID.icon}`} alt={`${tile.plantID.name} icon`} />
             )}
         </div>
     );

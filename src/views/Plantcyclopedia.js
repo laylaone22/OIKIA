@@ -11,6 +11,9 @@ import { ADD_FAVORITE, REMOVE_FAVORITE } from '../stores/data/actions';
 import PlantcyclopediaCard from '../components/PlantcyclopediaCard';
 import SearchResultCard from '../components/SearchResultCard';
 
+// assets
+import search from '../assets/icons/ui/search.svg';
+
 const Plantcyclopedia = () => {
     // contexts
     const { userData, authToken } = useContext(authContext);
@@ -31,7 +34,7 @@ const Plantcyclopedia = () => {
 
         // POST the array of myFavorite IDs
         const updateMyFavorites = async () => {
-            const URL = `https://safe-crag-23600.herokuapp.com/users/${userData._id}`;
+            const URL = `${process.env.REACT_APP_DB_URL}/users/${userData._id}`;
 
             const OPTIONS = {
                 method: 'PUT',
@@ -64,10 +67,10 @@ const Plantcyclopedia = () => {
         setNoResultFound(false);
         setSelected('');
 
-        // fetch from this URL
-        const URL = `https://safe-crag-23600.herokuapp.com/plants?plantName=${searchTerm}`;
-
         try {
+            // fetch from this URL
+            const URL = `${process.env.REACT_APP_DB_URL}/plants?plantName=${searchTerm}`;
+
             const response = await fetch(URL);
             const data = await response.json();
 
@@ -102,10 +105,10 @@ const Plantcyclopedia = () => {
         setNoResultFound(false);
         setSelected(type);
 
-        // fetch from this URL
-        const URL = `https://safe-crag-23600.herokuapp.com/plants/plantcyclopedia/type/${type}`;
-
         try {
+            // fetch from this URL
+            const URL = `${process.env.REACT_APP_DB_URL}/plants/plantcyclopedia/type/${type}`;
+
             const response = await fetch(URL);
             const data = await response.json();
 
@@ -176,7 +179,7 @@ const Plantcyclopedia = () => {
                                 onChange={(evt) => setSearchTerm(evt.target.value)}
                             />
                             <button type="submit" className="Plantcyclopedia__body--search__form__button">
-                                <img src="https://img.icons8.com/cotton/64/000000/search--v2.png" alt="search icon" />
+                                <img src={search} alt="search icon" />
                             </button>
                         </label>
                     </form>

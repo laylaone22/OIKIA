@@ -7,13 +7,6 @@ import { dataContext } from '../stores/data/store';
 
 // components
 import Garden from './Garden';
-import FavoriteTile from './FavoriteTile';
-
-//icons
-
-import frost from '../assets/icons/infoCard/frost.svg';
-import fullSun from '../assets/icons/infoCard/fullSun.svg';
-import lowSun from '../assets/icons/infoCard/lowSun.svg';
 
 const GardenDisplay = ({ gardenID, selectedFav, myPlantData }) => {
     const history = useHistory();
@@ -23,7 +16,6 @@ const GardenDisplay = ({ gardenID, selectedFav, myPlantData }) => {
     const { dataState } = useContext(dataContext);
 
     // states
-
     const [expandFav, setExpandFav] = useState(false);
     // state to force user selecting a favorite
     const [isRequestedFav, setIsRequestedFav] = useState(true);

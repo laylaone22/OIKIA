@@ -28,19 +28,9 @@ import watering from '../assets/icons/infoCard/watering.svg';
 import wiki from '../assets/icons/infoCard/wiki.svg';
 
 const MyPlantForm = ({ selectedFav, handleSubmit, setMyPlantData, myPlantData, initialState }) => {
-    //console.log(selectedFav);
     // contexts
     const { userData, authToken } = useContext(authContext);
     const { dataState, dispatch } = useContext(dataContext);
-
-    // initial form state for user defined data about myPlants
-    // const initialState = {
-    //     name: '', // form
-    //     plantedAt: '', // form
-    //     userWatering: '', // form
-    //     notes: '', // form
-    //     isAlive: true
-    // };
 
     // states
     const [isExpanded, setIsExpanded] = useState(false);
@@ -53,12 +43,6 @@ const MyPlantForm = ({ selectedFav, handleSubmit, setMyPlantData, myPlantData, i
 
     // change handler for the form
     const handleChange = ({ target: { name, value } }) => setMyPlantData({ ...myPlantData, [name]: value });
-
-    // on submit we save the user defined information
-    // this will be then saved in dataState/localStorage and sent to mongoDB
-    // const handleSubmit = async (evt) => {
-    //     evt.preventDefault();
-    // };
 
     // set type icons
     let iconType = null;
@@ -94,7 +78,7 @@ const MyPlantForm = ({ selectedFav, handleSubmit, setMyPlantData, myPlantData, i
             <div
                 className="MyPlantForm__header"
                 style={{
-                    backgroundImage: `url('https://safe-crag-23600.herokuapp.com${selectedFav.img}')`,
+                    backgroundImage: `url('${process.env.REACT_APP_DB_URL}${selectedFav.img}')`,
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
                     backgroundSize: 'cover'
@@ -115,7 +99,7 @@ const MyPlantForm = ({ selectedFav, handleSubmit, setMyPlantData, myPlantData, i
                 {selectedFav.icon ? (
                     <img
                         className="plant_icon"
-                        src={`https://safe-crag-23600.herokuapp.com${selectedFav.icon}`}
+                        src={`${process.env.REACT_APP_DB_URL}${selectedFav.icon}`}
                         alt="plant icon"
                     />
                 ) : (
@@ -137,8 +121,6 @@ const MyPlantForm = ({ selectedFav, handleSubmit, setMyPlantData, myPlantData, i
                         src={caret}
                         onClick={handleExpanded}
                     />
-
-                    {/* <img className="search-results__icons" alt="Add symbol" src={add2} onClick={handleAdded} /> */}
                 </div>
             </div>
 
@@ -193,21 +175,6 @@ const MyPlantForm = ({ selectedFav, handleSubmit, setMyPlantData, myPlantData, i
             </div>
 
             {/* form */}
-            {/* 
-
-                const myPlantData = {
-                    userID: userData._id, 
-                    gardenID: gardenID,
-                    plant: selectedFav,
-                    name: 'John the tomato', // form
-                    plantedAt: '09/09/2021', // form
-                    userWatering: 3, // form
-                    notes: '', // form
-                    isAlive: true,
-                    position: id // on following click
-                  }; 
-
-                */}
 
             <section className="MyPlantForm__userDefinedInfo">
                 <h5>Personalize your plant</h5>

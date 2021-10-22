@@ -7,9 +7,6 @@ import { dataContext } from '../stores/data/store';
 // actions
 import { REMOVE_PLANT } from '../stores/data/actions.js';
 
-// navigation
-// import NavigationHandler from '../utilities/NavigationHandler';
-
 // type icons
 import killer from '../assets/icons/type/killer.png';
 
@@ -65,7 +62,7 @@ const PlantCard = ({ plant, delay }) => {
                 <div
                     className="PlantCard__img"
                     style={{
-                        backgroundImage: `url('http://localhost:3000${plant.img}')`,
+                        backgroundImage: `url('${process.env.REACT_APP_DB_URL}${plant.img}')`,
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
                         backgroundSize: 'cover'

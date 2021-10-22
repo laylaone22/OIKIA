@@ -15,7 +15,6 @@ import outdoorGarden from '../assets/icons/gardenCard/outdoorGarden.svg';
 
 // actions icons
 import enter from '../assets/icons/ui/enter.svg';
-//import edit from '../assets/icons/ui/edit.svg';
 import cancel from '../assets/icons/ui/cancel.svg';
 
 // img
@@ -67,9 +66,6 @@ const MyGardenCard = ({ garden, deleteGarden }) => {
                     <div className="action enter">
                         <img src={enter} alt="trash icon" onClick={() => history.push(`/gardeneditor/${garden._id}`)} />
                     </div>
-                    {/* <div className="action edit">
-                        <img src={edit} alt="enter icon" onClick={() => editGarden(garden)} />
-                    </div> */}
                     <div className="action cancel">
                         <img src={cancel} alt="enter icon" onClick={() => deleteGarden(garden)} />
                     </div>

@@ -32,18 +32,18 @@ const MyFavorites = () => {
 
         // POST the array of myFavorite IDs
         const updateMyFavorites = async () => {
-            const URL = `http://localhost:3000/users/${userData._id}`;
-
-            const OPTIONS = {
-                method: 'PUT',
-                body: JSON.stringify(favoritesData),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-auth-token': authToken
-                }
-            };
-
             try {
+                const URL = `${process.env.REACT_APP_DB_URL}/users/${userData._id}`;
+
+                const OPTIONS = {
+                    method: 'PUT',
+                    body: JSON.stringify(favoritesData),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-auth-token': authToken
+                    }
+                };
+
                 const response = await fetch(URL, OPTIONS);
                 const data = await response.json();
             } catch (error) {

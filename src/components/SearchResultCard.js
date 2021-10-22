@@ -73,7 +73,7 @@ const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
             <div
                 className="search-results--card__header"
                 style={{
-                    backgroundImage: `url('https://safe-crag-23600.herokuapp.com${plant.img}')`,
+                    backgroundImage: `url('${process.env.REACT_APP_DB_URL}${plant.img}')`,
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
                     backgroundSize: 'cover'
@@ -92,11 +92,7 @@ const SearchResultCard = ({ plant, delay, toggleFavorite }) => {
 
             <div className="search-results--card__infoControls glued">
                 {plant.icon ? (
-                    <img
-                        className="plant_icon"
-                        src={`https://safe-crag-23600.herokuapp.com${plant.icon}`}
-                        alt="plant icon"
-                    />
+                    <img className="plant_icon" src={`${process.env.REACT_APP_DB_URL}${plant.icon}`} alt="plant icon" />
                 ) : (
                     <img className="plant_icon" src={killer} alt="plant icon" />
                 )}

@@ -24,55 +24,22 @@ const MyGardens = () => {
     // state
     const [myGardensData, setMyGardenData] = useState([]);
 
-    /*
-    // load gardens on mount
-    useEffect(() => {
-        console.log('myGardens View - useEffect runs on dataState.myGardens change!!');
-
-        // GET the array of myFavorite IDs
-        const loadMyGardens = async () => {
-            const URL = `http://localhost:3000/users/${userData._id}/mygardens`;
-
-            const OPTIONS = {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-auth-token': authToken
-                }
-            };
-
-            try {
-                const response = await fetch(URL, OPTIONS);
-                const data = await response.json();
-                console.log(data);
-                setMyGardenData(data);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        //loadMyGardens();
-
-        // runs only on mount
-    }, []);
-*/
-
     const deleteGarden = (garden) => {
         // to delete a garden we need the garden._id to filter it out of the dataState
         dispatch({ type: DELETE_GARDEN, payload: garden._id });
 
         const deleteMyGarden = async () => {
-            const URL = `http://localhost:3000/mygardens/${garden._id}`;
-
-            const OPTIONS = {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-auth-token': authToken
-                }
-            };
-
             try {
+                const URL = `${process.env.REACT_APP_DB_URL}/mygardens/${garden._id}`;
+
+                const OPTIONS = {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-auth-token': authToken
+                    }
+                };
+
                 const response = await fetch(URL, OPTIONS);
                 const data = await response.json();
             } catch (error) {

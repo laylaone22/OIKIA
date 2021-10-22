@@ -19,7 +19,7 @@ const Login = () => {
         evt.preventDefault();
 
         try {
-            const res = await fetch('http://localhost:3000/users/login', {
+            const res = await fetch(`${process.env.REACT_APP_DB_URL}/users/login`, {
                 method: 'POST',
                 body: JSON.stringify(formData),
                 headers: {

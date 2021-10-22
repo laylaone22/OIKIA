@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect, useState } from 'react';
+import { createContext, useReducer, useEffect } from 'react';
 // actions
 import { RESTORE_STATE } from './actions';
 
