@@ -8,7 +8,7 @@ import { dataContext } from '../stores/data/store';
 // components
 import Garden from './Garden';
 
-const GardenDisplay = ({ gardenID, selectedFav, myPlantData }) => {
+const GardenDisplay = ({ gardenID, selectedFav, myPlantData, selectedGarden, setSelectedGarden }) => {
     const history = useHistory();
 
     // contexts
@@ -22,13 +22,10 @@ const GardenDisplay = ({ gardenID, selectedFav, myPlantData }) => {
 
     return (
         <div className="GardenDisplay">
-            {/* <header className="GardenDisplay__body__header">
-                <h1 className="GardenDisplay__body--header__title">GardenEditor</h1>
-            </header> */}
-
-            {/* <Garden selectedFav={selectedFav} gardenID={gardenID} selectedGarden={selectedGarden} /> */}
             <Garden
                 selectedFav={selectedFav}
+                selectedGarden={selectedGarden}
+                setSelectedGarden={setSelectedGarden}
                 gardenID={gardenID}
                 setIsRequestedFav={setIsRequestedFav}
                 myPlantData={myPlantData}

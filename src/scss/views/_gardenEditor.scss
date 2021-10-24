@@ -17,6 +17,56 @@
         @include viewsBody;
         position: relative;
 
+        .GardenEditor__info {
+            width: 100%;
+            height: auto;
+
+            background-color: rgba(0, 0, 0, 0.609);
+            border-radius: 0 0 $b-radius-normal $b-radius-normal;
+            padding: $p-small;
+
+            display: flex;
+            flex-flow: column;
+            justify-content: flex-start;
+            align-items: center;
+
+            position: absolute;
+            top: 0%;
+            right: 0%;
+            z-index: 400;
+
+            .GardenEditor__info__title {
+                color: $font-color-light;
+                padding: $p-small;
+            }
+
+            .GardenEditor__aside__legend {
+                display: flex;
+                flex-flow: row;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+        .GardenEditor__aside__legend {
+            display: flex;
+            flex-flow: row;
+            justify-content: flex-start;
+            align-items: center;
+
+            width: 100%;
+            height: auto;
+
+            border-radius: 0 0 $b-radius-normal $b-radius-normal;
+            padding: $p-small;
+            // transition: $transition-normal;
+
+            .GardenEditor__aside__legend__text {
+                color: $font-color-light;
+                font-size: $f-medium;
+                font-weight: 300;
+            }
+        }
+
         .GardenEditor__aside__plantSelection {
             width: 100%;
             text-align: left;
@@ -63,13 +113,13 @@
         right: 5%;
 
         img {
-            background-color: $bg-color--primary;
+            background-color: $bg-color--secondary;
             border-radius: 50%;
             width: 3rem;
 
             &:hover {
-                transform: scale(1.1);
-                background-color: $bg-color--secondary;
+                transform: rotate(180deg);
+                transition: $transition-normal;
             }
 
             &:active {

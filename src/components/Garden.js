@@ -11,7 +11,7 @@ import { ADD_PLANT, REMOVE_PLANT } from '../stores/data/actions';
 // components
 import PlantTile from './PlantTile';
 
-const Garden = ({ selectedFav, gardenID, setIsRequestedFav, myPlantData }) => {
+const Garden = ({ selectedFav, selectedGarden, setSelectedGarden, gardenID, setIsRequestedFav, myPlantData }) => {
     const history = useHistory();
 
     // contexts
@@ -19,44 +19,11 @@ const Garden = ({ selectedFav, gardenID, setIsRequestedFav, myPlantData }) => {
     const { dataState, dispatch } = useContext(dataContext);
 
     // states
-    // this is the fetched garden from the backend
-    const [selectedGarden, setSelectedGarden] = useState({});
+
     // this is the garden we render e.g. [null, {plant1}, null, null]
     const [renderedGarden, setRenderedGarden] = useState([]);
     // this is to open and close the myPlantInfo display
     const [isMyPlantInfoOpen, setIsMyPlantInfoOpen] = useState(false);
-
-    // useEffect to get garden data from mongoDB on mount
-    useEffect(() => {
-        console.log('GardenEditor Component - useEffect fetches garden on mount!!');
-
-        // GET the garden based on the ID
-        const getGarden = async () => {
-            try {
-                const URL = `${process.env.REACT_APP_DB_URL}/mygardens/${gardenID}`;
-
-                const OPTIONS = {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-auth-token': authToken
-                    }
-                };
-
-                const response = await fetch(URL, OPTIONS);
-                const data = await response.json();
-
-                setSelectedGarden(data);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        // run the fetch
-        getGarden();
-
-        // fetch on mount
-    }, []);
 
     // useEffect to re-render the garden on any change of myGarden (selectedGarden)
     useEffect(() => {
@@ -91,13 +58,13 @@ const Garden = ({ selectedFav, gardenID, setIsRequestedFav, myPlantData }) => {
     }, [selectedGarden]);
 
     const handleClick = (id) => {
-        if (!selectedFav) setIsRequestedFav(false);
+        if (!selectedFav) setIsRequestedFav(true);
 
         // the tiles are null when empty thus undefined
         // when you click on an empty tile the selectedGarden.myGardenPlants[i] of that tile is undefined
         // therefore if empty (null) put the new myPlant in the tile
 
-        if (!renderedGarden[id]) {
+        if (selectedFav && !renderedGarden[id]) {
             // ADD_PLANT to dataState
             const myPlantDataToReducer = {
                 ...myPlantData,
@@ -139,9 +106,6 @@ const Garden = ({ selectedFav, gardenID, setIsRequestedFav, myPlantData }) => {
 
                     const response = await fetch(URL, OPTIONS);
                     const data = await response.json();
-                    console.log(data);
-                    // // set local state to render the name of the garden
-                    // setGardenToAdd(data);
 
                     // dispatch to dataState with the new garden
                     dispatch({ type: ADD_PLANT, payload: data });
@@ -176,7 +140,14 @@ const Garden = ({ selectedFav, gardenID, setIsRequestedFav, myPlantData }) => {
             }}
         >
             {renderedGarden.map((tile, i) => (
-                <PlantTile key={i} id={i} tile={tile} handleClick={handleClick} selectedFav={selectedFav} />
+                <PlantTile
+                    key={i}
+                    id={i}
+                    tile={tile}
+                    handleClick={handleClick}
+                    selectedFav={selectedFav}
+                    isMyPlantInfoOpen={isMyPlantInfoOpen}
+                />
             ))}
         </div>
     );

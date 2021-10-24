@@ -9,6 +9,7 @@ import { dataContext } from '../stores/data/store';
 import GardenDisplay from '../components/GardenDisplay';
 import FavoriteTile from '../components/FavoriteTile';
 import MyPlantForm from '../components/MyPlantForm';
+import LegendTile from '../components/LegendTile';
 
 // assets
 import caret from '../assets/icons/ui/caret.svg';
@@ -32,9 +33,43 @@ const GardenEditor = () => {
     };
 
     // states
+    // this is the fetched garden from the backend
+    const [selectedGarden, setSelectedGarden] = useState({});
     const [selectedFav, setSelectedFav] = useState(undefined);
     const [isExpanded, setIsExpanded] = useState(true);
     const [myPlantData, setMyPlantData] = useState(initialState);
+
+    // useEffect to get garden data from mongoDB on mount
+    useEffect(() => {
+        console.log('GardenEditor Component - useEffect fetches garden on mount!!');
+
+        // GET the garden based on the ID
+        const getGarden = async () => {
+            try {
+                const URL = `${process.env.REACT_APP_DB_URL}/mygardens/${gardenID}`;
+
+                const OPTIONS = {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-auth-token': authToken
+                    }
+                };
+
+                const response = await fetch(URL, OPTIONS);
+                const data = await response.json();
+
+                setSelectedGarden(data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        // run the fetch
+        getGarden();
+
+        // fetch on mount
+    }, []);
 
     // handler to open and close the selectPlants
     const handleExpanded = () => {
@@ -55,11 +90,24 @@ const GardenEditor = () => {
     return (
         <div className="GardenEditor">
             <main className="GardenEditor__body">
-                {/* <header className="GardenEditor__body__header">
-                    <h1 className="GardenEditor__body--header__title">GardenEditor</h1>
-                </header> */}
+                <aside className="GardenEditor__info">
+                    <h1 className="GardenEditor__info__title">{selectedGarden.gardenName}</h1>
+                    <div className="GardenEditor__aside__legend">
+                        <LegendTile type={'LegendEmpty empty'} />
+                        <LegendTile type={'LegendEmpty normal'} />
+                        <LegendTile type={'LegendEmpty needsWater'} />
+                        <LegendTile type={'LegendEmpty badCompanion'} />
+                        <LegendTile type={'LegendEmpty isDead'} />
+                    </div>
+                </aside>
 
-                <GardenDisplay gardenID={gardenID} selectedFav={selectedFav} myPlantData={myPlantData} />
+                <GardenDisplay
+                    gardenID={gardenID}
+                    selectedFav={selectedFav}
+                    myPlantData={myPlantData}
+                    selectedGarden={selectedGarden}
+                    setSelectedGarden={setSelectedGarden}
+                />
 
                 <aside className={`GardenEditor__aside__plantSelection ${!isExpanded && 'hide'}`}>
                     <div className="GardenEditor__aside__plantSelection__header">
