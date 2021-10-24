@@ -16,17 +16,10 @@ const PlantTile = ({ id, tile, handleClick, selectedFav }) => {
 
     return (
         <>
-            {/* <MyPlantCard
-                key={myPlant._id}
-                id={myPlant._id}
-                
-                plant={tile.plantID}
-                
-                handleDeath={handleDeath}
-                handleRemove={handleRemove}
-            /> */}
             <div
-                className={`Tile ${tile ? 'PlantTile' : 'EmptyTile'} ${pleaseWaterMe ? 'needsWater' : ''}`}
+                className={`Tile ${tile ? 'PlantTile' : 'EmptyTile'} ${pleaseWaterMe ? 'needsWater' : ''} ${
+                    tile && !tile.isAlive ? 'isDead' : ''
+                }`}
                 onClick={() => handleClick(id)}
             >
                 {tile && (

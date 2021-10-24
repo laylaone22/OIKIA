@@ -23,31 +23,32 @@ const MyPlants = () => {
     const [myPlantsData, setMyPlantsData] = useState([]);
     const [isDead, setIsDead] = useState(null);
 
-    // GET the array of myPlants for the user
-    const fetchMyPlants = async () => {
-        const URL = `${process.env.REACT_APP_DB_URL}/users/${userData._id}/myplants`;
-
-        const OPTIONS = {
-            headers: {
-                'Content-Type': 'application/json',
-                'x-auth-token': authToken
-            }
-        };
-
-        try {
-            const response = await fetch(URL, OPTIONS);
-            const data = await response.json();
-            console.log(data);
-            dispatch({ type: SET_PLANTS, payload: data });
-            setMyPlantsData(data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
     // GET myPlants on mount
     useEffect(() => {
         console.log('myPlants View - useEffect runs on myPlantsMount!!');
+
+        // GET the array of myPlants for the user
+        const fetchMyPlants = async () => {
+            const URL = `${process.env.REACT_APP_DB_URL}/users/${userData._id}/myplants`;
+
+            const OPTIONS = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-auth-token': authToken
+                }
+            };
+
+            try {
+                const response = await fetch(URL, OPTIONS);
+                const data = await response.json();
+                console.log(data);
+
+                dispatch({ type: SET_PLANTS, payload: data });
+                setMyPlantsData(data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
 
         fetchMyPlants();
 
@@ -56,8 +57,8 @@ const MyPlants = () => {
 
     // onClick handler to set myPlant to isAlive: false
     const handleDeath = (myPlant) => {
-        setIsDead({ isAlive: !myPlant.isAlive });
-
+        //setIsDead({ isAlive: !myPlant.isAlive });
+        console.log(myPlant);
         const updatedPlants = myPlantsData.map((plant) => {
             if (plant._id === myPlant._id) return { ...plant, isAlive: !plant.isAlive };
             else return plant;
@@ -73,7 +74,7 @@ const MyPlants = () => {
 
                 const OPTIONS = {
                     method: 'PUT',
-                    body: JSON.stringify(isDead),
+                    body: JSON.stringify({ isAlive: !myPlant.isAlive }),
                     headers: {
                         'Content-Type': 'application/json',
                         'x-auth-token': authToken
@@ -95,7 +96,7 @@ const MyPlants = () => {
         console.log(myPlantId);
 
         // to delete a myPlant we need the myPlantId to filter out of the dataState
-        // dispatch({ type: REMOVE_PLANT, payload: myPlantId });
+        dispatch({ type: REMOVE_PLANT, payload: myPlantId });
         // 61753d2552f8d43616bdf1f5
 
         const deleteMyPlant = async () => {
@@ -127,7 +128,7 @@ const MyPlants = () => {
                     <h1 className="MyPlants__body__header__title">Your Plants</h1>
                 </header>
                 <section className="MyPlants__body__plants">
-                    {myPlantsData?.map((myPlant, i) => (
+                    {dataState.myPlants.map((myPlant, i) => (
                         <MyPlantCard
                             key={myPlant._id}
                             id={myPlant._id}
