@@ -115,10 +115,12 @@ const Garden = ({ selectedFav, gardenID, setIsRequestedFav, myPlantData }) => {
                 gardenID: gardenID,
                 position: id
             };
+
             const copyGarden = {
                 ...selectedGarden,
                 myGardenPlants: [...selectedGarden.myGardenPlants, myPlantDataToReducer]
             };
+
             setSelectedGarden(copyGarden);
 
             // the function takes the data for the reducer and database and updates

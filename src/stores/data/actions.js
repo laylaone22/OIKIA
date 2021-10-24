@@ -3,7 +3,9 @@ export const ADD_FAVORITE = 'ADD_FAVORITE';
 export const REMOVE_FAVORITE = 'REMOVE_FAVORITE';
 
 //myPlants
+export const SET_PLANTS = 'SET_PLANTS';
 export const ADD_PLANT = 'ADD_PLANT';
+export const EDIT_PLANT = 'EDIT_PLANT';
 export const REMOVE_PLANT = 'REMOVE_PLANT';
 
 //Gardens

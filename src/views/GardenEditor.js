@@ -22,8 +22,6 @@ const GardenEditor = () => {
     const { userData, authToken } = useContext(authContext);
     const { dataState } = useContext(dataContext);
 
-    // states
-
     // initial form state for user defined data about myPlants
     const initialState = {
         name: '', // form
@@ -38,24 +36,22 @@ const GardenEditor = () => {
     const [isExpanded, setIsExpanded] = useState(true);
     const [myPlantData, setMyPlantData] = useState(initialState);
 
+    // handler to open and close the selectPlants
     const handleExpanded = () => {
         setIsExpanded(!isExpanded);
     };
 
+    // handler to pass the selectedFav to the different components
     const handleSelect = (favorite) => {
         setSelectedFav(favorite);
-        //console.log(selectedFav);
-
-        //setExpandFav(!expandFav);
-        //console.log(expandFav);
     };
 
-    // on submit we save the user defined information
-    // this will be then saved in dataState/localStorage and sent to mongoDB
+    // on submit we just collapse form and selectPlants selection
     const handleSubmit = async (evt) => {
         evt.preventDefault();
         setIsExpanded(false);
     };
+
     return (
         <div className="GardenEditor">
             <main className="GardenEditor__body">

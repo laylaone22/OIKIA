@@ -18,10 +18,77 @@
     }
 }
 
-.MyPlants__body__gardens {
+.MyPlants__body__plants {
     @include flex-col-center;
 
     width: 80%;
     padding-bottom: $p-large;
     margin: auto;
+}
+
+.MyPlants__addPlants {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    position: fixed;
+    bottom: 2%;
+    left: 2%;
+
+    z-index: 200;
+
+    img {
+        width: 3rem;
+        height: 3rem;
+        cursor: pointer;
+    }
+
+    &:hover::after {
+        content: 'go to your garden';
+
+        background: $bg-color--secondary;
+        border-radius: $b-radius-normal;
+
+        padding: 0 $p-small;
+        margin-bottom: 0.1rem;
+        text-transform: capitalize;
+
+        font-size: $f-x-small;
+        font-weight: 300;
+
+        -webkit-animation: slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        animation: slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+}
+
+// mQueries //////
+
+@include mQuery($bp-mobile-md) {
+    .MyPlants {
+        //background: yellow;
+    }
+}
+
+@include mQuery($bp-tablet-sm) {
+    .MyPlants__body__plants {
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
+
+@include mQuery($bp-laptop-sm) {
+    .MyPlants {
+        //background: yellow;
+    }
+}
+
+@include mQuery($bp-desktop-sm) {
+    .MyPlants {
+        //background: yellow;
+    }
 }
