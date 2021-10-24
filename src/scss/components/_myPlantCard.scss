@@ -1,0 +1,196 @@
+@use '../abstracts/' as *;
+@use '../base/' as *;
+
+.MyPlantCard {
+    min-width: 20rem;
+    min-height: 10rem;
+
+    border-top-left-radius: $b-radius-normal;
+    border-top-right-radius: $b-radius-normal;
+    border-bottom-left-radius: $b-radius-normal;
+    border-bottom-right-radius: $b-radius-normal;
+
+    margin-bottom: $m-small;
+    box-shadow: $b-shadow-normal;
+
+    display: flex;
+    flex-flow: column nowrap;
+
+    overflow: hidden;
+
+    transition: $transition-normal;
+
+    &:hover {
+        transform: translateY(-0.2rem);
+        box-shadow: $b-shadow-special;
+    }
+
+    &:active {
+        transform: translateY(-0.1rem);
+        box-shadow: $b-shadow-active;
+    }
+
+    .MyPlantCard__header {
+        height: 7rem;
+        border-top-left-radius: $b-radius-normal;
+        border-top-right-radius: $b-radius-normal;
+        text-align: right;
+        position: relative;
+
+        .wave {
+            position: absolute;
+            bottom: -10%;
+            right: 0;
+            width: 100%;
+
+            svg {
+                display: block;
+            }
+        }
+    }
+}
+
+.MyPlantCard__infoControls {
+    padding: $p-small;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: $bg-color-card-light;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    z-index: 10;
+
+    position: relative;
+    transition: all 0.3s ease-in-out;
+
+    .plant_icon {
+        width: 2.5rem;
+        height: 2.5rem;
+
+        position: absolute;
+        top: -43%;
+        right: 15%;
+
+        &:hover {
+            -webkit-animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+            animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+        }
+    }
+}
+
+.MyPlantCard__infoControls__myPlantName {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    margin-bottom: $m-medium;
+
+    h3 {
+        padding: $p-small 0 0 $p-small;
+        margin: 0;
+        font-size: $f-medium;
+        font-weight: 700;
+        color: $font-color-primary;
+    }
+
+    h6 {
+        padding: 0 0 $p-small $p-small;
+        font-size: 0.5rem;
+        font-weight: 300;
+        font-style: italic;
+        color: $font-color-secondary;
+        text-transform: capitalize;
+    }
+}
+
+.MyPlantCard__infoControls__icons-group {
+    -webkit-animation: rotate-center360 0.6s 1.5s ease-in-out both;
+    animation: rotate-center360 0.6s 1.5s ease-in-out both;
+    img {
+        width: 1.8rem;
+        height: 1.8rem;
+        cursor: pointer;
+        margin: 0 $m-small;
+        transition: all 0.7s ease-in-out;
+
+        &:hover {
+            background-color: $bg-color--primary;
+            border-radius: 50%;
+        }
+    }
+}
+//// classes for expanding the plantInfoCard
+
+//// hide for the detailed info
+.hide {
+    display: none;
+}
+
+//// rotate caret
+.frontFlip {
+    -webkit-animation: rotate-center180 0.5s ease-in-out both;
+    animation: rotate-center180 0.5s ease-in-out both;
+}
+
+//// hidden detailed info
+
+.MyPlantCard__detailedInfo {
+    width: 100%;
+    padding-top: $p-small;
+    background-color: $bg-color--secondary;
+
+    .MyPlantCard__userInfo {
+        padding: 0 $p-medium;
+        text-align: left;
+
+        .MyPlantCard__userInfo__sections {
+            padding-bottom: $p-small;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        h3 {
+            font-size: $f-medium;
+            font-weight: 400;
+            color: $font-color-primary;
+        }
+
+        h4 {
+            font-size: $f-medium;
+            font-weight: 400;
+
+            text-transform: capitalize;
+        }
+
+        h5 {
+            font-size: $f-small;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+
+        h6 {
+            font-size: 0.5rem;
+            font-weight: 300;
+            font-style: italic;
+            color: $font-color-secondary;
+            text-transform: capitalize;
+        }
+
+        p {
+            max-width: 18rem;
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: $font-color-secondary;
+            margin-bottom: $m-medium;
+        }
+    }
+
+    .MyPlantCard__buttons {
+        padding: $p-medium 0;
+    }
+}
