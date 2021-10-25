@@ -6,7 +6,7 @@ import { authContext } from '../stores/auth/auth';
 import { dataContext } from '../stores/data/store';
 
 // actions
-import { ADD_PLANT, REMOVE_PLANT } from '../stores/data/actions';
+import { ADD_PLANT } from '../stores/data/actions';
 
 // components
 import PlantTile from './PlantTile';
@@ -16,7 +16,7 @@ const Garden = ({ selectedFav, selectedGarden, setSelectedGarden, gardenID, setI
 
     // contexts
     const { userData, authToken } = useContext(authContext);
-    const { dataState, dispatch } = useContext(dataContext);
+    const { dispatch } = useContext(dataContext);
 
     // states
 

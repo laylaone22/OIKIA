@@ -13,8 +13,6 @@ import herbs from '../assets/icons/type/herbs.png';
 import killer from '../assets/icons/type/killer.png';
 
 // ui icons
-import favoriteFull from '../assets/icons/ui/favoriteFull.png';
-import favoriteEmpty from '../assets/icons/ui/favoriteEmpty.png';
 import caret from '../assets/icons/ui/caret.svg';
 
 // info icons
@@ -25,7 +23,6 @@ import noSun from '../assets/icons/infoCard/noSun.svg';
 import seasonCool from '../assets/icons/infoCard/seasonCool.svg';
 import seasonWarm from '../assets/icons/infoCard/seasonWarm.svg';
 import watering from '../assets/icons/infoCard/watering.svg';
-import wiki from '../assets/icons/infoCard/wiki.svg';
 
 const MyPlantForm = ({
     selectedFav,

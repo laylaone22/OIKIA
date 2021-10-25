@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useRef } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 
 // contexts
