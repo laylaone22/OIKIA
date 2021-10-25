@@ -54,9 +54,9 @@ const MyGardens = () => {
         <div className="MyGardens">
             <main className="MyGardens__body">
                 <header className="MyGardens__body__header">
-                    <h1 className="MyGardens__body__header__title">{`Hi ${userData.name}`}</h1>
+                    <h1 className="MyGardens__body__header__title">Your Gardens</h1>
                 </header>
-                <h2>Your Gardens</h2>
+
                 <section className="MyGardens__body__gardens">
                     {(!dataState.myGardens || dataState.myGardens.length === 0) && <h2>Create your first garden!!</h2>}
                     {dataState.myGardens &&

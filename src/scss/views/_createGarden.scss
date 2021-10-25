@@ -5,14 +5,25 @@
     @include viewsMain;
 
     // background & linear gradient
-    background: linear-gradient(180deg, #cbe9b357 16%, #89a57480 90%), url('../../assets/img/plantcyclopedia-bg.jpg');
+    background: linear-gradient(180deg, rgba(208, 235, 182, 0.1407) 62.12%, rgba(61, 65, 58, 0.21) 95.13%),
+        url('../../assets/img/createGarden-bg.jpg');
     background-repeat: no-repeat;
-    background-position: left center;
+    background-position: center;
     background-size: cover;
     background-attachment: fixed;
 
     .CreateGarden__body {
         @include viewsBody;
+
+        h1 {
+            color: $font-color-special;
+        }
+
+        h3 {
+            color: $font-color-special;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
     }
 }
 

@@ -27,14 +27,21 @@ import seasonWarm from '../assets/icons/infoCard/seasonWarm.svg';
 import watering from '../assets/icons/infoCard/watering.svg';
 import wiki from '../assets/icons/infoCard/wiki.svg';
 
-const MyPlantForm = ({ selectedFav, handleSubmit, setMyPlantData, myPlantData, initialState }) => {
+const MyPlantForm = ({
+    selectedFav,
+    handleSubmit,
+    setMyPlantData,
+    myPlantData,
+    initialState,
+    isCollapsed,
+    setIsCollapsed
+}) => {
     // contexts
     const { userData, authToken } = useContext(authContext);
     const { dataState, dispatch } = useContext(dataContext);
 
     // states
-    const [isExpanded, setIsExpanded] = useState(false);
-    //const [formData, setFormData] = useState(initialState);
+    const [isExpanded, setIsExpanded] = useState(true);
 
     // expand/collapse the suggestions
     const handleExpanded = () => {
@@ -67,7 +74,7 @@ const MyPlantForm = ({ selectedFav, handleSubmit, setMyPlantData, myPlantData, i
 
     return (
         <section
-            className="MyPlantForm"
+            className={`MyPlantForm ${isCollapsed && 'hide'}`}
             style={{
                 animationName: 'moveInLeft',
                 animationDuration: '1s',
@@ -116,7 +123,7 @@ const MyPlantForm = ({ selectedFav, handleSubmit, setMyPlantData, myPlantData, i
 
                 <div className="MyPlantForm__infoControls__icons-group">
                     <img
-                        className={`icon__info ${isExpanded && 'frontFlip'}`}
+                        className={`caret ${isExpanded && 'frontFlip'}`}
                         alt="caret icon"
                         src={caret}
                         onClick={handleExpanded}
@@ -124,111 +131,120 @@ const MyPlantForm = ({ selectedFav, handleSubmit, setMyPlantData, myPlantData, i
                 </div>
             </div>
 
-            {/* suggestions */}
-            <div className={`MyPlantForm__detailedInfo ${!isExpanded && 'hide'}`}>
-                <section className="MyPlantForm__detailedInfo__suggestions">
-                    <div className="suggestion watering">
-                        <img src={watering} alt="icon watering" />
-                        <h6>{`${selectedFav.wateringInterval} /days`}</h6>
-                    </div>
-                    <div className="suggestion lightConditions">
-                        <img src={iconLightConditions} alt="icon lightConditions" />
-                        <h6>{`${selectedFav.lightConditions}`}</h6>
-                    </div>
-                    <div className="suggestion season">
-                        <img src={iconSeason} alt="icon season" />
-                        <h6>{`${selectedFav.season}`}</h6>
-                    </div>
-                    <div className="suggestion frostTolerance">
-                        <img src={frost} alt="icon frostTolerance" />
-                        <h6>{selectedFav.frostTolerance ? 'tolerant' : '!tolerant'}</h6>
-                    </div>
-                </section>
-
-                {/* companions */}
-                <section className="MyPlantForm__detailedInfo__texts">
-                    <div className="companions">
-                        <div className="companions__good">
-                            <h5>Good Companions</h5>
-                            <ul className="companions__list">
-                                {selectedFav &&
-                                    selectedFav.goodCompanions?.map((good, i) => (
-                                        <li key={i} className="good">
-                                            {good}
-                                        </li>
-                                    ))}
-                            </ul>
-                        </div>
-                        <div className="companions__bad">
-                            <h5>Bad Companions</h5>
-                            <ul className="companions__list">
-                                {selectedFav &&
-                                    selectedFav.badCompanions?.map((bad, i) => (
-                                        <li key={i} className="bad">
-                                            {bad}
-                                        </li>
-                                    ))}
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
             {/* form */}
 
             <section className="MyPlantForm__userDefinedInfo">
+                {/* suggestions */}
+                <div className={`MyPlantForm__detailedInfo ${isExpanded && 'hide'}`}>
+                    <h5>OIKIA' suggestions</h5>
+                    <section className="MyPlantForm__detailedInfo__suggestions">
+                        <div className="suggestion watering">
+                            <img src={watering} alt="icon watering" />
+                            <h6>{`${selectedFav.wateringInterval} /days`}</h6>
+                        </div>
+                        <div className="suggestion lightConditions">
+                            <img src={iconLightConditions} alt="icon lightConditions" />
+                            <h6>{`${selectedFav.lightConditions}`}</h6>
+                        </div>
+                        <div className="suggestion season">
+                            <img src={iconSeason} alt="icon season" />
+                            <h6>{`${selectedFav.season}`}</h6>
+                        </div>
+                        <div className="suggestion frostTolerance">
+                            <img src={frost} alt="icon frostTolerance" />
+                            <h6>{selectedFav.frostTolerance ? 'tolerant' : '!tolerant'}</h6>
+                        </div>
+                    </section>
+
+                    {/* companions */}
+                    <section className="MyPlantForm__detailedInfo__texts">
+                        <div className="companions">
+                            <div className="companions__good">
+                                <h5>Good Companions</h5>
+                                <ul className="companions__list">
+                                    {selectedFav &&
+                                        selectedFav.goodCompanions?.map((good, i) => (
+                                            <li key={i} className="good">
+                                                {good}
+                                            </li>
+                                        ))}
+                                </ul>
+                            </div>
+                            <div className="companions__bad">
+                                <h5>Bad Companions</h5>
+                                <ul className="companions__list">
+                                    {selectedFav &&
+                                        selectedFav.badCompanions?.map((bad, i) => (
+                                            <li key={i} className="bad">
+                                                {bad}
+                                            </li>
+                                        ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
                 <h5>Personalize your plant</h5>
                 <form onSubmit={handleSubmit} className="MyPlantForm__form">
-                    {/* myPlant Name */}
-                    <label htmlFor="name" className="MyPlantForm__form__label">
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            placeholder="Name"
-                            required
-                            value={myPlantData.name}
-                            onChange={handleChange}
-                            className="MyPlantForm__form__input"
-                        />
-                    </label>
-                    {/* plantedAt */}
-                    <label htmlFor="plantedAt" className="MyPlantForm__form__label">
-                        <input
-                            type="date"
-                            id="plantedAt"
-                            name="plantedAt"
-                            placeholder="Planted On"
-                            required
-                            value={myPlantData.plantedAt}
-                            onChange={handleChange}
-                            className="MyPlantForm__form__input"
-                        />
-                    </label>
-                    {/* userWatering */}
-                    <label htmlFor="userWatering" className="MyPlantForm__form__label">
-                        <input
-                            type="number"
-                            id="userWatering"
-                            name="userWatering"
-                            placeholder="Preferred Watering time (days)"
-                            required
-                            value={myPlantData.userWatering}
-                            onChange={handleChange}
-                            className="MyPlantForm__form__input"
-                        />
-                    </label>
-                    {/* notes */}
-                    <label htmlFor="notes" className="MyPlantForm__form__label">
-                        <textarea
-                            id="notes"
-                            name="notes"
-                            placeholder="add some notes if you like..."
-                            value={myPlantData.notes}
-                            onChange={handleChange}
-                            className="MyPlantForm__form__input"
-                        />
-                    </label>
+                    <div className="MyPlantForm__form__sections">
+                        <div className="MyPlantForm__form__section1">
+                            {/* myPlant Name */}
+                            <label htmlFor="name" className="MyPlantForm__form__label">
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Name"
+                                    required
+                                    value={myPlantData.name}
+                                    onChange={handleChange}
+                                    className="MyPlantForm__form__input"
+                                />
+                            </label>
+                            {/* plantedAt */}
+                            <label htmlFor="plantedAt" className="MyPlantForm__form__label">
+                                <input
+                                    type="date"
+                                    id="plantedAt"
+                                    name="plantedAt"
+                                    placeholder="Planted On"
+                                    required
+                                    value={myPlantData.plantedAt}
+                                    onChange={handleChange}
+                                    className="MyPlantForm__form__input"
+                                />
+                            </label>
+                            <label htmlFor="userWatering" className="MyPlantForm__form__label">
+                                <input
+                                    type="number"
+                                    id="userWatering"
+                                    name="userWatering"
+                                    placeholder="Watering time (days)"
+                                    min="1"
+                                    required
+                                    value={myPlantData.userWatering}
+                                    onChange={handleChange}
+                                    className="MyPlantForm__form__input"
+                                />
+                            </label>
+                        </div>
+                        <div className="MyPlantForm__form__section2">
+                            {/* userWatering */}
+
+                            {/* notes */}
+                            <label htmlFor="notes" className="MyPlantForm__form__label">
+                                <textarea
+                                    id="notes"
+                                    name="notes"
+                                    placeholder="add some notes if you like..."
+                                    value={myPlantData.notes}
+                                    onChange={handleChange}
+                                    className="MyPlantForm__form__input"
+                                />
+                            </label>
+                        </div>
+                    </div>
                     <div className="MyPlantForm__form__buttons">
                         <button
                             type="reset"

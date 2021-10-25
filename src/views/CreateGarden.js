@@ -160,7 +160,7 @@ const CreateGarden = () => {
                             </button>
                         </div>
                     </form>
-                    {isGardenCreated && <h3>{`${gardenToAdd.gardenName} has been added to your gardens`}</h3>}
+                    {isGardenCreated && <h3>{`${gardenToAdd.gardenName} was created!!`}</h3>}
                 </section>
             </main>
         </div>
