@@ -20,7 +20,7 @@ const GardenEditor = () => {
     const history = useHistory();
 
     // contexts
-    const { userData, authToken } = useContext(authContext);
+    const { authToken } = useContext(authContext);
     const { dataState } = useContext(dataContext);
 
     // initial form state for user defined data about myPlants
