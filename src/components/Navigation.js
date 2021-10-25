@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useRef } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 
 // contexts
@@ -10,6 +10,9 @@ import { RESET_STATE } from '../stores/data/actions';
 
 // custom hook
 import NavigationHandler from '../utilities/NavigationHandler';
+
+// assets
+import logo from '../assets/logo/Logo_Poppins.png';
 
 const Navigation = () => {
     // useHistory to redirect when needed
@@ -54,7 +57,7 @@ const Navigation = () => {
                             history.push('/');
                         }}
                     >
-                        OIKIA
+                        <img src={logo} alt="OIKIA logo" />
                     </div>
                 </div>
                 <div>

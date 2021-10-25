@@ -13,8 +13,6 @@ import herbs from '../assets/icons/type/herbs.png';
 import killer from '../assets/icons/type/killer.png';
 
 // ui icons
-import favoriteFull from '../assets/icons/ui/favoriteFull.png';
-import favoriteEmpty from '../assets/icons/ui/favoriteEmpty.png';
 import caret from '../assets/icons/ui/caret.svg';
 
 // info icons

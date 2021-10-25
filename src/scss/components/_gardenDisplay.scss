@@ -3,19 +3,17 @@
 
 .GardenDisplay {
     min-height: calc(100vh - 4rem);
-    // min-width: 100vw;
     text-align: center;
     perspective: 500rem;
 
     background-color: $bg-color--primary;
-    border-radius: $b-radius-normal;
 
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
 
-    overflow: hidden;
+    //overflow: hidden;
 
     position: relative;
 

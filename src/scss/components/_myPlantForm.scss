@@ -5,13 +5,12 @@
     background-color: $bg-color--secondary;
 
     position: absolute;
-    bottom: 150%;
+    top: -28.3rem;
     left: 1%;
-    z-index: 300;
-    //transform: translateY(+50%);
+    z-index: 450;
 
-    min-width: 20rem;
-    min-height: 10rem;
+    max-width: 20rem;
+    max-height: 5rem;
     margin: auto;
 
     border-radius: $b-radius-normal;
@@ -20,7 +19,6 @@
     transition: $transition-normal;
 
     &:hover {
-        //transform: translateY(51%);
         box-shadow: $b-shadow-special;
     }
 
@@ -53,6 +51,7 @@
     padding: $p-small;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+
     background-color: $bg-color-card-light;
 
     display: flex;
@@ -85,6 +84,7 @@
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: flex-end;
+
     text-transform: capitalize;
 
     .MyPlantForm__infoControls__name {
@@ -92,11 +92,13 @@
 
         .MyPlantForm__infoControls__scientificName {
             padding: 0 0 $p-small $p-small;
+
             font-size: 0.5rem;
             font-weight: 300;
             font-style: italic;
+
             color: $font-color-secondary;
-            text-transform: capitalize;
+            text-transform: initial;
         }
 
         .MyPlantForm__header__favorite {
@@ -105,7 +107,7 @@
 
             h3 {
                 padding: $p-small 0 0 $p-small;
-                margin: 0;
+
                 font-size: $f-medium;
                 font-weight: 400;
                 color: $font-color-primary;
@@ -122,15 +124,20 @@
 }
 
 .MyPlantForm__infoControls__icons-group {
-    -webkit-animation: rotate-center360 0.6s 1.5s ease-in-out both;
-    animation: rotate-center360 0.6s 1.5s ease-in-out both;
+    // -webkit-animation: rotate-center360 0.6s 1.5s ease-in-out both;
+    // animation: rotate-center360 0.6s 1.5s ease-in-out both;
 
     img {
         width: 1.8rem;
         height: 1.8rem;
         cursor: pointer;
+
         margin: 0 $m-small;
         transition: all 0.7s ease-in-out;
+
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
 
         &:hover {
             background-color: $bg-color--primary;
@@ -154,9 +161,15 @@
 
 .MyPlantForm__detailedInfo {
     width: 100%;
+    //min-height: 15rem;
     padding-top: $p-small;
-    background-color: $bg-color--secondary;
     border-radius: $b-radius-normal;
+    border: 0.5rem solid $bg-color--secondary;
+
+    background-color: $bg-color--secondary;
+
+    position: absolute;
+    z-index: 400;
 
     &__suggestions {
         width: 90%;
@@ -236,7 +249,7 @@
             justify-content: center;
 
             list-style: none;
-            margin-bottom: $m-small;
+            padding-bottom: $p-small;
 
             .good {
                 padding: 0.3rem 0.5rem;
@@ -267,6 +280,9 @@
 
 // form to create myPlant
 .MyPlantForm__userDefinedInfo {
+    background-color: $bg-color-card-light;
+    border-radius: 0 0 $b-radius-normal $b-radius-normal;
+
     h5 {
         font-size: $f-small;
         font-weight: 300;
@@ -285,6 +301,7 @@
             font-family: $font-family-secondary;
             width: 100%;
             padding-bottom: $p-medium;
+            //margin-bottom: $m-small;
         }
         &__input {
             width: 100%;
@@ -293,20 +310,33 @@
             background-color: $bg-color--primary;
             border: 0.1rem solid $bg-color--primary;
             border-radius: $b-radius-normal;
-            //box-shadow: $b-shadow-normal;
 
-            //outline: none;
             &::placeholder {
                 font-size: $f-small;
                 font-family: $font-family-secondary;
                 color: $font-color-place-holder;
             }
         }
+
         textarea {
             width: 100%;
             min-height: 5rem;
             padding-top: $p-small;
         }
+
+        .MyPlantForm__form__sections {
+            display: flex;
+            flex-flow: row nowrap;
+            gap: 0.2rem;
+
+            .MyPlantForm__form__section1,
+            .MyPlantForm__form__section2 {
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: flex-start;
+            }
+        }
+
         &__buttons {
             width: 100%;
 

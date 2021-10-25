@@ -12,7 +12,6 @@ const LegendTile = ({ type }) => {
 
     return (
         <div className={type}>
-            {/* <img src={killer} alt={`${type} icon`} /> */}
             <h6>{title}</h6>
         </div>
     );

@@ -3,6 +3,9 @@
 
 .Navigation {
     background-color: #fafafa;
+    position: sticky;
+    top: 0%;
+    z-index: 500;
 }
 
 // Navigation Logo and Menu
@@ -24,6 +27,10 @@
     }
     a:hover {
         color: $font-color-secondary;
+    }
+
+    img {
+        width: 6rem;
     }
 }
 

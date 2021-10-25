@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 
 // contexts
 import { authContext } from '../stores/auth/auth';

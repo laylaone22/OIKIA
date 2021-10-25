@@ -37,6 +37,7 @@ const GardenEditor = () => {
     const [selectedGarden, setSelectedGarden] = useState({});
     const [selectedFav, setSelectedFav] = useState(undefined);
     const [isExpanded, setIsExpanded] = useState(true);
+    const [isCollapsed, setIsCollapsed] = useState(true);
     const [myPlantData, setMyPlantData] = useState(initialState);
 
     // useEffect to get garden data from mongoDB on mount
@@ -79,12 +80,13 @@ const GardenEditor = () => {
     // handler to pass the selectedFav to the different components
     const handleSelect = (favorite) => {
         setSelectedFav(favorite);
+        setIsCollapsed(!isCollapsed);
     };
 
     // on submit we just collapse form and selectPlants selection
     const handleSubmit = async (evt) => {
         evt.preventDefault();
-        setIsExpanded(false);
+        setIsCollapsed(!isCollapsed);
     };
 
     return (
@@ -121,6 +123,8 @@ const GardenEditor = () => {
                                 setMyPlantData={setMyPlantData}
                                 myPlantData={myPlantData}
                                 initialState={initialState}
+                                isCollapsed={isCollapsed}
+                                setIsCollapsed={setIsCollapsed}
                             />
                         )}
                         <h6 className="GardenEditor__aside__plantSelection__text">
