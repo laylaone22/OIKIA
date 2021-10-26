@@ -55,7 +55,7 @@ const MyGardenCard = ({ garden, deleteGarden }) => {
                     </div>
                     <div className="MyGardenCard__info water">
                         <img src={watering} alt="water icon" />
-                        <h4>X plants need watering</h4>
+                        <h4>Some plants need watering</h4>
                     </div>
                     <div className="MyGardenCard__info harvest">
                         <img src={harvest} alt="harvest icon" />
