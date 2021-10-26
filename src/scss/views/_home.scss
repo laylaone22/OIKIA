@@ -19,9 +19,6 @@
     @include flex-col-center;
 }
 .Home__body--text {
-    width: 80%;
-    min-height: 10rem;
-
     border-radius: $b-radius-normal;
     margin-bottom: $m-medium;
     box-shadow: $b-shadow-normal;
@@ -49,5 +46,66 @@
         font-family: $font-family-primary;
         font-size: $f-large;
         color: $font-color-primary;
+        margin-top: 16px;
     }
+}
+
+.Tour__body {
+    @include viewsBody;
+    width: 100%;
+    border-radius: $b-radius-normal;
+    margin-bottom: $m-medium;
+    box-shadow: $b-shadow-normal;
+    padding: 0 1.5rem 0 $p-small;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    background-color: $bg-color--secondary;
+}
+
+.Tour__body__section {
+    display: inline-block;
+    h3 {
+        font-family: $font-family-primary;
+        padding: $p-small 0 0 $p-small;
+        width: 50%;
+        font-weight: bold;
+        margin: 0;
+        font-size: $f-medium;
+        font-weight: 400;
+        color: $font-color-primary;
+    }
+
+    &--img {
+        height: 10rem;
+        width: 40%;
+        padding: 1rem;
+        border-radius: 50px;
+    }
+
+    &--text {
+        width: 40%;
+        text-align: center;
+        padding-top: $p-large;
+    }
+}
+
+.img-left {
+    float: left;
+}
+
+.img-right {
+    float: right;
+}
+
+.text-left {
+    float: left;
+}
+
+.text-right {
+    float: right;
+}
+
+.hide {
+    display: none;
 }
