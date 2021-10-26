@@ -15,97 +15,150 @@
     // view Body
     .Home__body {
         @include viewsBody;
+
+        h1 {
+            span {
+                color: red;
+            }
+        }
     }
-    @include flex-col-center;
 }
+
 .Home__body--text {
+    width: 90%;
     border-radius: $b-radius-normal;
-    margin-bottom: $m-medium;
+    margin: auto;
+
     box-shadow: $b-shadow-normal;
-    padding: 0 1.5rem 0 $p-small;
+    padding: $p-medium;
+
     display: flex;
     flex-flow: column;
-    justify-content: space-around;
-    margin: 2.5rem;
+    justify-content: center;
+
     background-color: $bg-color--secondary;
-    position: relative;
-
-    transition: all 0.2s ease-in-out;
-
-    &:hover {
-        transform: translateY(0.2rem);
-        box-shadow: $b-shadow-special;
-    }
-
-    &:active {
-        transform: translateY(0.1rem);
-        box-shadow: $b-shadow-active;
-    }
 
     h2 {
         font-family: $font-family-primary;
+
         font-size: $f-large;
+        font-weight: 600;
         color: $font-color-primary;
-        margin-top: 16px;
+    }
+
+    p {
+        font-size: $f-medium;
+        font-weight: 300;
+    }
+}
+
+.Home__body__callAction_buttons {
+    width: 90%;
+    margin: $m-large auto;
+
+    display: flex;
+    flex-flow: row wrap;
+
+    button {
+        flex: 1 1 10rem;
+    }
+}
+
+.Home__body__takeATour_buttons {
+    width: 50%;
+    margin: $m-large auto;
+
+    display: flex;
+    flex-flow: row wrap;
+
+    button {
+        flex: 1 1 10rem;
     }
 }
 
 .Tour__body {
-    @include viewsBody;
-    width: 100%;
+    width: 90%;
+    margin: $m-medium auto;
+    padding: $p-large;
+
     border-radius: $b-radius-normal;
-    margin-bottom: $m-medium;
     box-shadow: $b-shadow-normal;
-    padding: 0 1.5rem 0 $p-small;
+    background-color: $bg-color--primary;
+
     display: flex;
     flex-flow: column;
-    justify-content: space-around;
-    background-color: $bg-color--secondary;
+    justify-content: center;
+    align-items: stretch;
 }
 
 .Tour__body__section {
-    display: inline-block;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: $m-medium;
+
     h3 {
         font-family: $font-family-primary;
-        padding: $p-small 0 0 $p-small;
-        width: 50%;
-        font-weight: bold;
-        margin: 0;
-        font-size: $f-medium;
-        font-weight: 400;
+
+        font-size: $f-large;
+        font-weight: 600;
         color: $font-color-primary;
     }
 
     &--img {
-        height: 10rem;
-        width: 40%;
-        padding: 1rem;
-        border-radius: 50px;
+        flex: 0 0 12rem;
+        height: 12rem;
+
+        margin: $m-medium auto;
+        border-radius: $b-radius-normal;
     }
 
     &--text {
-        width: 40%;
+        flex: 1 0 15rem;
         text-align: center;
-        padding-top: $p-large;
+        padding: 0 $p-medium;
+    }
+}
+.Home__body__callAction_myProfile {
+    width: 90%;
+    margin: $m-medium auto;
+
+    @include flex-row-center;
+
+    button {
+        flex: 0 0 10rem;
+    }
+}
+// mQueries //////
+
+@include mQuery($bp-mobile-md) {
+    .Tour__body__section {
+        //background: yellow;
     }
 }
 
-.img-left {
-    float: left;
+@include mQuery($bp-tablet-sm) {
+    .Tour__body__section.text-right {
+        flex-direction: row-reverse;
+    }
 }
 
-.img-right {
-    float: right;
+@include mQuery($bp-laptop-sm) {
+    .UserDashboard__body__dashboard {
+        width: 80%;
+        gap: 1rem;
+
+        section {
+            flex: 1 0 20rem;
+            margin: 0;
+        }
+    }
 }
 
-.text-left {
-    float: left;
-}
-
-.text-right {
-    float: right;
-}
-
-.hide {
-    display: none;
+@include mQuery($bp-desktop-sm) {
+    .UserDashboard {
+        //background: yellow;
+    }
 }
